@@ -12,7 +12,7 @@ kernelspec:
 
 
 ```{code-cell}
-tags: [r"hide-cell"]
+:tags: [hide-cell]
 
 import wikipedia
 import ipywidgets
@@ -22,14 +22,18 @@ import urllib
 ```
 
 ```{code-cell}
-tags: [r"hide-cell"]
+:tags: [hide-cell]
 
-name = urllib.request.urlopen('https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-5%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
-content = wikipedia.page(name).content
+try:
+  name = urllib.request.urlopen('https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-5%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  content = wikipedia.page(name).content
+except:
+  name = urllib.request.urlopen('https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-5%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  content = wikipedia.page(name).content
 ```
 
 ```{code-cell}
-tags: [r"hide-cell"]
+:tags: [hide-cell]
 
 def print_redacted(new_string,count_to_word_dict):
   string_to_print = ''
@@ -87,7 +91,7 @@ for eachguess in starting_guesses:
 ```
 
 ```{code-cell}
-tags: [r"hide-cell"]
+:tags: [hide-cell]
 
 guess = ipywidgets.Text(value='the')
 ```
@@ -122,7 +126,7 @@ guess
 # Answers/Give up?
 
 ```{code-cell}
-tags: [r"hide-cell"]
+:tags: [hide-cell]
 
 #Give up? Uncomment(remove the # from) the line below and run 
 #print(name)
