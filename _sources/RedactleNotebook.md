@@ -91,7 +91,7 @@ for eachguess in starting_guesses:
 ```
 
 ```{code-cell}
-:tags: [hide-input, thebe-init]
+:tags: [hide-input, thebe-init, margin]
 
 guess = ipywidgets.Text(value='the')
 
