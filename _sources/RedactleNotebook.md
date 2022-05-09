@@ -99,6 +99,8 @@ guess = ipywidgets.Text(value='the')
 ```{code-cell}
 :tags: [hide-input]
 
+guess
+
 thisguess = guess.value.lower()
 if thisguess in tried:
   print('already tried, here is what you tried already:',textwrap.fill(', '.join(tried)))
@@ -121,14 +123,12 @@ else:
       if len(v)>1:
         count_to_word_dict[k]=v[1:]
   print_redacted(new_string,count_to_word_dict)
-
-guess
 ```
 
 # Answers/Give up?
 
 ```{code-cell}
-:tags: [remove-cell]
+:tags: [hide-cell]
 
 #Give up? Uncomment(remove the # from) the line below and run 
 #print(name)
