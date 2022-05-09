@@ -15,9 +15,6 @@ kernelspec:
 ---
 tags: [r"hide-cell"]
 ---
-:id: bkyUbqhitXbn
-
-
 import wikipedia
 import ipywidgets
 import re
@@ -26,15 +23,17 @@ import urllib
 ```
 
 ```{code-cell}
-:id: is_XQ3vDuCT_
-
+---
+tags: [r"hide-cell"]
+---
 name = urllib.request.urlopen('https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-5%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
 content = wikipedia.page(name).content
 ```
 
 ```{code-cell}
-:id: PbpZK70RvdUl
-
+---
+tags: [r"hide-cell"]
+---
 def print_redacted(new_string,count_to_word_dict):
   string_to_print = ''
   delims=['\n',r'===',r'==',r'.',r',',r'(',r')',r'[',r']',r'<',r'>',r'"',r':',r';',r'-',r'/',r'–',r'=',r'%']
@@ -91,26 +90,13 @@ for eachguess in starting_guesses:
 ```
 
 ```{code-cell}
-:id: GoRskjjNSqsY
-
+---
+tags: [r"hide-cell"]
+---
 guess = ipywidgets.Text(value='the')
 ```
 
-+++ {"id": "JfoVKEW77olk"}
-
-# The Game
-
 ```{code-cell}
----
-colab:
-  base_uri: https://localhost:8080/
-  height: 1000
-  referenced_widgets: [7a35b983e464478cab11b2c19a978119, 8bbdf498e9aa4872903ce7e04f38ee50,
-    d782c29090f74fa7b2de4f0e6b774a31]
-id: YvuVtauLRHcU
-outputId: 08de5b19-5917-4829-9ab5-31eef59eac2c
----
-#@title Default title text
 thisguess = guess.value.lower()
 if thisguess in tried:
   print('already tried, here is what you tried already:',textwrap.fill(', '.join(tried)))
@@ -137,19 +123,12 @@ else:
 guess
 ```
 
-+++ {"id": "yxlLX9DC7Tyq"}
-
 # Answers/Give up?
 
 ```{code-cell}
-:id: k2Ihwz8WlUpc
-
+---
+tags: [r"hide-cell"]
+---
 #Give up? Uncomment(remove the # from) the line below and run 
 #print(name)
-```
-
-```{code-cell}
-:id: Sw_Fri_opNH1
-
-#print(tried)
 ```
