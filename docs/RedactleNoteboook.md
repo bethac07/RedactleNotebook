@@ -11,10 +11,10 @@ kernelspec:
 ---
 
 
-```{code-cell,
-    "tags": [
-        "hide-cell"
-    ]}
+```{code-cell}
+---
+tags: [r"hide-cell"]
+---
 :id: bkyUbqhitXbn
 
 
