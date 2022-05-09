@@ -17,20 +17,38 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import wikipedia
-import ipywidgets
-import re
-import textwrap
-import urllib
+name = urllib.request.urlopen('https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-5%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+content = wikipedia.page(name).content
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [2][0m, in [0;36m<cell line: 1>[0;34m()[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mwikipedia[39;00m
-[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mipywidgets[39;00m
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mre[39;00m
+[0;31mPageError[0m                                 Traceback (most recent call last)
+Input [0;32mIn [3][0m, in [0;36m<cell line: 2>[0;34m()[0m
+[1;32m      1[0m name [38;5;241m=[39m urllib[38;5;241m.[39mrequest[38;5;241m.[39murlopen([38;5;124m'[39m[38;5;124mhttps://randomincategory.toolforge.org/?category=All[39m[38;5;124m%[39m[38;5;124m20Wikipedia[39m[38;5;132;01m%20le[39;00m[38;5;124mvel-5[39m[38;5;124m%[39m[38;5;124m20vital[39m[38;5;132;01m%20a[39;00m[38;5;124mrticles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject[39m[38;5;124m'[39m)[38;5;241m.[39mread([38;5;241m500[39m)[38;5;241m.[39mdecode()[38;5;241m.[39msplit([38;5;124m'[39m[38;5;124mtitle>[39m[38;5;124m'[39m)[[38;5;241m1[39m][38;5;241m.[39msplit([38;5;124m'[39m[38;5;124m - Wikipedia[39m[38;5;124m'[39m)[[38;5;241m0[39m]
+[0;32m----> 2[0m content [38;5;241m=[39m [43mwikipedia[49m[38;5;241;43m.[39;49m[43mpage[49m[43m([49m[43mname[49m[43m)[49m[38;5;241m.[39mcontent
 
-[0;31mModuleNotFoundError[0m: No module named 'wikipedia'
-ModuleNotFoundError: No module named 'wikipedia'
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:276[0m, in [0;36mpage[0;34m(title, pageid, auto_suggest, redirect, preload)[0m
+[1;32m    273[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mIndexError[39;00m:
+[1;32m    274[0m       [38;5;66;03m# if there is no suggestion or search results, the page doesn't exist[39;00m
+[1;32m    275[0m       [38;5;28;01mraise[39;00m PageError(title)
+[0;32m--> 276[0m   [38;5;28;01mreturn[39;00m [43mWikipediaPage[49m[43m([49m[43mtitle[49m[43m,[49m[43m [49m[43mredirect[49m[38;5;241;43m=[39;49m[43mredirect[49m[43m,[49m[43m [49m[43mpreload[49m[38;5;241;43m=[39;49m[43mpreload[49m[43m)[49m
+[1;32m    277[0m [38;5;28;01melif[39;00m pageid [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    278[0m   [38;5;28;01mreturn[39;00m WikipediaPage(pageid[38;5;241m=[39mpageid, preload[38;5;241m=[39mpreload)
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:299[0m, in [0;36mWikipediaPage.__init__[0;34m(self, title, pageid, redirect, preload, original_title)[0m
+[1;32m    296[0m [38;5;28;01melse[39;00m:
+[1;32m    297[0m   [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mEither a title or a pageid must be specified[39m[38;5;124m"[39m)
+[0;32m--> 299[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m__load[49m[43m([49m[43mredirect[49m[38;5;241;43m=[39;49m[43mredirect[49m[43m,[49m[43m [49m[43mpreload[49m[38;5;241;43m=[39;49m[43mpreload[49m[43m)[49m
+[1;32m    301[0m [38;5;28;01mif[39;00m preload:
+[1;32m    302[0m   [38;5;28;01mfor[39;00m prop [38;5;129;01min[39;00m ([38;5;124m'[39m[38;5;124mcontent[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msummary[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mimages[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mreferences[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mlinks[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msections[39m[38;5;124m'[39m):
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:345[0m, in [0;36mWikipediaPage.__load[0;34m(self, redirect, preload)[0m
+[1;32m    343[0m [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124mmissing[39m[38;5;124m'[39m [38;5;129;01min[39;00m page:
+[1;32m    344[0m   [38;5;28;01mif[39;00m [38;5;28mhasattr[39m([38;5;28mself[39m, [38;5;124m'[39m[38;5;124mtitle[39m[38;5;124m'[39m):
+[0;32m--> 345[0m     [38;5;28;01mraise[39;00m PageError([38;5;28mself[39m[38;5;241m.[39mtitle)
+[1;32m    346[0m   [38;5;28;01melse[39;00m:
+[1;32m    347[0m     [38;5;28;01mraise[39;00m PageError(pageid[38;5;241m=[39m[38;5;28mself[39m[38;5;241m.[39mpageid)
+
+[0;31mPageError[0m: Page id "trace music" does not match any pages. Try another id!
+PageError: Page id "trace music" does not match any pages. Try another id!
 

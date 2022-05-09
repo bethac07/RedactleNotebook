@@ -277,23 +277,44 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">wikipedia</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">ipywidgets</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">re</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;wikipedia&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">PageError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:276,</span> in <span class="ni">page</span><span class="nt">(title, pageid, auto_suggest, redirect, preload)</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span>     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>       <span class="c1"># if there is no suggestion or search results, the page doesn&#39;t exist</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>       <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">276</span>   <span class="k">return</span> <span class="n">WikipediaPage</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span> <span class="k">elif</span> <span class="n">pageid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>   <span class="k">return</span> <span class="n">WikipediaPage</span><span class="p">(</span><span class="n">pageid</span><span class="o">=</span><span class="n">pageid</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:299,</span> in <span class="ni">WikipediaPage.__init__</span><span class="nt">(self, title, pageid, redirect, preload, original_title)</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>   <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either a title or a pageid must be specified&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">299</span> <span class="bp">self</span><span class="o">.</span><span class="n">__load</span><span class="p">(</span><span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="k">if</span> <span class="n">preload</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>   <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;references&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">,</span> <span class="s1">&#39;sections&#39;</span><span class="p">):</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:345,</span> in <span class="ni">WikipediaPage.__load</span><span class="nt">(self, redirect, preload)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span> <span class="k">if</span> <span class="s1">&#39;missing&#39;</span> <span class="ow">in</span> <span class="n">page</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>   <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>     <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>   <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>     <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="n">pageid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pageid</span><span class="p">)</span>
+
+<span class="ne">PageError</span>: Page id &quot;trace music&quot; does not match any pages. Try another id!
 </pre></div>
 </div>
 </div>
