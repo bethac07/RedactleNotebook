@@ -128,7 +128,7 @@ else:
 # Answers/Give up?
 
 ```{code-cell}
-:tags: [hide-cell, thebe-init]]
+:tags: [hide-cell, thebe-init]
 
 #Give up? Uncomment(remove the # from) the line below and run 
 print(name)
