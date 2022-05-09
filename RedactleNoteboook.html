@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Setup &#8212; RedactleNotebook</title>
+    <title>The Game &#8212; RedactleNotebook</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -87,7 +87,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   Setup
+   The Game
   </a>
  </li>
 </ul>
@@ -201,11 +201,6 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Setup
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-game">
    The Game
   </a>
  </li>
@@ -224,7 +219,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Setup</h1>
+                <h1>The Game</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -236,11 +231,6 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Setup
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-game">
    The Game
   </a>
  </li>
@@ -258,25 +248,18 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install wikipedia ipywidgets</span>
+  <div class="highlight-{code-cell, notranslate"><div class="highlight"><pre><span></span>    &quot;tags&quot;: [
+        &quot;hide-cell&quot;
+    ]}
+:id: bkyUbqhitXbn
+
+
+import wikipedia
+import ipywidgets
+import re
+import textwrap
+import urllib
 </pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wikipedia</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="kn">import</span> <span class="nn">urllib</span>
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -287,34 +270,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">PageError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:276,</span> in <span class="ni">page</span><span class="nt">(title, pageid, auto_suggest, redirect, preload)</span>
-<span class="g g-Whitespace">    </span><span class="mi">273</span>     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">274</span>       <span class="c1"># if there is no suggestion or search results, the page doesn&#39;t exist</span>
-<span class="g g-Whitespace">    </span><span class="mi">275</span>       <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">276</span>   <span class="k">return</span> <span class="n">WikipediaPage</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">277</span> <span class="k">elif</span> <span class="n">pageid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span>   <span class="k">return</span> <span class="n">WikipediaPage</span><span class="p">(</span><span class="n">pageid</span><span class="o">=</span><span class="n">pageid</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:299,</span> in <span class="ni">WikipediaPage.__init__</span><span class="nt">(self, title, pageid, redirect, preload, original_title)</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span>   <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either a title or a pageid must be specified&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">299</span> <span class="bp">self</span><span class="o">.</span><span class="n">__load</span><span class="p">(</span><span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="k">if</span> <span class="n">preload</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>   <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;references&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">,</span> <span class="s1">&#39;sections&#39;</span><span class="p">):</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:345,</span> in <span class="ni">WikipediaPage.__load</span><span class="nt">(self, redirect, preload)</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span> <span class="k">if</span> <span class="s1">&#39;missing&#39;</span> <span class="ow">in</span> <span class="n">page</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">344</span>   <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">345</span>     <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">346</span>   <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">347</span>     <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="n">pageid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pageid</span><span class="p">)</span>
-
-<span class="ne">PageError</span>: Page id &quot;trace music&quot; does not match any pages. Try another id!
+<span class="ne">NameError</span>: name &#39;urllib&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -381,7 +342,6 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guess</span> <span class="o">=</span> <span class="n">ipywidgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;the&#39;</span><span class="p">)</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
