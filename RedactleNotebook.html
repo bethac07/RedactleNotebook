@@ -51,8 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -131,11 +129,11 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         <a class="dropdown-buttons"
-            href="_sources/RedactleNoteboook.ipynb"><button type="button"
+            href="_sources/RedactleNotebook.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/RedactleNoteboook.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/RedactleNotebook.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -155,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/bethac07/redactle-notebook/issues/new?title=Issue%20on%20page%20%2FRedactleNoteboook.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/bethac07/redactle-notebook/issues/new?title=Issue%20on%20page%20%2FRedactleNotebook.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -176,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/bethac07/redactle-notebook/main?urlpath=tree/docs/RedactleNoteboook.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/bethac07/redactle-notebook/main?urlpath=tree/docs/RedactleNotebook.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -214,9 +212,11 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="cell tag_r&quot;hide-cell&quot; docutils container">
+  <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wikipedia</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span><span class="p">:</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;hide-cell&quot;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">wikipedia</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
@@ -225,17 +225,55 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="cell tag_r&quot;hide-cell&quot; docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span><span class="p">:</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;hide-cell&quot;</span><span class="p">]</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">PageError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">tags</span><span class="p">:</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;hide-cell&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:276,</span> in <span class="ni">page</span><span class="nt">(title, pageid, auto_suggest, redirect, preload)</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span>     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>       <span class="c1"># if there is no suggestion or search results, the page doesn&#39;t exist</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>       <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">276</span>   <span class="k">return</span> <span class="n">WikipediaPage</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span> <span class="k">elif</span> <span class="n">pageid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>   <span class="k">return</span> <span class="n">WikipediaPage</span><span class="p">(</span><span class="n">pageid</span><span class="o">=</span><span class="n">pageid</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:299,</span> in <span class="ni">WikipediaPage.__init__</span><span class="nt">(self, title, pageid, redirect, preload, original_title)</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>   <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either a title or a pageid must be specified&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">299</span> <span class="bp">self</span><span class="o">.</span><span class="n">__load</span><span class="p">(</span><span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="k">if</span> <span class="n">preload</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>   <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;references&#39;</span><span class="p">,</span> <span class="s1">&#39;links&#39;</span><span class="p">,</span> <span class="s1">&#39;sections&#39;</span><span class="p">):</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/wikipedia/wikipedia.py:345,</span> in <span class="ni">WikipediaPage.__load</span><span class="nt">(self, redirect, preload)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span> <span class="k">if</span> <span class="s1">&#39;missing&#39;</span> <span class="ow">in</span> <span class="n">page</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>   <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>     <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>   <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>     <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="n">pageid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pageid</span><span class="p">)</span>
+
+<span class="ne">PageError</span>: Page id &quot;those island&quot; does not match any pages. Try another id!
+</pre></div>
 </div>
-<div class="cell tag_r&quot;hide-cell&quot; docutils container">
+</div>
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span><span class="p">:</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;hide-cell&quot;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">):</span>
   <span class="n">string_to_print</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
   <span class="n">delims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;===&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;==&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;–&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;%&#39;</span><span class="p">]</span>
   <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ |\n|=|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|%])&#39;</span><span class="p">,</span><span class="n">new_string</span><span class="p">):</span>
@@ -291,9 +329,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="cell tag_r&quot;hide-cell&quot; docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guess</span> <span class="o">=</span> <span class="n">ipywidgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;the&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span><span class="p">:</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;hide-cell&quot;</span><span class="p">]</span>
+
+<span class="n">guess</span> <span class="o">=</span> <span class="n">ipywidgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;the&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -327,46 +367,20 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>already tried, here is what you tried already: a, an, is, the, of
------ ------- 
-
------ ------- (-- ----- ---- –-- -------- ---- )--- an ------- ----- 
----------- .
---- ---- ------ ---- is ---------- --------- ------- ---- -------- -------- --------- 
-.-- ---- -------- the -------- --- ---------- - ------- ,------- ,--- ------- ---------- ------ 
----- --- ------ ------- ----- ----- (--- ---- ).
-------- --- ---- --- ---- -- 
-------- .
-
-
-==-------- ----- ==
------ -- ----- ------- -- ------- --------- 
------ -- -- 
------ ----- ------- -- -------- ------- 
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "93772cc596b44752982681b4e5a8d6bf"}
-</script></div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="answers-give-up">
 <h1>Answers/Give up?<a class="headerlink" href="#answers-give-up" title="Permalink to this headline">¶</a></h1>
-<div class="cell tag_r&quot;hide-cell&quot; docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Give up? Uncomment(remove the # from) the line below and run </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span><span class="p">:</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;hide-cell&quot;</span><span class="p">]</span>
+
+<span class="c1">#Give up? Uncomment(remove the # from) the line below and run </span>
 <span class="c1">#print(name)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"d82b91bc010f4d41a29b61f07eed29b0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0302875e28724243aff6fa4e790dc3de": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "93772cc596b44752982681b4e5a8d6bf": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_d82b91bc010f4d41a29b61f07eed29b0", "placeholder": "\u200b", "style": "IPY_MODEL_0302875e28724243aff6fa4e790dc3de", "value": "the"}}}, "version_major": 2, "version_minor": 0}
-</script>
-
 
     <script type="text/x-thebe-config">
     {
