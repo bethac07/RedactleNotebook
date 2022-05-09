@@ -10,24 +10,13 @@ kernelspec:
   name: python3
 ---
 
-+++ {"id": "cdcgxGu-7c9p"}
 
-# Setup
-
-```{code-cell}
-:id: vlHOZ1x3tLIk
-
-#!pip install wikipedia ipywidgets
-```
-
-```{code-cell}
-:id: jJzY_3Ko7iXj
-
-
-```
-
-```{code-cell}
+```{code-cell,
+    "tags": [
+        "hide-cell"
+    ]}
 :id: bkyUbqhitXbn
+
 
 import wikipedia
 import ipywidgets
