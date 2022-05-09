@@ -214,95 +214,7 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wikipedia</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="kn">import</span> <span class="nn">urllib</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">):</span>
-  <span class="n">string_to_print</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-  <span class="n">delims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;===&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;==&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;–&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;%&#39;</span><span class="p">]</span>
-  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ |\n|=|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|%])&#39;</span><span class="p">,</span><span class="n">new_string</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">delims</span><span class="p">:</span>
-        <span class="n">string_to_print</span> <span class="o">+=</span> <span class="n">word</span>
-      <span class="k">elif</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">count_to_word_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-          <span class="n">string_to_print</span> <span class="o">+=</span> <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39; &#39;</span>
-      <span class="k">else</span><span class="p">:</span>
-        <span class="k">pass</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">string_to_print</span><span class="p">)</span>
-
-
-<span class="n">word_to_count_dict</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">count_to_word_dict</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">count_the_word_dict</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">new_string</span> <span class="o">=</span><span class="s1">&#39;&#39;</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">9897098660698</span>
-<span class="n">delims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;–&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;%&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="p">]</span>
-<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ |\n|=|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|%])&#39;</span><span class="p">,</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39; </span><span class="se">\n\n</span><span class="s1"> &#39;</span><span class="o">+</span><span class="n">content</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-  <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span><span class="p">:</span>
-    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">delims</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">]:</span>
-        <span class="n">new_string</span> <span class="o">+=</span> <span class="n">word</span>
-    <span class="k">elif</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-      <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-      <span class="n">count_to_word_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">),</span><span class="n">word</span><span class="p">]</span>
-      <span class="n">new_string</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span>
-      <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-      <span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="n">new_string</span> <span class="o">+=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39; &#39;</span>
-      <span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
-
-<span class="n">new_string</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">break_long_words</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">replace_whitespace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                           <span class="n">drop_whitespace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">break_on_hyphens</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">tried</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">name_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[ |\n|===|==|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|=|%|]{1,3}&#39;</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
-<span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">]</span>
-
-<span class="n">starting_guesses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;an&#39;</span><span class="p">,</span><span class="s1">&#39;is&#39;</span><span class="p">,</span><span class="s1">&#39;the&#39;</span><span class="p">,</span><span class="s1">&#39;of&#39;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">eachguess</span> <span class="ow">in</span> <span class="n">starting_guesses</span><span class="p">:</span>
-  <span class="k">try</span><span class="p">:</span>
-    <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eachguess</span><span class="p">)</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">eachguess</span><span class="p">]</span>
-    <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">=</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
-  <span class="k">except</span><span class="p">:</span>
-    <span class="k">pass</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guess</span> <span class="o">=</span> <span class="n">ipywidgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;the&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
+  <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thisguess</span> <span class="o">=</span> <span class="n">guess</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">tried</span><span class="p">:</span>
@@ -333,118 +245,95 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>already tried, here is what you tried already: a, an, is, the, of
----------- -------- ----- 
+---- ------ 
 
-the ---------- -------- ----- (---- ----- -- the ---------- ---------- --------- 
-)is a ---------- -------- ----- ------- -- ---- ---------- ,---- ---------- the ----- ---- 
-a ,---- the -------- ---- of --------------- .the ----- --- ---------- -- the --- 
------- --------- ---------- -- ---- --- is ----- --- ------ ------------ -------- a .---------- 
-.-- is ------------- - ,--- ---------- (--- -- )---- ,--- the --------- --- -------- 
--- -- ----- - ,--- ------ (- ,--- -- )---- ,-------- ---- --- 
----------- ------- -- ---- --- ------ (- ,--- -- )of --- --- ---- .the 
----------- -------- ----- is ----- the ---- ---- -- the -------- ---- ,.-- of 
----- ,-- --- ------- --- the --------- ---- ------ --- -- the ---- of 
----- .------- --------- ------ the ------------- ----- ---- ------------ ---- ------- ----- ---------- -------- 
-a ---- ---- --- ----------- -- the ----- -- --- --------- [-- .the ---- 
--------- of the ----- ------ ------ -- ------- ----- --- ,---- the ---- --- 
-------- -- the ------- --- ----- .------- ------ ------- ---- the ---- --------- --- 
------ --- ------ ---- the -------- ---- ----- ------- ---- the ---------- ----- -- 
-the --- of the ------ .------ ---------- --------- ---- an ---- --------- of ---------- 
----------- --------- .
+---- ----- ------ (------- -- ,---- –------- -- ,---- )--- an 
+-------- -------- ,----------- --- -------------- of ----- --- --------- -------- -------- .-- ------- --------- 
+,----- -- --------- the ----- -------- ,------- --------- ,-------------- ,-------- ---------- --------- -- ---- 
+.
 
 
-==------------ ---------- -------- (---- )------- ==
-
--- ---- of the ---- –-- 
-------------- ----- ---- ,-- ------ ,the ---- ------- --- a ------------- ------ -- ------ 
------------ ----- the ---------- -------- ----- .
-
-
-===---------- ===
----------- --------- the ---------- of ----- 
-------- -- -- -------- ---- .------ ---- ------ -------- ---------- -------- a ---- ------ 
---------- .the -------- ---- ---- -- -------- -- ----------- -- the --------- ------ .-- 
------- ----------- ---- the ------- --------- ------ ---- :&quot;-- --- ------- ---- --- ----- 
-;----- ---- ---- ----- the --- .--- ---- --- ---- ------- -- --------- -- 
-the -------- ---- ,--- ---- --- ---- ------- -- ------ :-- --- ---- ----- 
------ --- ------- ----- --- ---------- ------- -- the ---- ---------- .-- --- ---- 
--- the ------- –---- the -------- ----------- of --- ----- --------- ---- ------- ;--- 
----- the ------- ------- ----------- of --- the ---- --------- --- ----- --- ------ 
---- ------ ----- ----- ----- .&quot;the ---- ------- --------- ---------- ,--------- ,------ --- ------- 
------ ---- --------- ,------ ,----- ,------- ,----- ,the ------ ------- ,--- the ------ 
------- .--- ----- ----- ---- ----------- ---- ------ the --------- -------- --- -------- ---- 
------- the --- ,------- the ----- of the --- --------- ----- an --- ------------ 
------ .the ----- ------------- --- -------- ------ ---- ---- -------- .--- ,--- -- ---- 
------ ,---- ---- --- of the ---- --------- --- ----- ----- -------- ------ the 
------- of the ------- .----------- --- -------- -- a ------- of ------------ ---- ------ 
--- ---------- ------- ------- ------- the ---- ---- the -------- ---- of the ------ 
-.------- the ------- ------------ - ------ --- -- -- the --- ---- ----- -- 
--------- -- ---- -- -- ------- -- ----- ---- - ------ ----- --- -------- 
--- the ------- ----- ---------- ------- the ---- .----------- ----- :&quot;-- ----- --- -- 
----- --- an --------- ---- .--- -- ---- --- ---- ---------- ---- -- ---- 
----- .&quot;-- -------- ,---- ,---- -------- -- --- ---- the ---- ------- -------- the 
--------- ----- is --------- -------- --------- -- --------- ,--- ----- ---- -------- ----- -------- 
-.the ------ ---- ---- is -- ----- ------- the --- --- ------- the ----- 
----------- ---- ------- .&quot;--------- ,-- ---- ------- of the ---- --- ---- of the 
------------ ,&quot;---- ----- ---- ,a ------------ -- -------- ------------ ------ –------- ----- ----------- 
-.&quot;---- ----- ---- ------- -- ---- -- ---- -- --------- ---- ---- ------- ----- 
-of ----- --- ----------- --- ---- -- a ----------- -------- ----- .&quot;
+==----- ---- --- --------- ==
+------ --- ---- -- ------- -- ,---- ,-- -------- 
+------- ,--------- --- --- of --------- -------- .------ --- a ---- ----- ----------- ---- 
+----------- --- ----------- .a ---- ---------- &quot;---- &quot;,------ -------- a ----------- ------------ ------ -- 
+------ -- ---- --- ------- .-- ------ a -------- of ------- ------ -- ---------- 
+----------- -- ---- ---- the ---------- of --------- .--- ---------- ----------- --------- --------- --- 
+-- ---- -------- a -------- ------ ---- a ----- -- ----------- ---- ---- the 
+---------- of --------- .
 
 
 ==------ ==
-the 
------- of the ---- ----- ----- --- ----- ---- the ---------- --- ---- --- 
-,----- ------- ------ a ------- ----- --- ---- ----------- ----- ------ --- ------ -------- 
--- ---- the ----- ---------- of ------- .---- ----- ----- --- ------ ----- the 
-------- --- ---- a ---- ---- ---- ,----- is ------- ----- -- ------- ------ 
-,-------- ---- ---- the ------- ------ .----- --- ---- ------- ----- --- ,the ----- 
-------- -- ---- ----- -- a ------ of ------- ------ ----- -- the ---- 
-of ---- --- ---- .a ------ ---- ------ ---- ----- the -------- ---- of 
-the --------- ---------- ----- ---------- --- ------ ------ -- .---- ------- ------ --- ----------- 
-the ---- ,------ -- the -------- -- -- ------ -- -- -- ---------- the 
---------- -- an --- -- ---- ------ .
-------- ------ ----- --- -------- -- ---- 
-------- ---- ----- --- ------- ---------- the ------- ---- of the ------ .------ -- 
-------- ----- --- ,the -------- ------ -- ---- the ---- --------- --- ----- ,------- 
-the ---------- ----- -- the ------- .
+---- ------ --- -- --------- ---- ---- -------- -- 
+------ ---------- --------- ,--- --- --- ---- ----- -- -------- --- ------ ---- .------- 
+an ----------- ,---- --- ------- --- ---- ,------ ----------- ,-- ------ --------- (a 
+----------- of &quot;------- &quot;--- &quot;---------- &quot;)-- a ----- ------ ,--------- ------- ---- the 
+---------- of --------- -------- .
+-- the ----- ,-- .- .------ -------- --- ---------- ---- 
+------- ------- -- -------- ---- ---- ---- -------- .---- ------- ----- ---- the -------- 
+------- -- -- ----------- -------- -- a --------- .the ---------- -- the ---- ---- 
+----- ------- ---- -------- ----- --- ----- --- ------ -- ---- ------- --- ----- 
+.-- a ------ of a ----- -------- -- ------- -- ,---- ,--- of -- 
+.---------- ----- -------- ---- .-- .-------- ,--- --- ------ ---- ------ ------ ,----- --- 
+the ---- --- -- -- ----- ----- the ------- .---- ----- ----- ------- a 
+------- ------- --- a --------- -- ------- ----------- ,------ --------- a ------- -------- -------------- 
+--------- ----- the ---- of a --- ----- of ----- -- -- .-------- .----- 
+------------ ------- the ---- ----- ------ -- the ---------- ,------ -------- -- ------ a 
+------- ----- --- -------- .------- ,---- -- --- ------------ ,---- -- ---- -- the 
+---- --- ,-- ----- the --------- ------- -- --- -- a ------- .(the ---- 
+--- ---- -------------- --- --- ----- ---------- ------- ------- ----- ---- .)---- the ---- 
+------- ----- ,------ --- --------- ------ ---- ----- ------- -- ------- ----- ----------- ---------- 
+,--- ---- ---- ------ ------ ---------- .-- -------- ----- ---- ---- --------- ----- ,--- 
+the ---------- ---- ----- ----- ------ -- ------- the --------- ------- ,----- ----- ------ 
+the ------- .the ------- ------ the ----- ------- -- ---- ------- -- ----- ----- 
+-- ----- ----- ---- -------- .
+------ ------- ---- --------- -- ---- --- ----- -- 
+a - ----- ------ -- the ---- -------- of ------ -- ------ ------ ---- 
+,--- ----- -------- -- the ------- ------- ----- a ---- -- ---- --- --------- 
+--- ------- the --------- ------- -- ---- -- ------ .
+-- ---- -- ------ -- 
+-------- the ----- ------ --------- -------- --- --- ------ ----- --- ---- ---- --------- 
+,------- -- ------- ------- --- ------- ---------- -- -------- -- ------- a ---- -------- 
+-------- -- ------ ---- .-- ---- ,--------- ------- the ------------ of --- --- -------- 
+------------ ------ -- ------- ,the ----------- .the ------ -- ----- the -------- --- ----- 
+is ----- ----- ------ .
+------ ---- -- --- ------ ---- -- ------- -- ,---- 
+,-- the --- of -- .
+
+
+==--- ---- ==
+------ ------ 
 
 
 ==---------- ==
 
 
+==------------ ==
+------ 
+- .(---- )&quot;----- ------- .the ------------- ------- -------- --- --------- -- the ---- of 
+------- ------- &quot;.-- :------ - .(--- )a ------ ------- ---------- ---------- .------- of 
+--------- --- ------- ------- ,--- -- .-------- ,--------- ,-- .-- --- 
+
+
 ==-------- ----- ==
-------- --------- ------ 
--------- 
-------- ---------- 
------- ------- ----- ----------- 
----------- --------- -------- 
---- of ---------- ,------- ---- 
-a --- the ---------- -------- ----- 
-a --- ------- ----- the -------- ----- 
-a 
------------- .--- --------- of -- ----- ---- 
---- ------- -- ------ ------- 
+
+---- -------- ------- 
+the ------ ------ -------- 
+----- -- -- ----- ---- ------ -- 
+--------- (-------- ------- )
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6dd2d8b504ce4793b7930dc43541ee45"}
+{"version_major": 2, "version_minor": 0, "model_id": "6e0e2da6c34f4be592e031d2f3fb623c"}
 </script></div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="answers-give-up">
 <h1>Answers/Give up?<a class="headerlink" href="#answers-give-up" title="Permalink to this headline">¶</a></h1>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Give up? Uncomment(remove the # from) the line below and run </span>
-<span class="c1">#print(name)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"5d51b1ca70e344a7873078298d71d734": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "03e9ce7a5ec74318b9402a94908c7503": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6dd2d8b504ce4793b7930dc43541ee45": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_5d51b1ca70e344a7873078298d71d734", "placeholder": "\u200b", "style": "IPY_MODEL_03e9ce7a5ec74318b9402a94908c7503", "value": "the"}}}, "version_major": 2, "version_minor": 0}
+{"state": {"41d935b0e70f49b1bded133783906829": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d8b7d01a6375428aabb8bbb7baf5f4aa": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6e0e2da6c34f4be592e031d2f3fb623c": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_41d935b0e70f49b1bded133783906829", "placeholder": "\u200b", "style": "IPY_MODEL_d8b7d01a6375428aabb8bbb7baf5f4aa", "value": "the"}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 
