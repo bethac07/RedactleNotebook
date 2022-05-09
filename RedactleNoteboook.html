@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Game &#8212; RedactleNotebook</title>
+    <title>Answers/Give up? &#8212; RedactleNotebook</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,7 +89,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   The Game
+   Answers/Give up?
   </a>
  </li>
 </ul>
@@ -194,24 +196,6 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   The Game
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#answers-give-up">
-   Answers/Give up?
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -219,29 +203,11 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The Game</h1>
+                <h1>Answers/Give up?</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   The Game
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#answers-give-up">
-   Answers/Give up?
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -250,10 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="cell tag_r&quot;hide-cell&quot; docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="nb">id</span><span class="p">:</span> <span class="n">bkyUbqhitXbn</span>
-
-
-<span class="kn">import</span> <span class="nn">wikipedia</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wikipedia</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
@@ -261,16 +224,8 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="p">:</span><span class="nb">id</span><span class="p">:</span> <span class="n">bkyUbqhitXbn</span>
-    <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
+<div class="cell tag_r&quot;hide-cell&quot; docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia</span><span class="si">%20le</span><span class="s1">vel-5%20vital</span><span class="si">%20a</span><span class="s1">rticles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
@@ -278,7 +233,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_r&quot;hide-cell&quot; docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">):</span>
   <span class="n">string_to_print</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -336,19 +291,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_r&quot;hide-cell&quot; docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guess</span> <span class="o">=</span> <span class="n">ipywidgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;the&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-game">
-<h1>The Game<a class="headerlink" href="#the-game" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Default title text</span>
-<span class="n">thisguess</span> <span class="o">=</span> <span class="n">guess</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thisguess</span> <span class="o">=</span> <span class="n">guess</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">tried</span><span class="p">:</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;already tried, here is what you tried already:&#39;</span><span class="p">,</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tried</span><span class="p">)))</span>
   <span class="n">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
@@ -375,11 +327,32 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>already tried, here is what you tried already: a, an, is, the, of
+----- ------- 
+
+----- ------- (-- ----- ---- –-- -------- ---- )--- an ------- ----- 
+---------- .
+--- ---- ------ ---- is ---------- --------- ------- ---- -------- -------- --------- 
+.-- ---- -------- the -------- --- ---------- - ------- ,------- ,--- ------- ---------- ------ 
+---- --- ------ ------- ----- ----- (--- ---- ).
+------- --- ---- --- ---- -- 
+------- .
+
+
+==-------- ----- ==
+----- -- ----- ------- -- ------- --------- 
+----- -- -- 
+----- ----- ------- -- -------- ------- 
+</pre></div>
 </div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "93772cc596b44752982681b4e5a8d6bf"}
+</script></div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="answers-give-up">
 <h1>Answers/Give up?<a class="headerlink" href="#answers-give-up" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
+<div class="cell tag_r&quot;hide-cell&quot; docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Give up? Uncomment(remove the # from) the line below and run </span>
 <span class="c1">#print(name)</span>
@@ -387,14 +360,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#print(tried)</span>
-</pre></div>
 </div>
-</div>
-</div>
-</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"d82b91bc010f4d41a29b61f07eed29b0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0302875e28724243aff6fa4e790dc3de": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "93772cc596b44752982681b4e5a8d6bf": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_d82b91bc010f4d41a29b61f07eed29b0", "placeholder": "\u200b", "style": "IPY_MODEL_0302875e28724243aff6fa4e790dc3de", "value": "the"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
 
     <script type="text/x-thebe-config">
     {
