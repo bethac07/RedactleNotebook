@@ -79,12 +79,17 @@ tried = []
 name_list = re.split(r'[ |\n|===|==|.|,|(|)|[|]|<|>|"|:|;|-|/|–|=|%|]{1,3}',name)
 name_list = [x.lower() for x in name_list]
 
-starting_guesses = ['a','an','is','the','of']
+starting_guesses = ['a','an','is','the','of', 'in', 'to', 'was', 'for', 'as',
+'around', 'from', 'since', 'with', 'and', 'or', 'on', 'along', 'through', 'amid', 
+'into', 'like', 'by', 'between', 'than', 'about', 'until', 'at', 'but', 'among', 
+'following', 'over', 'after', 'during', 'behind', 'up', 'down', 'before', 'onto', 
+'without', 'unlike', 'because', 'against', 'inside', 'outside']
 for eachguess in starting_guesses:
   try:
     tried.append(eachguess)
     count = word_to_count_dict[eachguess]
     count_to_word_dict[count]=count_to_word_dict[count][1:]
+    name_list.remove(eachguess)
   except:
     pass
 
