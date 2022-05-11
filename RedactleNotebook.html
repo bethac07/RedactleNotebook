@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -238,12 +240,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "39a4d65e472e44edbd30df7988ce2ba6"}
+{"version_major": 2, "version_minor": 0, "model_id": "639308d538d84f23b73a6996c848738f"}
 </script></div>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urlname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s1">%20vital%20articles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urlname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-</span><span class="si">{</span><span class="n">level</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1">%20vital%20articles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span>
 
 <span class="k">try</span><span class="p">:</span>
   <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urlname</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -312,159 +314,6 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">InvalidURL</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>   <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urlname</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>   <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:222,</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
-<span class="ne">--&gt; </span><span class="mi">222</span> <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:525,</span> in <span class="ni">OpenerDirector.open</span><span class="nt">(self, fullurl, data, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span> <span class="n">sys</span><span class="o">.</span><span class="n">audit</span><span class="p">(</span><span class="s1">&#39;urllib.Request&#39;</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">full_url</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">get_method</span><span class="p">())</span>
-<span class="ne">--&gt; </span><span class="mi">525</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="c1"># post-process response</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:542,</span> in <span class="ni">OpenerDirector._open</span><span class="nt">(self, req, data)</span>
-<span class="g g-Whitespace">    </span><span class="mi">541</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">type</span>
-<span class="ne">--&gt; </span><span class="mi">542</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handle_open</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">+</span>
-<span class="g g-Whitespace">    </span><span class="mi">543</span>                           <span class="s1">&#39;_open&#39;</span><span class="p">,</span> <span class="n">req</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">544</span> <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:502,</span> in <span class="ni">OpenerDirector._call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">502</span> <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">503</span> <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:1397,</span> in <span class="ni">HTTPSHandler.https_open</span><span class="nt">(self, req)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1396</span> <span class="k">def</span> <span class="nf">https_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1397</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_open</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1398</span>         <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="p">,</span> <span class="n">check_hostname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_check_hostname</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:1354,</span> in <span class="ni">AbstractHTTPHandler.do_open</span><span class="nt">(self, http_class, req, **http_conn_args)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1353</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1354</span>     <span class="n">h</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">get_method</span><span class="p">(),</span> <span class="n">req</span><span class="o">.</span><span class="n">selector</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1355</span>               <span class="n">encode_chunked</span><span class="o">=</span><span class="n">req</span><span class="o">.</span><span class="n">has_header</span><span class="p">(</span><span class="s1">&#39;Transfer-encoding&#39;</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1356</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span> <span class="c1"># timeout error</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1256,</span> in <span class="ni">HTTPConnection.request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1255</span> <span class="sd">&quot;&quot;&quot;Send a complete request to the server.&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1256</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1267,</span> in <span class="ni">HTTPConnection._send_request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1265</span>     <span class="n">skips</span><span class="p">[</span><span class="s1">&#39;skip_accept_encoding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="ne">-&gt; </span><span class="mi">1267</span> <span class="bp">self</span><span class="o">.</span><span class="n">putrequest</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">skips</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1269</span> <span class="c1"># chunked encoding will happen if HTTP/1.1 is used and either</span>
-<span class="g g-Whitespace">   </span><span class="mi">1270</span> <span class="c1"># the caller passes encode_chunked=True or the following</span>
-<span class="g g-Whitespace">   </span><span class="mi">1271</span> <span class="c1"># conditions hold:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1272</span> <span class="c1"># 1. content-length has not been explicitly set</span>
-<span class="g g-Whitespace">   </span><span class="mi">1273</span> <span class="c1"># 2. the body is a file or iterable, but not a str or bytes-like</span>
-<span class="g g-Whitespace">   </span><span class="mi">1274</span> <span class="c1"># 3. Transfer-Encoding has NOT been explicitly set by the caller</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1101,</span> in <span class="ni">HTTPConnection.putrequest</span><span class="nt">(self, method, url, skip_host, skip_accept_encoding)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1100</span> <span class="n">url</span> <span class="o">=</span> <span class="n">url</span> <span class="ow">or</span> <span class="s1">&#39;/&#39;</span>
-<span class="ne">-&gt; </span><span class="mi">1101</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_path</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1103</span> <span class="n">request</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http_vsn_str</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1201,</span> in <span class="ni">HTTPConnection._validate_path</span><span class="nt">(self, url)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1200</span> <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1201</span>     <span class="k">raise</span> <span class="n">InvalidURL</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;URL can&#39;t contain control characters. </span><span class="si">{</span><span class="n">url</span><span class="si">!r}</span><span class="s2"> &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1202</span>                      <span class="sa">f</span><span class="s2">&quot;(found at least </span><span class="si">{</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="si">!r}</span><span class="s2">)&quot;</span><span class="p">)</span>
-
-<span class="ne">InvalidURL</span>: URL can&#39;t contain control characters. &quot;/?category=All%20Wikipedia%20level-IntSlider(value=5, description=&#39;Difficulty&#39;, max=5, min=1)%20vital%20articles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&quot; (found at least &#39; &#39;)
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">InvalidURL</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>   <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">except</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">7</span>   <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urlname</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>   <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">def</span> <span class="nf">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">):</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:222,</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
-<span class="ne">--&gt; </span><span class="mi">222</span> <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:525,</span> in <span class="ni">OpenerDirector.open</span><span class="nt">(self, fullurl, data, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="n">req</span> <span class="o">=</span> <span class="n">meth</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span> <span class="n">sys</span><span class="o">.</span><span class="n">audit</span><span class="p">(</span><span class="s1">&#39;urllib.Request&#39;</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">full_url</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">get_method</span><span class="p">())</span>
-<span class="ne">--&gt; </span><span class="mi">525</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="c1"># post-process response</span>
-<span class="g g-Whitespace">    </span><span class="mi">528</span> <span class="n">meth_name</span> <span class="o">=</span> <span class="n">protocol</span><span class="o">+</span><span class="s2">&quot;_response&quot;</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:542,</span> in <span class="ni">OpenerDirector._open</span><span class="nt">(self, req, data)</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span>     <span class="k">return</span> <span class="n">result</span>
-<span class="g g-Whitespace">    </span><span class="mi">541</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">type</span>
-<span class="ne">--&gt; </span><span class="mi">542</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handle_open</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">+</span>
-<span class="g g-Whitespace">    </span><span class="mi">543</span>                           <span class="s1">&#39;_open&#39;</span><span class="p">,</span> <span class="n">req</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">544</span> <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">545</span>     <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:502,</span> in <span class="ni">OpenerDirector._call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">500</span> <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span>     <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">502</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">503</span>     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">504</span>         <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:1397,</span> in <span class="ni">HTTPSHandler.https_open</span><span class="nt">(self, req)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1396</span> <span class="k">def</span> <span class="nf">https_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1397</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_open</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1398</span>         <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="p">,</span> <span class="n">check_hostname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_check_hostname</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:1354,</span> in <span class="ni">AbstractHTTPHandler.do_open</span><span class="nt">(self, http_class, req, **http_conn_args)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1352</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1353</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1354</span>         <span class="n">h</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">get_method</span><span class="p">(),</span> <span class="n">req</span><span class="o">.</span><span class="n">selector</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1355</span>                   <span class="n">encode_chunked</span><span class="o">=</span><span class="n">req</span><span class="o">.</span><span class="n">has_header</span><span class="p">(</span><span class="s1">&#39;Transfer-encoding&#39;</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1356</span>     <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span> <span class="c1"># timeout error</span>
-<span class="g g-Whitespace">   </span><span class="mi">1357</span>         <span class="k">raise</span> <span class="n">URLError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1256,</span> in <span class="ni">HTTPConnection.request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1253</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{},</span> <span class="o">*</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1254</span>             <span class="n">encode_chunked</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1255</span>     <span class="sd">&quot;&quot;&quot;Send a complete request to the server.&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1256</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1267,</span> in <span class="ni">HTTPConnection._send_request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1264</span> <span class="k">if</span> <span class="s1">&#39;accept-encoding&#39;</span> <span class="ow">in</span> <span class="n">header_names</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1265</span>     <span class="n">skips</span><span class="p">[</span><span class="s1">&#39;skip_accept_encoding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="ne">-&gt; </span><span class="mi">1267</span> <span class="bp">self</span><span class="o">.</span><span class="n">putrequest</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">skips</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1269</span> <span class="c1"># chunked encoding will happen if HTTP/1.1 is used and either</span>
-<span class="g g-Whitespace">   </span><span class="mi">1270</span> <span class="c1"># the caller passes encode_chunked=True or the following</span>
-<span class="g g-Whitespace">   </span><span class="mi">1271</span> <span class="c1"># conditions hold:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1272</span> <span class="c1"># 1. content-length has not been explicitly set</span>
-<span class="g g-Whitespace">   </span><span class="mi">1273</span> <span class="c1"># 2. the body is a file or iterable, but not a str or bytes-like</span>
-<span class="g g-Whitespace">   </span><span class="mi">1274</span> <span class="c1"># 3. Transfer-Encoding has NOT been explicitly set by the caller</span>
-<span class="g g-Whitespace">   </span><span class="mi">1276</span> <span class="k">if</span> <span class="s1">&#39;content-length&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">header_names</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1277</span>     <span class="c1"># only chunk body if not explicitly set for backwards</span>
-<span class="g g-Whitespace">   </span><span class="mi">1278</span>     <span class="c1"># compatibility, assuming the client code is already handling the</span>
-<span class="g g-Whitespace">   </span><span class="mi">1279</span>     <span class="c1"># chunking</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1101,</span> in <span class="ni">HTTPConnection.putrequest</span><span class="nt">(self, method, url, skip_host, skip_accept_encoding)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1098</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method</span> <span class="o">=</span> <span class="n">method</span>
-<span class="g g-Whitespace">   </span><span class="mi">1100</span> <span class="n">url</span> <span class="o">=</span> <span class="n">url</span> <span class="ow">or</span> <span class="s1">&#39;/&#39;</span>
-<span class="ne">-&gt; </span><span class="mi">1101</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_path</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1103</span> <span class="n">request</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http_vsn_str</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1105</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_encode_request</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1201,</span> in <span class="ni">HTTPConnection._validate_path</span><span class="nt">(self, url)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1199</span> <span class="n">match</span> <span class="o">=</span> <span class="n">_contains_disallowed_url_pchar_re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1200</span> <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1201</span>     <span class="k">raise</span> <span class="n">InvalidURL</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;URL can&#39;t contain control characters. </span><span class="si">{</span><span class="n">url</span><span class="si">!r}</span><span class="s2"> &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1202</span>                      <span class="sa">f</span><span class="s2">&quot;(found at least </span><span class="si">{</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="si">!r}</span><span class="s2">)&quot;</span><span class="p">)</span>
-
-<span class="ne">InvalidURL</span>: URL can&#39;t contain control characters. &quot;/?category=All%20Wikipedia%20level-IntSlider(value=5, description=&#39;Difficulty&#39;, max=5, min=1)%20vital%20articles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&quot; (found at least &#39; &#39;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell tag_hide-input tag_thebe-init tag_margin docutils container">
 <div class="cell_input docutils container">
@@ -474,6 +323,10 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "27a0ddcc57b94977a3095b9b449b34af"}
+</script></div>
 </div>
 <div class="cell tag_hide-input tag_thebe-init docutils container">
 <div class="cell_input docutils container">
@@ -502,6 +355,108 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>already tried, here is what you tried already: a, an, is, the, of, in, to, was, for, as, around, from, since, with,
+and, or, on, along, through, amid, into, like, by, between, than,
+about, until, at, but, among, following, over, after, during, behind,
+up, down, before, onto, without, unlike, because, against, inside,
+outside
+-------- -------- 
+
+-------- -------- is a ------- of -------- ------ ----- in ---- ----- 
+of the -------- -------- and -------- ------- ------ ,-------- the ------ ---------- --- ----- 
+is -------- as a -------- ------- ,- .---- .the ---- and ----------- ------------ ------ 
+to ---- as the -------- ----- .----- ------ ----- ------- ---- ------ ,--------- ----- 
+,---- ---- ----- ,------ ------ ,----- -------- ----- ,-------- ------ ,--------- ----- and 
+----- ------ .
+
+
+==------------ ==
+-------- -------- ------- ----- on a ---- ----- ------- at 
+------ of -- to - ,--- - (-- –- ,--- -- ),in ------ 
+with a ----------- of - to - -- (-- –-- -- ),-------- -- --- 
+---- -------- from - to - ,--- - (-- –- ,--- -- )and -- 
+to -- -- (-- –-- -- ).- .-------- ------- in ------ ----- the 
+-------- ------ between -- and -- --- ,--------- on ----- the ------ --- at 
+in ----- ---- ----- .the ------------ of the ----- -------- -------- ---------- - .- 
+.-------- ------ from --- ------- in the ------ ------ ,-------- ------- -------- (--- ------------ 
+and -------- and ------- ------ ------ in ------- ),-------- and ------- --------- ,------- ,-------- 
+,------ and the ----- --- as --- ----- as the ------- ------- .the ----- 
+------- - .- .---- is ----- from ----- and ----- ,through the --- of 
+------- ,------ the ------ ------ ,and as --- ----- as the - .- .----- 
+of ---------- .------- of --------- -- as a ---------- ,the ----- ------- ---------- is 
+----- ---------- as a -------- ------- ,- .---- .
+
+
+==------- ==
+------- --- ------------- ------- 
+---- ---- -------- -------- ----- a --- ---- in ------ ---- ---- ,by ------- 
+on a ------- ----- of ---- ,--------- ---------- ----------- and ------------ .---- --------- of 
+---- --- --- ---- -- -------- in ----- -------- ,-------- as a ------ of 
+----- ---- as ----------- ---------- .---- --- ---- ---- ------- to ------- -------- -------- 
+as an --------- ------- ------- for --------- --------- ---- --------- in ------ ------ ---------- .
+
+
+
+==---------- ==
+in ----- up to ----- ----- -------- ,----- --- ----- a ------ 
+of -- -- (- .- in ),----- ------- --- ----- -- .- -- 
+(- .- in )---- ,-------- ------- ----- --- ---- ------- .the ---- of ------ 
+at --------- ---- --- ---- --- to ----------- ------- in the ----- and --- 
+of the ------ .the ---- of -------- -------- ----------- --- ------ ----- on --- 
+,----------- of the ----------- and --- .------ ----------- ----- --- ---- ---------- with ------ 
+------ .the ------ --- -------------- ,------------ ----------- -------------- .---- --- ---- as ---- ,but 
+after ------------- --- and a ---- ----- ,----- ------ ---- to ------- and ---- 
+-------- ----- ----- as ------- .-------- -------- -------- ------ ------ in the ---- ------ 
+,------- -------- .by ----- ---- the ------- ---- ----- to ------- ----- ---- onto 
+----- ------- .---- is ---- ---- ---- ---- ------- ----- ----- ---- ---- ----- 
+in the ------ .
+
+
+==---------- ------- ==
+
+-------- -------- is an --------- ---- -------- ,and 
+--- ---- ------ ------ since the ----- ----- in ------ ,and ----- in ----- 
+--------- following ----- ------- --------- ----------- of --- to ------ ---- .in ------ ,----- 
+------ --- ---- ------ ,------ and ------ in ---- in ------------ ,and --- -------- 
+as ---------- .
+-------- ------ ---- a ----- ---- ,----- ----------- to a -------- ----- 
+on a ------ ----- .------- ,the ------- is --- ---------- ---------- --- to a 
+----- ------ -------- and a ----- ------ --------- .
+in ------ ,the ------ ------- ----- 
+is --- to --- ,--- ------ (---- ).the -------- ------- ----- in the ----- 
+and -------- in ----- .
+in --- ------- ,-------- ------ ---- a -------- ------- ----- 
+from the ---- ----- to ---- .-------- -------- was in ---- ------ --- to 
+-- ----- ---------- ------- and ------- than ------- ------ .------- ---------- ------ in ---- 
+with -------- at -- .- ------- ------ .in ---- ,the -------- ------ ------ --------- 
+---------- (----- ------ the -------- -------- of the ------ ------ )---------- ---- ----- ------ 
+of - .-------- ---- --- --- and ---- down the --- ------- ------- .---- 
+was the ----- ------------ in -- ----- .the ------- --- --- to ------- since 
+-- --------- and ------- from ---- ------ ---- -------- ------ ----- ------ in a 
+-------- --------- .with ------------ ---------- ------ ,and a --- -------- ----- ------- (--- ),the 
+-------- ---------- for -------- ------ ------ ----------- .------ ------------ and ------ -------- ------- ----- 
+-------- the ----------- and -------- the ---------- ---- in the ---- --- ------- ,------- 
+------------ --- ---------- to ---- ------ --- the ----- of ----- --- to ------- 
+------ and --------- the -------- ------ --------- .
+
+
+==---- ==
+------ ----- ----------- ,------ -------- 
+----------- (--- ),an ------ ---- in --------- ------- ,is -------- from -------- -------- ,and 
+the -------- -------- is a ------ of -------- ,a --------- -------- ---- for ---- 
+--------- ------------ as -------- -------- ------ ,--------- ---- or --------- the ---- in ------- 
+------- .
+
+
+==---------- ==
+
+
+==-------- ----- ==
+----- ------- to -------- -------- at --------- ------- 
+</pre></div>
+</div>
+</div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="answers-give-up">
 <h1>Answers/Give up?<a class="headerlink" href="#answers-give-up" title="Permalink to this headline">¶</a></h1>
@@ -512,8 +467,19 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pandalus borealis
+</pre></div>
 </div>
 </div>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"1f574a7e964c4f1c800fcffb02d587d9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d6d785ce235e4f5aa6ef805f4d509fae": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "639308d538d84f23b73a6996c848738f": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "Difficulty", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_1f574a7e964c4f1c800fcffb02d587d9", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_d6d785ce235e4f5aa6ef805f4d509fae", "value": 5}}, "ee0fbeab08cc49b693d059ec6ef6ab53": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "42c8cdbd01c84786b3e8691a66af1b29": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "27a0ddcc57b94977a3095b9b449b34af": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_ee0fbeab08cc49b693d059ec6ef6ab53", "placeholder": "\u200b", "style": "IPY_MODEL_42c8cdbd01c84786b3e8691a66af1b29", "value": "the"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
 
     <script type="text/x-thebe-config">
     {
