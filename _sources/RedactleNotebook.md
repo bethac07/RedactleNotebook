@@ -21,7 +21,7 @@ import textwrap
 import urllib
 ```
 ```{code-cell}
-:tags: [hide-input, thebe-init, margin]
+:tags: [hide-input, thebe-init]
 
 level = ipywidgets.IntSlider(
     value=5,
