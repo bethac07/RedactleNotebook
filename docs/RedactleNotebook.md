@@ -20,20 +20,27 @@ import re
 import textwrap
 import urllib
 ```
+```{code-cell}
+:tags: [hide-input, thebe-init, margin]
+
+level = ipywidgets.IntSlider(
+    value=5,
+    min=1,
+    max=5,
+    step=1,
+    description='Difficulty')
+level
+```
 
 ```{code-cell}
 :tags: [hide-cell, thebe-init]
 
 try:
-  name = urllib.request.urlopen('https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-5%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  name = urllib.request.urlopen(f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
   content = wikipedia.page(name).content
 except:
-  name = urllib.request.urlopen('https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-5%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  name = urllib.request.urlopen(f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
   content = wikipedia.page(name).content
-```
-
-```{code-cell}
-:tags: [hide-cell, thebe-init]
 
 def print_redacted(new_string,count_to_word_dict):
   string_to_print = ''
