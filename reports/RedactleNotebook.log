@@ -17,11 +17,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+urlname = f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject'
+
 try:
-  name = urllib.request.urlopen(f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  name = urllib.request.urlopen(urlname).read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
   content = wikipedia.page(name).content
 except:
-  name = urllib.request.urlopen(f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  name = urllib.request.urlopen(urlname).read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
   content = wikipedia.page(name).content
 
 def print_redacted(new_string,count_to_word_dict):
@@ -85,10 +87,10 @@ for eachguess in starting_guesses:
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mInvalidURL[0m                                Traceback (most recent call last)
-Input [0;32mIn [3][0m, in [0;36m<cell line: 1>[0;34m()[0m
-[1;32m      1[0m [38;5;28;01mtry[39;00m:
-[0;32m----> 2[0m   name [38;5;241m=[39m [43murllib[49m[38;5;241;43m.[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m[38;5;124;43mf[39;49m[38;5;124;43m'[39;49m[38;5;124;43mhttps://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-[39;49m[38;5;132;43;01m{[39;49;00m[43mlevel[49m[38;5;132;43;01m}[39;49;00m[38;5;124;43m%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject[39;49m[38;5;124;43m'[39;49m[43m)[49m[38;5;241m.[39mread([38;5;241m500[39m)[38;5;241m.[39mdecode()[38;5;241m.[39msplit([38;5;124m'[39m[38;5;124mtitle>[39m[38;5;124m'[39m)[[38;5;241m1[39m][38;5;241m.[39msplit([38;5;124m'[39m[38;5;124m - Wikipedia[39m[38;5;124m'[39m)[[38;5;241m0[39m]
-[1;32m      3[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
+Input [0;32mIn [3][0m, in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      3[0m [38;5;28;01mtry[39;00m:
+[0;32m----> 4[0m   name [38;5;241m=[39m [43murllib[49m[38;5;241;43m.[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m[43murlname[49m[43m)[49m[38;5;241m.[39mread([38;5;241m500[39m)[38;5;241m.[39mdecode()[38;5;241m.[39msplit([38;5;124m'[39m[38;5;124mtitle>[39m[38;5;124m'[39m)[[38;5;241m1[39m][38;5;241m.[39msplit([38;5;124m'[39m[38;5;124m - Wikipedia[39m[38;5;124m'[39m)[[38;5;241m0[39m]
+[1;32m      5[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
 
 File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:222[0m, in [0;36murlopen[0;34m(url, data, timeout, cafile, capath, cadefault, context)[0m
 [1;32m    221[0m     opener [38;5;241m=[39m _opener
@@ -150,12 +152,12 @@ File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:
 During handling of the above exception, another exception occurred:
 
 [0;31mInvalidURL[0m                                Traceback (most recent call last)
-Input [0;32mIn [3][0m, in [0;36m<cell line: 1>[0;34m()[0m
-[1;32m      3[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
-[1;32m      4[0m [38;5;28;01mexcept[39;00m:
-[0;32m----> 5[0m   name [38;5;241m=[39m [43murllib[49m[38;5;241;43m.[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m[38;5;124;43mf[39;49m[38;5;124;43m'[39;49m[38;5;124;43mhttps://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-[39;49m[38;5;132;43;01m{[39;49;00m[43mlevel[49m[38;5;132;43;01m}[39;49;00m[38;5;124;43m%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject[39;49m[38;5;124;43m'[39;49m[43m)[49m[38;5;241m.[39mread([38;5;241m500[39m)[38;5;241m.[39mdecode()[38;5;241m.[39msplit([38;5;124m'[39m[38;5;124mtitle>[39m[38;5;124m'[39m)[[38;5;241m1[39m][38;5;241m.[39msplit([38;5;124m'[39m[38;5;124m - Wikipedia[39m[38;5;124m'[39m)[[38;5;241m0[39m]
-[1;32m      6[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
-[1;32m      8[0m [38;5;28;01mdef[39;00m [38;5;21mprint_redacted[39m(new_string,count_to_word_dict):
+Input [0;32mIn [3][0m, in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      5[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
+[1;32m      6[0m [38;5;28;01mexcept[39;00m:
+[0;32m----> 7[0m   name [38;5;241m=[39m [43murllib[49m[38;5;241;43m.[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m[43murlname[49m[43m)[49m[38;5;241m.[39mread([38;5;241m500[39m)[38;5;241m.[39mdecode()[38;5;241m.[39msplit([38;5;124m'[39m[38;5;124mtitle>[39m[38;5;124m'[39m)[[38;5;241m1[39m][38;5;241m.[39msplit([38;5;124m'[39m[38;5;124m - Wikipedia[39m[38;5;124m'[39m)[[38;5;241m0[39m]
+[1;32m      8[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
+[1;32m     10[0m [38;5;28;01mdef[39;00m [38;5;21mprint_redacted[39m(new_string,count_to_word_dict):
 
 File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:222[0m, in [0;36murlopen[0;34m(url, data, timeout, cafile, capath, cadefault, context)[0m
 [1;32m    220[0m [38;5;28;01melse[39;00m:

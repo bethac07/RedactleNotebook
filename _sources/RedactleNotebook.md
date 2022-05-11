@@ -29,17 +29,20 @@ level = ipywidgets.IntSlider(
     max=5,
     step=1,
     description='Difficulty')
+
 level
 ```
 
 ```{code-cell}
 :tags: [hide-cell, thebe-init]
 
+urlname = f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject'
+
 try:
-  name = urllib.request.urlopen(f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  name = urllib.request.urlopen(urlname).read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
   content = wikipedia.page(name).content
 except:
-  name = urllib.request.urlopen(f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  name = urllib.request.urlopen(urlname).read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
   content = wikipedia.page(name).content
 
 def print_redacted(new_string,count_to_word_dict):
