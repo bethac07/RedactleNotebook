@@ -1,0 +1,236 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+try:
+  name = urllib.request.urlopen(f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  content = wikipedia.page(name).content
+except:
+  name = urllib.request.urlopen(f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject').read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
+  content = wikipedia.page(name).content
+
+def print_redacted(new_string,count_to_word_dict):
+  string_to_print = ''
+  delims=['\n',r'===',r'==',r'.',r',',r'(',r')',r'[',r']',r'<',r'>',r'"',r':',r';',r'-',r'/',r'–',r'=',r'%']
+  for word in re.split(r'([ |\n|=|.|,|(|)|[|]|<|>|"|:|;|-|/|–|%])',new_string):
+    if type(word)==str:
+      if word in delims:
+        string_to_print += word
+      elif word in count_to_word_dict.keys():
+        if len(count_to_word_dict[word])>0:
+          string_to_print += count_to_word_dict[word][0]+' '
+      else:
+        pass
+  print(string_to_print)
+
+
+word_to_count_dict = {}
+count_to_word_dict = {}
+count_the_word_dict = {}
+new_string =''
+count = 9897098660698
+delims=['\n',r'.',r',',r'(',r')',r'[',r']',r'<',r'>',r'"',r':',r';',r'-',r'/',r'–',r'=',r'%',r'',r' ']
+words = [x for x in re.split(r'([ |\n|=|.|,|(|)|[|]|<|>|"|:|;|-|/|–|%])',name+' \n\n '+content)]
+for word in words:
+  if type(word)==str:
+    word = word.lower()
+    if word in delims:
+      if word not in ['',' ']:
+        new_string += word
+    elif word not in word_to_count_dict.keys():
+      word_to_count_dict[word]=str(count)
+      count_to_word_dict[str(count)]=['-'*len(word),word]
+      new_string += str(count)+' '
+      count += 1
+      count_the_word_dict[word]=1
+    else:
+      new_string += word_to_count_dict[word]+' '
+      count_the_word_dict[word]+=1
+
+new_string = textwrap.fill(new_string,break_long_words=False,width=200,replace_whitespace=False,
+                           drop_whitespace=False, break_on_hyphens=False)
+tried = []
+name_list = re.split(r'[ |\n|===|==|.|,|(|)|[|]|<|>|"|:|;|-|/|–|=|%|]{1,3}',name)
+name_list = [x.lower() for x in name_list]
+
+starting_guesses = ['a','an','is','the','of', 'in', 'to', 'was', 'for', 'as',
+'around', 'from', 'since', 'with', 'and', 'or', 'on', 'along', 'through', 'amid', 
+'into', 'like', 'by', 'between', 'than', 'about', 'until', 'at', 'but', 'among', 
+'following', 'over', 'after', 'during', 'behind', 'up', 'down', 'before', 'onto', 
+'without', 'unlike', 'because', 'against', 'inside', 'outside']
+for eachguess in starting_guesses:
+  try:
+    tried.append(eachguess)
+    count = word_to_count_dict[eachguess]
+    count_to_word_dict[count]=count_to_word_dict[count][1:]
+    name_list.remove(eachguess)
+  except:
+    pass
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mInvalidURL[0m                                Traceback (most recent call last)
+Input [0;32mIn [3][0m, in [0;36m<cell line: 1>[0;34m()[0m
+[1;32m      1[0m [38;5;28;01mtry[39;00m:
+[0;32m----> 2[0m   name [38;5;241m=[39m [43murllib[49m[38;5;241;43m.[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m[38;5;124;43mf[39;49m[38;5;124;43m'[39;49m[38;5;124;43mhttps://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-[39;49m[38;5;132;43;01m{[39;49;00m[43mlevel[49m[38;5;132;43;01m}[39;49;00m[38;5;124;43m%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject[39;49m[38;5;124;43m'[39;49m[43m)[49m[38;5;241m.[39mread([38;5;241m500[39m)[38;5;241m.[39mdecode()[38;5;241m.[39msplit([38;5;124m'[39m[38;5;124mtitle>[39m[38;5;124m'[39m)[[38;5;241m1[39m][38;5;241m.[39msplit([38;5;124m'[39m[38;5;124m - Wikipedia[39m[38;5;124m'[39m)[[38;5;241m0[39m]
+[1;32m      3[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:222[0m, in [0;36murlopen[0;34m(url, data, timeout, cafile, capath, cadefault, context)[0m
+[1;32m    221[0m     opener [38;5;241m=[39m _opener
+[0;32m--> 222[0m [38;5;28;01mreturn[39;00m [43mopener[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:525[0m, in [0;36mOpenerDirector.open[0;34m(self, fullurl, data, timeout)[0m
+[1;32m    524[0m sys[38;5;241m.[39maudit([38;5;124m'[39m[38;5;124murllib.Request[39m[38;5;124m'[39m, req[38;5;241m.[39mfull_url, req[38;5;241m.[39mdata, req[38;5;241m.[39mheaders, req[38;5;241m.[39mget_method())
+[0;32m--> 525[0m response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_open[49m[43m([49m[43mreq[49m[43m,[49m[43m [49m[43mdata[49m[43m)[49m
+[1;32m    527[0m [38;5;66;03m# post-process response[39;00m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:542[0m, in [0;36mOpenerDirector._open[0;34m(self, req, data)[0m
+[1;32m    541[0m protocol [38;5;241m=[39m req[38;5;241m.[39mtype
+[0;32m--> 542[0m result [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_call_chain[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhandle_open[49m[43m,[49m[43m [49m[43mprotocol[49m[43m,[49m[43m [49m[43mprotocol[49m[43m [49m[38;5;241;43m+[39;49m
+[1;32m    543[0m [43m                          [49m[38;5;124;43m'[39;49m[38;5;124;43m_open[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mreq[49m[43m)[49m
+[1;32m    544[0m [38;5;28;01mif[39;00m result:
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:502[0m, in [0;36mOpenerDirector._call_chain[0;34m(self, chain, kind, meth_name, *args)[0m
+[1;32m    501[0m func [38;5;241m=[39m [38;5;28mgetattr[39m(handler, meth_name)
+[0;32m--> 502[0m result [38;5;241m=[39m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
+[1;32m    503[0m [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:1397[0m, in [0;36mHTTPSHandler.https_open[0;34m(self, req)[0m
+[1;32m   1396[0m [38;5;28;01mdef[39;00m [38;5;21mhttps_open[39m([38;5;28mself[39m, req):
+[0;32m-> 1397[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdo_open[49m[43m([49m[43mhttp[49m[38;5;241;43m.[39;49m[43mclient[49m[38;5;241;43m.[39;49m[43mHTTPSConnection[49m[43m,[49m[43m [49m[43mreq[49m[43m,[49m
+[1;32m   1398[0m [43m        [49m[43mcontext[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_context[49m[43m,[49m[43m [49m[43mcheck_hostname[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_check_hostname[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:1354[0m, in [0;36mAbstractHTTPHandler.do_open[0;34m(self, http_class, req, **http_conn_args)[0m
+[1;32m   1353[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 1354[0m     [43mh[49m[38;5;241;43m.[39;49m[43mrequest[49m[43m([49m[43mreq[49m[38;5;241;43m.[39;49m[43mget_method[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[43mreq[49m[38;5;241;43m.[39;49m[43mselector[49m[43m,[49m[43m [49m[43mreq[49m[38;5;241;43m.[39;49m[43mdata[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m
+[1;32m   1355[0m [43m              [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mreq[49m[38;5;241;43m.[39;49m[43mhas_header[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mTransfer-encoding[39;49m[38;5;124;43m'[39;49m[43m)[49m[43m)[49m
+[1;32m   1356[0m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1256[0m, in [0;36mHTTPConnection.request[0;34m(self, method, url, body, headers, encode_chunked)[0m
+[1;32m   1255[0m [38;5;124;03m"""Send a complete request to the server."""[39;00m
+[0;32m-> 1256[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_send_request[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mbody[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m[43m [49m[43mencode_chunked[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1267[0m, in [0;36mHTTPConnection._send_request[0;34m(self, method, url, body, headers, encode_chunked)[0m
+[1;32m   1265[0m     skips[[38;5;124m'[39m[38;5;124mskip_accept_encoding[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;241m1[39m
+[0;32m-> 1267[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mputrequest[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mskips[49m[43m)[49m
+[1;32m   1269[0m [38;5;66;03m# chunked encoding will happen if HTTP/1.1 is used and either[39;00m
+[1;32m   1270[0m [38;5;66;03m# the caller passes encode_chunked=True or the following[39;00m
+[1;32m   1271[0m [38;5;66;03m# conditions hold:[39;00m
+[1;32m   1272[0m [38;5;66;03m# 1. content-length has not been explicitly set[39;00m
+[1;32m   1273[0m [38;5;66;03m# 2. the body is a file or iterable, but not a str or bytes-like[39;00m
+[1;32m   1274[0m [38;5;66;03m# 3. Transfer-Encoding has NOT been explicitly set by the caller[39;00m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1101[0m, in [0;36mHTTPConnection.putrequest[0;34m(self, method, url, skip_host, skip_accept_encoding)[0m
+[1;32m   1100[0m url [38;5;241m=[39m url [38;5;129;01mor[39;00m [38;5;124m'[39m[38;5;124m/[39m[38;5;124m'[39m
+[0;32m-> 1101[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_path[49m[43m([49m[43murl[49m[43m)[49m
+[1;32m   1103[0m request [38;5;241m=[39m [38;5;124m'[39m[38;5;132;01m%s[39;00m[38;5;124m [39m[38;5;132;01m%s[39;00m[38;5;124m [39m[38;5;132;01m%s[39;00m[38;5;124m'[39m [38;5;241m%[39m (method, url, [38;5;28mself[39m[38;5;241m.[39m_http_vsn_str)
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1201[0m, in [0;36mHTTPConnection._validate_path[0;34m(self, url)[0m
+[1;32m   1200[0m [38;5;28;01mif[39;00m match:
+[0;32m-> 1201[0m     [38;5;28;01mraise[39;00m InvalidURL([38;5;124mf[39m[38;5;124m"[39m[38;5;124mURL can[39m[38;5;124m'[39m[38;5;124mt contain control characters. [39m[38;5;132;01m{[39;00murl[38;5;132;01m!r}[39;00m[38;5;124m [39m[38;5;124m"[39m
+[1;32m   1202[0m                      [38;5;124mf[39m[38;5;124m"[39m[38;5;124m(found at least [39m[38;5;132;01m{[39;00mmatch[38;5;241m.[39mgroup()[38;5;132;01m!r}[39;00m[38;5;124m)[39m[38;5;124m"[39m)
+
+[0;31mInvalidURL[0m: URL can't contain control characters. "/?category=All%20Wikipedia%20level-IntSlider(value=5, description='Difficulty', max=5, min=1)%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject" (found at least ' ')
+
+During handling of the above exception, another exception occurred:
+
+[0;31mInvalidURL[0m                                Traceback (most recent call last)
+Input [0;32mIn [3][0m, in [0;36m<cell line: 1>[0;34m()[0m
+[1;32m      3[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
+[1;32m      4[0m [38;5;28;01mexcept[39;00m:
+[0;32m----> 5[0m   name [38;5;241m=[39m [43murllib[49m[38;5;241;43m.[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m[38;5;124;43mf[39;49m[38;5;124;43m'[39;49m[38;5;124;43mhttps://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-[39;49m[38;5;132;43;01m{[39;49;00m[43mlevel[49m[38;5;132;43;01m}[39;49;00m[38;5;124;43m%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject[39;49m[38;5;124;43m'[39;49m[43m)[49m[38;5;241m.[39mread([38;5;241m500[39m)[38;5;241m.[39mdecode()[38;5;241m.[39msplit([38;5;124m'[39m[38;5;124mtitle>[39m[38;5;124m'[39m)[[38;5;241m1[39m][38;5;241m.[39msplit([38;5;124m'[39m[38;5;124m - Wikipedia[39m[38;5;124m'[39m)[[38;5;241m0[39m]
+[1;32m      6[0m   content [38;5;241m=[39m wikipedia[38;5;241m.[39mpage(name)[38;5;241m.[39mcontent
+[1;32m      8[0m [38;5;28;01mdef[39;00m [38;5;21mprint_redacted[39m(new_string,count_to_word_dict):
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:222[0m, in [0;36murlopen[0;34m(url, data, timeout, cafile, capath, cadefault, context)[0m
+[1;32m    220[0m [38;5;28;01melse[39;00m:
+[1;32m    221[0m     opener [38;5;241m=[39m _opener
+[0;32m--> 222[0m [38;5;28;01mreturn[39;00m [43mopener[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:525[0m, in [0;36mOpenerDirector.open[0;34m(self, fullurl, data, timeout)[0m
+[1;32m    522[0m     req [38;5;241m=[39m meth(req)
+[1;32m    524[0m sys[38;5;241m.[39maudit([38;5;124m'[39m[38;5;124murllib.Request[39m[38;5;124m'[39m, req[38;5;241m.[39mfull_url, req[38;5;241m.[39mdata, req[38;5;241m.[39mheaders, req[38;5;241m.[39mget_method())
+[0;32m--> 525[0m response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_open[49m[43m([49m[43mreq[49m[43m,[49m[43m [49m[43mdata[49m[43m)[49m
+[1;32m    527[0m [38;5;66;03m# post-process response[39;00m
+[1;32m    528[0m meth_name [38;5;241m=[39m protocol[38;5;241m+[39m[38;5;124m"[39m[38;5;124m_response[39m[38;5;124m"[39m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:542[0m, in [0;36mOpenerDirector._open[0;34m(self, req, data)[0m
+[1;32m    539[0m     [38;5;28;01mreturn[39;00m result
+[1;32m    541[0m protocol [38;5;241m=[39m req[38;5;241m.[39mtype
+[0;32m--> 542[0m result [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_call_chain[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhandle_open[49m[43m,[49m[43m [49m[43mprotocol[49m[43m,[49m[43m [49m[43mprotocol[49m[43m [49m[38;5;241;43m+[39;49m
+[1;32m    543[0m [43m                          [49m[38;5;124;43m'[39;49m[38;5;124;43m_open[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mreq[49m[43m)[49m
+[1;32m    544[0m [38;5;28;01mif[39;00m result:
+[1;32m    545[0m     [38;5;28;01mreturn[39;00m result
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:502[0m, in [0;36mOpenerDirector._call_chain[0;34m(self, chain, kind, meth_name, *args)[0m
+[1;32m    500[0m [38;5;28;01mfor[39;00m handler [38;5;129;01min[39;00m handlers:
+[1;32m    501[0m     func [38;5;241m=[39m [38;5;28mgetattr[39m(handler, meth_name)
+[0;32m--> 502[0m     result [38;5;241m=[39m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m)[49m
+[1;32m    503[0m     [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    504[0m         [38;5;28;01mreturn[39;00m result
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:1397[0m, in [0;36mHTTPSHandler.https_open[0;34m(self, req)[0m
+[1;32m   1396[0m [38;5;28;01mdef[39;00m [38;5;21mhttps_open[39m([38;5;28mself[39m, req):
+[0;32m-> 1397[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdo_open[49m[43m([49m[43mhttp[49m[38;5;241;43m.[39;49m[43mclient[49m[38;5;241;43m.[39;49m[43mHTTPSConnection[49m[43m,[49m[43m [49m[43mreq[49m[43m,[49m
+[1;32m   1398[0m [43m        [49m[43mcontext[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_context[49m[43m,[49m[43m [49m[43mcheck_hostname[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_check_hostname[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:1354[0m, in [0;36mAbstractHTTPHandler.do_open[0;34m(self, http_class, req, **http_conn_args)[0m
+[1;32m   1352[0m [38;5;28;01mtry[39;00m:
+[1;32m   1353[0m     [38;5;28;01mtry[39;00m:
+[0;32m-> 1354[0m         [43mh[49m[38;5;241;43m.[39;49m[43mrequest[49m[43m([49m[43mreq[49m[38;5;241;43m.[39;49m[43mget_method[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[43mreq[49m[38;5;241;43m.[39;49m[43mselector[49m[43m,[49m[43m [49m[43mreq[49m[38;5;241;43m.[39;49m[43mdata[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m
+[1;32m   1355[0m [43m                  [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mreq[49m[38;5;241;43m.[39;49m[43mhas_header[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mTransfer-encoding[39;49m[38;5;124;43m'[39;49m[43m)[49m[43m)[49m
+[1;32m   1356[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+[1;32m   1357[0m         [38;5;28;01mraise[39;00m URLError(err)
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1256[0m, in [0;36mHTTPConnection.request[0;34m(self, method, url, body, headers, encode_chunked)[0m
+[1;32m   1253[0m [38;5;28;01mdef[39;00m [38;5;21mrequest[39m([38;5;28mself[39m, method, url, body[38;5;241m=[39m[38;5;28;01mNone[39;00m, headers[38;5;241m=[39m{}, [38;5;241m*[39m,
+[1;32m   1254[0m             encode_chunked[38;5;241m=[39m[38;5;28;01mFalse[39;00m):
+[1;32m   1255[0m     [38;5;124;03m"""Send a complete request to the server."""[39;00m
+[0;32m-> 1256[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_send_request[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mbody[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m[43m [49m[43mencode_chunked[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1267[0m, in [0;36mHTTPConnection._send_request[0;34m(self, method, url, body, headers, encode_chunked)[0m
+[1;32m   1264[0m [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124maccept-encoding[39m[38;5;124m'[39m [38;5;129;01min[39;00m header_names:
+[1;32m   1265[0m     skips[[38;5;124m'[39m[38;5;124mskip_accept_encoding[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;241m1[39m
+[0;32m-> 1267[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mputrequest[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mskips[49m[43m)[49m
+[1;32m   1269[0m [38;5;66;03m# chunked encoding will happen if HTTP/1.1 is used and either[39;00m
+[1;32m   1270[0m [38;5;66;03m# the caller passes encode_chunked=True or the following[39;00m
+[1;32m   1271[0m [38;5;66;03m# conditions hold:[39;00m
+[1;32m   1272[0m [38;5;66;03m# 1. content-length has not been explicitly set[39;00m
+[1;32m   1273[0m [38;5;66;03m# 2. the body is a file or iterable, but not a str or bytes-like[39;00m
+[1;32m   1274[0m [38;5;66;03m# 3. Transfer-Encoding has NOT been explicitly set by the caller[39;00m
+[1;32m   1276[0m [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124mcontent-length[39m[38;5;124m'[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m header_names:
+[1;32m   1277[0m     [38;5;66;03m# only chunk body if not explicitly set for backwards[39;00m
+[1;32m   1278[0m     [38;5;66;03m# compatibility, assuming the client code is already handling the[39;00m
+[1;32m   1279[0m     [38;5;66;03m# chunking[39;00m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1101[0m, in [0;36mHTTPConnection.putrequest[0;34m(self, method, url, skip_host, skip_accept_encoding)[0m
+[1;32m   1098[0m [38;5;28mself[39m[38;5;241m.[39m_method [38;5;241m=[39m method
+[1;32m   1100[0m url [38;5;241m=[39m url [38;5;129;01mor[39;00m [38;5;124m'[39m[38;5;124m/[39m[38;5;124m'[39m
+[0;32m-> 1101[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_path[49m[43m([49m[43murl[49m[43m)[49m
+[1;32m   1103[0m request [38;5;241m=[39m [38;5;124m'[39m[38;5;132;01m%s[39;00m[38;5;124m [39m[38;5;132;01m%s[39;00m[38;5;124m [39m[38;5;132;01m%s[39;00m[38;5;124m'[39m [38;5;241m%[39m (method, url, [38;5;28mself[39m[38;5;241m.[39m_http_vsn_str)
+[1;32m   1105[0m [38;5;28mself[39m[38;5;241m.[39m_output([38;5;28mself[39m[38;5;241m.[39m_encode_request(request))
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/http/client.py:1201[0m, in [0;36mHTTPConnection._validate_path[0;34m(self, url)[0m
+[1;32m   1199[0m match [38;5;241m=[39m _contains_disallowed_url_pchar_re[38;5;241m.[39msearch(url)
+[1;32m   1200[0m [38;5;28;01mif[39;00m match:
+[0;32m-> 1201[0m     [38;5;28;01mraise[39;00m InvalidURL([38;5;124mf[39m[38;5;124m"[39m[38;5;124mURL can[39m[38;5;124m'[39m[38;5;124mt contain control characters. [39m[38;5;132;01m{[39;00murl[38;5;132;01m!r}[39;00m[38;5;124m [39m[38;5;124m"[39m
+[1;32m   1202[0m                      [38;5;124mf[39m[38;5;124m"[39m[38;5;124m(found at least [39m[38;5;132;01m{[39;00mmatch[38;5;241m.[39mgroup()[38;5;132;01m!r}[39;00m[38;5;124m)[39m[38;5;124m"[39m)
+
+[0;31mInvalidURL[0m: URL can't contain control characters. "/?category=All%20Wikipedia%20level-IntSlider(value=5, description='Difficulty', max=5, min=1)%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject" (found at least ' ')
+InvalidURL: URL can't contain control characters. "/?category=All%20Wikipedia%20level-IntSlider(value=5, description='Difficulty', max=5, min=1)%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject" (found at least ' ')
+
