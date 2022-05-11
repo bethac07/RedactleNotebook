@@ -36,7 +36,7 @@ level
 ```{code-cell}
 :tags: [hide-cell, thebe-init]
 
-urlname = f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject'
+urlname = f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-{level.value}%20vital%20articles&server=en.wikipedia.org&cmnamespace=&cmtype=&returntype=subject'
 
 try:
   name = urllib.request.urlopen(urlname).read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
