@@ -93,7 +93,7 @@ starting_guesses = ['a','an','is','the','of', 'in', 'to', 'was', 'for', 'as',
 'around', 'from', 'since', 'with', 'and', 'or', 'on', 'along', 'through', 'amid', 
 'into', 'like', 'by', 'between', 'than', 'about', 'until', 'at', 'but', 'among', 
 'following', 'over', 'after', 'during', 'behind', 'up', 'down', 'before', 'onto', 
-'without', 'unlike', 'because', 'against', 'inside', 'outside']
+'without', 'unlike', 'because', 'against', 'inside', 'outside','except','per']
 for eachguess in starting_guesses:
   try:
     tried.append(eachguess)
