@@ -240,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "639308d538d84f23b73a6996c848738f"}
+{"version_major": 2, "version_minor": 0, "model_id": "dc265d6d03534260957b55c2969caee2"}
 </script></div>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
@@ -302,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="s1">&#39;around&#39;</span><span class="p">,</span> <span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;since&#39;</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;along&#39;</span><span class="p">,</span> <span class="s1">&#39;through&#39;</span><span class="p">,</span> <span class="s1">&#39;amid&#39;</span><span class="p">,</span> 
 <span class="s1">&#39;into&#39;</span><span class="p">,</span> <span class="s1">&#39;like&#39;</span><span class="p">,</span> <span class="s1">&#39;by&#39;</span><span class="p">,</span> <span class="s1">&#39;between&#39;</span><span class="p">,</span> <span class="s1">&#39;than&#39;</span><span class="p">,</span> <span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;until&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;but&#39;</span><span class="p">,</span> <span class="s1">&#39;among&#39;</span><span class="p">,</span> 
 <span class="s1">&#39;following&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span><span class="p">,</span> <span class="s1">&#39;during&#39;</span><span class="p">,</span> <span class="s1">&#39;behind&#39;</span><span class="p">,</span> <span class="s1">&#39;up&#39;</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="p">,</span> <span class="s1">&#39;before&#39;</span><span class="p">,</span> <span class="s1">&#39;onto&#39;</span><span class="p">,</span> 
-<span class="s1">&#39;without&#39;</span><span class="p">,</span> <span class="s1">&#39;unlike&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="s1">&#39;against&#39;</span><span class="p">,</span> <span class="s1">&#39;inside&#39;</span><span class="p">,</span> <span class="s1">&#39;outside&#39;</span><span class="p">]</span>
+<span class="s1">&#39;without&#39;</span><span class="p">,</span> <span class="s1">&#39;unlike&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="s1">&#39;against&#39;</span><span class="p">,</span> <span class="s1">&#39;inside&#39;</span><span class="p">,</span> <span class="s1">&#39;outside&#39;</span><span class="p">,</span><span class="s1">&#39;except&#39;</span><span class="p">,</span><span class="s1">&#39;per&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">eachguess</span> <span class="ow">in</span> <span class="n">starting_guesses</span><span class="p">:</span>
   <span class="k">try</span><span class="p">:</span>
     <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eachguess</span><span class="p">)</span>
@@ -325,7 +325,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "27a0ddcc57b94977a3095b9b449b34af"}
+{"version_major": 2, "version_minor": 0, "model_id": "8b2ee437715f46cfa0b752a45edae07c"}
 </script></div>
 </div>
 <div class="cell tag_hide-input tag_thebe-init docutils container">
@@ -360,100 +360,245 @@ const thebe_selector_output = ".output, .cell_output"
 and, or, on, along, through, amid, into, like, by, between, than,
 about, until, at, but, among, following, over, after, during, behind,
 up, down, before, onto, without, unlike, because, against, inside,
-outside
+outside, except, per
 -------- -------- 
 
--------- -------- is a ------- of -------- ------ ----- in ---- ----- 
-of the -------- -------- and -------- ------- ------ ,-------- the ------ ---------- --- ----- 
-is -------- as a -------- ------- ,- .---- .the ---- and ----------- ------------ ------ 
-to ---- as the -------- ----- .----- ------ ----- ------- ---- ------ ,--------- ----- 
-,---- ---- ----- ,------ ------ ,----- -------- ----- ,-------- ------ ,--------- ----- and 
------ ------ .
+a -------- -------- (---- -------- ------- ,-------- ------- ,and -------- )is 
+a -------- ------- ---- --- --------- ----------- ------------ of ------- and ----- ,-------- ------------ 
+the ---- ------ to the -------- of a -------- ---- -------- a ------------ ---- 
+as --- of --- --------- .--------- ,the -------- --------- ---- ------- ----------- --------------- --- 
+the -------- ---------- with ------- of -------- and ---------- .by --------- ---- ---------- --------------- 
+---- &quot;----------- ------------ &quot;and ---- -------------- ---- &quot;----------- of -------- &quot;,----- --------- ------- the 
+------ -------- ---------- with -------- and ---------- .as a ------------ ------ of ----- --------- 
+,---- ----- of ---- -------- ---- to ------- ---- the -------- -------- is ---------- 
+-------- or -------- -- the ---------- -------- against ----- to ----- ----- --------- of 
+-------- .the --------------- of a -------- is a --------- ------- ,because a -------- -in 
+---- ------ -- ----------- ------------ like the ----- of a ------- .--------- ,--------------- --------- 
+------- ------- to --------- the -------- of the -------- ------- ,to ------ ------ and 
+---------- (---------- )-------- through ------ -------- and ------------ ,and to --------- ------ ---------- of 
+the ------------- as ------------- ------- .in ---- ---- ,a ------------ -------- --- ----------- -------- 
+--------- ;-------- --- ------- ,------ ,and ---------- ,------ ,------ ,and ----- --------- ,------- 
+and ------- ,-------- and -------- ------- ;------- ----------- --------- ,---- as ------- and -------- 
+,---- --- ------------ ----- .in ------ ,a ------------ ------- -------- is --------- ---------- with 
+the ------ ---- -------------- (------- -------- ).the ---- -------- -------- is ------------ ---- as 
+a ------- for -------- -------- ,a ------ ---------- ----- --------- in the ---------- ---------- 
+of ------- ------ .in ------------ ---------- ----- ,the ----- -------- ------- and -------- ------- 
+--- ------- -------- for the ---- -------- -------- ,------ ----- -------- ---- the -------- 
+-------- is --- of ---- -------- and --------- of a -------- ,------ than the 
+-------- of the -------- ,------ ---------- the -------- ----------- of ------ ------------- ---- the 
+-------- is the ---- ----- ------ of the ----------- &quot;-------- &quot;.
+
+
+==---------- --------------- ==
+the 
+---- -------- -------- ---------- a ---------- of ------- ------------ ----------- in ------ and ------- 
+-------------- ---- in a ------- ;the ---- ------- ------- a -------- ----- ----- --- 
+a ---------- -------- ---- of ------ .----- ----------- ------- from ------- -------- ,------- by 
+------ ------ (------ and -------- ----------- )---- ------- --------- -------- ---------- with --------- ------- 
+of ------- ,or ---- ------ ,by ------------ -------- the ----- of -------- -------- with 
+-------- ---------- -------- ----- from the -------- -------- ,as in the ---- of ------ 
+------ .------ ------ of ------ --------- ------- in a ---------- ----- ----------- -------- in 
+-------- and --------- ------------ ,in ----- ----- --- ---- --------- ---- ------------ -------- ----- 
+from -------- ,----- ,or --------- ----- .------- -------- and ------------ --- ------- by the 
+----- or by ------- -------- (- .- .--------- ---------- ),---- ----- ------ ---- ---------- 
+------------- as ------------- for ---------- the ------ and ------- ----- of the -------- .------- 
+of ---- ------------- ------- ------- the ---- of ---------- ------ in the ------------ ------- 
+and --------- a ----- for ------- ---------- ----------- (------ ).in the --------- of ------------ 
+and of -------- -------------- ,the -------- ------- --------- as a ----------- --------- for ------ 
+and ------- .in ----------- -------- ,-- ------- ------- the ------- of the -------- ------ 
+to --- ------- -------- .in ----- ---- ,the -------- ------- -------- ------ -------- and 
+------- ---------- ---------- than ----------- -------- ,----- ------ ---- or --- ------------ with ------- 
+to the -------- ----- .-------- ----- ------ as the ---------- --------- ,as in the 
+---- of ---------- ----------- ;-------- ,the --------------- of ------ ----- is -------- ------- the 
+-------- -------- .------------ ,a -------- -------- ------ in --- ---- :(- )in the ---- 
+of -------- ------- ,---------- --------------- ------ ---------- and --------- ,without ------ ---------- ------------ ;(-- 
+)in the ----- of the ------ and ------- --------- ,---------- --------------- ------ -------- ,-------- 
+by ------------ -------- ------------ ,---- as the -------- --------- and the ----- ------- ------- 
+,----- ------------ ------- -- --- -------- and -- ---- ------- .a -------- ------- --- 
+-- -------------- in --- ---- :(- )as the --------- of a ----- ----- --------- 
+------- or (-- )as the --------- ------------ of a ------- ,an --------- ----------- .----- 
+,the ---- --------------- of a -------- is ----------- ,because a ------------ ------- ------ ----- 
+-------- as a ---- ------ ,but ---- -------- as --- of ---------- ----- -------- 
+to ------- ------- in the ------ of ---- –of --- ------ -------- ----- and 
+----- the -------- .in -------- ,the -------- --------- ---------- as -------- --- ------- ------- 
+--- ----- ---------- ,---------- in ----- ------ ----- .from ---- ----------- ,the -------- ------- 
+------- ---- ---- -------- --------- --- -- ------------ -------- to the -------- ----------- of 
+------ and ----------- ,as --------- by the --------- --------- -------- -------- ,----- --------- ---- 
+---------- --------------- is the ------ of a --------- ------- and --------- ,and ---- is 
+--- a --------- ---------- ;of the ------------- - ,--- ------------ ------ --------- ,---- -- 
+--- ---- a -------- -------- ------- .----------- ,in the --------- of a ------ ------ 
+,----------- and ----------- a -------- ------- --- ----- ------- to --------- a ------ ------- 
+among the ------ and -------- ------ --- ------- the --- ------ ------ .--------- -------- 
+--------- ,------- from a --------- of -------- ,----- -- ------- as -------- --------- (along 
+with ------------ ---------- -------- )---- -- ----- --- -------- ------------ --------- among ---- ,---- 
+as the ----- -------- --------- of ----------- (------ ,--------- ,and ------- ).-------- ,in 
+--------- ------ ,------ a ---------- or a ----------- ---------- ----- ---- the -------- ------ 
+of a -------- -------- .in -------- to ---- --------- ------------ ,--------- ------- a -------- 
+------- from -------- of the --------- -------- ---- by a ------- .
+for ------- ,---- 
+------ ------ ----------- from ------- in ---- ,the ---- ------- -------- was ------ .--------- 
+--------- -------- ---- ------ in ----- --------- and ---------- ------ ,but ------ with ------ 
+--------- and ----- ------ ----- ------ ----- ------- with a --------- ------------- &quot;.----- ---- 
+the --------- ------ of the ------- ---- (----------- )and ----- ----- ------ ,------- ------------ 
+------- ,------- in ---- and ---- ,-------- in the -------- -------- ------- ,in ---- 
+------- ------ (----- ------- ).the ----------- ---- ----- (---- –---- )---------- ----- and 
+----- ------ ---- ---------- --- ------- to ------ ,-- -- --------- -------- (-------- ------- 
+),the -------- ----- ---- the -------- of ------- ------ .in ---- the -------- (---------- 
+)-------- ---- ----- -------- and ----- .in ---- -- was ---------- ------- ------- (--- 
+--------- ).
+-------- ,in ---------- (---- –---- ),---- the --------- -------- of --------- (---- 
+–---- )--------- ----- -------- -------- from the ------- --------- ---------- by ------ to the 
+----- and -------- to the ---- ,----- -------- ---------- was ----- ---- ----------- from 
+the ---- of the -------- ,----- ---- the -------- ---- -------------- --------- from -------- 
+--------- ,the -------- ---------- ---- ---- in ---- ------ of the ------ --------- .-------- 
+---------- --------- as the -------- -------- of the -------- of ----- --------- ,----------- ,for 
+--------- and -------- ------- ,---------- ----- ---------- as a --------- ------- .
+
+
+==-------- ==
+
+
+===------- ===
+
+------- -------- of -------- of ----- --------- ,---- of ----- --- --- -------- ------------ 
+,------- ---------- into ----- to --- ----- ------ ,--------- -------- ,-- ,--- ,----- and 
+--- .
+before the ---- ------- ,---- ------- ----- ---- ----- ----- ------- .
+for 
+--- --------- ,------ ------- --- ---- ---- in -------- ------- (or --------- ------- ),a 
+----- -------- on the -------- and --- ------- from --- ------------ ------ .
+as a 
+--------- ------- ,--------- of the ---- -------- --------- ------- --- the -------------- of the 
+------ ----- a ------ -------- ----- on -------- --------- ,----- as ------- (--------- &quot;------ 
+of --------- &quot;).in the ----- ---- ------- ,---- ------- ------------- ------ ---- the ------- 
+------ a ------------ -------- .
+by the ----- ,-------- ------- --- ---- -------- as the 
+------- -------- by ------- ---------- ------- ,----- was ----- on -------- -------- .
+in the 
+----- ,-------- ------- was ------- ,with --- ------------- ----- on the ------- ------- ,but 
+with ---------- ---- ----- from ----- -------- --------- and --- ------ ----- on the 
+------- ---------- .
+-- is the -------- ------ -------- of the -------- -------- of ----- 
+(----- -- is ------ --------- &quot;------ ------ &quot;),the -- ----- -------- -------- of the 
+-------- of ----- --------- ------ (as ----- &quot;-------- -------- &quot;)and --- of the -------- 
+--------- of --------- (as ----- &quot;------- -------- &quot;).
+-------- ------- --- --------- ------ ---- 
+,and is ---- ---- ------ ------- than --- ----- ------- of ------- .
+
+
+===------- 
+in the ------ ------- ===
+
+in the ------ ------- ,the -------- -------- is ------- 
+------- ,----- is ----- ---- the -------- of the --------- ----- of -------- of 
+------- and ----- .in the ---- ------------ and ----- ---------- --------- ,-------- ------- ------ 
+----------- as the ---------- ---- of the ----- ----- ,-------- of the ------- and 
+the ------ .-------- ,the ------ of the ------ ------- of the -------- -------- ---- 
+--------- ---- the ------- was a --- or a ----- --------- of a ---- 
+--------- ,and ---- of ---- ------ -------- .in -------- ,-------- of -------- ------- ----- 
+the -------- with --- ------ (---------- ,-------- ,-------- ,--- .)-------- -- ------- is 
+---------- with -------- ------------- ,&quot;the -------- ------ of ------- as ------ in the ----- 
+of ------- .&quot;
+
+
+===----- ===
+the -------- ---- of ------ ----- is ----- on the 
+-------- -------- ;----- -------- --- ------ ------ in the ----------- ,the ------ ------- ,------ 
+,----- and the -------- .
+
+
+===----- ----- ===
+--- ------------ --------- of the ---------- -------- 
+---- ----- ------ in ----- :-------- ----- (--- of -- -- --------- -------- --------- 
+)and ---- (---------- -------- ------ ),----------- ,---------- ----- ------ &quot;----- ----- &quot;.
+
+
+===----- ===
+
+
+an --------- --------- (---- -------- --------- ),----- --------- to an --------- ,is the -------- 
+-------- of the ----- -------- .-- was ----- --------- by the ----------- in ---- 
+------- in the ----- .as of --------- ---- ,the ----- ----- -------- of the 
+--------- --------- is --------- ,---- ------ and in ----- .among the ------- to -- 
+----- in the ------- ------- --- ,for ------- ,------- -------- to ----- the --------------- 
+of the --------- ------ to the ------ ------- of --------- -------- ,--------- -------- ------- 
+--- of the ---------- ---- ----- the -------- ----- ------------ ---- ---- ----- .
+
+
+
+===------- ===
+-------- ------- is ------- from the ------ ------- ,------------ from --- ---------- 
+----------- ---------- --------- ---- ----- ------- ---------- ----------- ---- ------- as ---- for the 
+-------- -------- of ----- .in ---------- ,------- ------ the -------- of ------- for --- 
+the ------ of ----- ,------ to the -------- of the ------------ of ---------- ------- 
+like ----- --------- ,as ---- as to the --------- and -------- ------------ of -------- 
+at the ---- and the ---- ---- -- was -------------- an ------------ between the 
+-------- and the -------- ------- -------- .-- ----- ----- ------ the -------- -------- of 
+--- the ------- ------ ,and after the ------- ----------- -- ------ the -------- -------- 
+of the ------- of ----- .------ -------- --------- ------- --- ---- ------ ---------- by 
+------ --- -------- --------- of ----- .
+
+
+===----- ===
+the -------- -------- in the ----- 
+-------- (--- -- –-- -- )and the ----- ------ (-- -- –-- ---- 
+)was --------- ----- ,the -------- ------- ------ by ----- ------- of ----- ------- ,------ 
+------ ----- was the --------- (---------- -------- )------ by the -------- and ---------- ------- 
+of the ------ and the ----- ------ ------- of ----- ------- .the ----- -------- 
+---- ----- ------ ---------- to ---- ,-------- ,and ----- was of a --------- ------- 
+,------ ,and ---------- than the --------- ----- ------ and ------- by the --------- ------ .
+
+
+
+===---------- ===
+in ------ ,------ and ----------- ------- ----- an ---------- ,but -- ----- 
+,------ -------- ---------- ,---------- ------- from the ------ ------ -------- of --- -- ------- 
+and -------- ,but ---- --- ----------- -------- ----- -------------- from the --------- ------ ----------- 
+in the --------- .in ---- -------- ,--- ---------- the ------- /- /---- -- ------- 
+at the --- of a -------- (------- in --- -- ------- ---- ---------- /- 
+/)and the ------ --------- ------- --- is ---------- [-- in the ---- --------- (------- 
+in --- ----- ---- is ------- an -------- ---- or ----- ).-------- and ------- 
+-------- ---- --------- ------------ of /- /than --------- -------- ,with the ------ ----- [-- 
+and [-- and the ------ ----- [-- ,[-- ,or [-- .
+
+
+===----- --------- ===
+---- 
+-------- -------- of the ------------ ----- --------- --- ------ in ------ and ----------- ,------- 
+,---------- ,and ------ .---- --- ---- the ---- ------- ----- (--------- ).----- -------- 
+-- ------ -------- ,as is the ---- with ----- ------------ --------- ,but --- to 
+a ------ ---- ----- ------- ----------- ---- as --------- --------- .the ----------- between the 
+-------- -- --- ------ ------ --------------- and -- --- --------- the --------- of the 
+------ as a ----- .-------- to the ----------- between the -------- of ------- ,------ 
+,------ ,------- ,or ---------- ,the ------------ between the -------- of ----- --------- --- ---- 
+----------- .------ ,------- ,------ and ----------- ,and ---------- in ----- ------------ ---- --- ----- 
+the -------- ----------- .
+
+
+===------ ===
+in ------- ,-------- ------ (or ----- -------- ------ )----- 
+the ----- for -------- ------ ,------------ the ----- ------- of the -------- ----- ---- 
+.-------- ------- ------ --- ---------- ---- ---- by ------ ------ ----- as ---- as 
+the --------- ----- ,and ---- --- the ---- -------- among ----- ------ -------- .
+
+
+
+==--- ---- ==
+--------- -------- 
+----- -------- 
+-------- ------------ 
+-------- -------- 
+-------- -------- 
+----------- 
+------- 
+-------- -------- 
+---------- 
+
+
+==---------- ==
 
 
 ==------------ ==
--------- -------- ------- ----- on a ---- ----- ------- at 
------- of -- to - ,--- - (-- –- ,--- -- ),in ------ 
-with a ----------- of - to - -- (-- –-- -- ),-------- -- --- 
----- -------- from - to - ,--- - (-- –- ,--- -- )and -- 
-to -- -- (-- –-- -- ).- .-------- ------- in ------ ----- the 
--------- ------ between -- and -- --- ,--------- on ----- the ------ --- at 
-in ----- ---- ----- .the ------------ of the ----- -------- -------- ---------- - .- 
-.-------- ------ from --- ------- in the ------ ------ ,-------- ------- -------- (--- ------------ 
-and -------- and ------- ------ ------ in ------- ),-------- and ------- --------- ,------- ,-------- 
-,------ and the ----- --- as --- ----- as the ------- ------- .the ----- 
-------- - .- .---- is ----- from ----- and ----- ,through the --- of 
-------- ,------ the ------ ------ ,and as --- ----- as the - .- .----- 
-of ---------- .------- of --------- -- as a ---------- ,the ----- ------- ---------- is 
------ ---------- as a -------- ------- ,- .---- .
-
-
-==------- ==
-------- --- ------------- ------- 
----- ---- -------- -------- ----- a --- ---- in ------ ---- ---- ,by ------- 
-on a ------- ----- of ---- ,--------- ---------- ----------- and ------------ .---- --------- of 
----- --- --- ---- -- -------- in ----- -------- ,-------- as a ------ of 
------ ---- as ----------- ---------- .---- --- ---- ---- ------- to ------- -------- -------- 
-as an --------- ------- ------- for --------- --------- ---- --------- in ------ ------ ---------- .
-
-
-
-==---------- ==
-in ----- up to ----- ----- -------- ,----- --- ----- a ------ 
-of -- -- (- .- in ),----- ------- --- ----- -- .- -- 
-(- .- in )---- ,-------- ------- ----- --- ---- ------- .the ---- of ------ 
-at --------- ---- --- ---- --- to ----------- ------- in the ----- and --- 
-of the ------ .the ---- of -------- -------- ----------- --- ------ ----- on --- 
-,----------- of the ----------- and --- .------ ----------- ----- --- ---- ---------- with ------ 
------- .the ------ --- -------------- ,------------ ----------- -------------- .---- --- ---- as ---- ,but 
-after ------------- --- and a ---- ----- ,----- ------ ---- to ------- and ---- 
--------- ----- ----- as ------- .-------- -------- -------- ------ ------ in the ---- ------ 
-,------- -------- .by ----- ---- the ------- ---- ----- to ------- ----- ---- onto 
------ ------- .---- is ---- ---- ---- ---- ------- ----- ----- ---- ---- ----- 
-in the ------ .
-
-
-==---------- ------- ==
-
--------- -------- is an --------- ---- -------- ,and 
---- ---- ------ ------ since the ----- ----- in ------ ,and ----- in ----- 
---------- following ----- ------- --------- ----------- of --- to ------ ---- .in ------ ,----- 
------- --- ---- ------ ,------ and ------ in ---- in ------------ ,and --- -------- 
-as ---------- .
--------- ------ ---- a ----- ---- ,----- ----------- to a -------- ----- 
-on a ------ ----- .------- ,the ------- is --- ---------- ---------- --- to a 
------ ------ -------- and a ----- ------ --------- .
-in ------ ,the ------ ------- ----- 
-is --- to --- ,--- ------ (---- ).the -------- ------- ----- in the ----- 
-and -------- in ----- .
-in --- ------- ,-------- ------ ---- a -------- ------- ----- 
-from the ---- ----- to ---- .-------- -------- was in ---- ------ --- to 
--- ----- ---------- ------- and ------- than ------- ------ .------- ---------- ------ in ---- 
-with -------- at -- .- ------- ------ .in ---- ,the -------- ------ ------ --------- 
----------- (----- ------ the -------- -------- of the ------ ------ )---------- ---- ----- ------ 
-of - .-------- ---- --- --- and ---- down the --- ------- ------- .---- 
-was the ----- ------------ in -- ----- .the ------- --- --- to ------- since 
--- --------- and ------- from ---- ------ ---- -------- ------ ----- ------ in a 
--------- --------- .with ------------ ---------- ------ ,and a --- -------- ----- ------- (--- ),the 
--------- ---------- for -------- ------ ------ ----------- .------ ------------ and ------ -------- ------- ----- 
--------- the ----------- and -------- the ---------- ---- in the ---- --- ------- ,------- 
------------- --- ---------- to ---- ------ --- the ----- of ----- --- to ------- 
------- and --------- the -------- ------ --------- .
-
-
-==---- ==
------- ----- ----------- ,------ -------- 
------------ (--- ),an ------ ---- in --------- ------- ,is -------- from -------- -------- ,and 
-the -------- -------- is a ------ of -------- ,a --------- -------- ---- for ---- 
---------- ------------ as -------- -------- ------ ,--------- ---- or --------- the ---- in ------- 
-------- .
-
-
-==---------- ==
-
-
-==-------- ----- ==
------ ------- to -------- -------- at --------- ------- 
 </pre></div>
 </div>
 </div>
@@ -468,7 +613,7 @@ the -------- -------- is a ------ of -------- ,a --------- -------- ---- for ---
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pandalus borealis
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard language
 </pre></div>
 </div>
 </div>
@@ -477,7 +622,7 @@ the -------- -------- is a ------ of -------- ,a --------- -------- ---- for ---
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"1f574a7e964c4f1c800fcffb02d587d9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d6d785ce235e4f5aa6ef805f4d509fae": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "639308d538d84f23b73a6996c848738f": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "Difficulty", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_1f574a7e964c4f1c800fcffb02d587d9", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_d6d785ce235e4f5aa6ef805f4d509fae", "value": 5}}, "ee0fbeab08cc49b693d059ec6ef6ab53": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "42c8cdbd01c84786b3e8691a66af1b29": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "27a0ddcc57b94977a3095b9b449b34af": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_ee0fbeab08cc49b693d059ec6ef6ab53", "placeholder": "\u200b", "style": "IPY_MODEL_42c8cdbd01c84786b3e8691a66af1b29", "value": "the"}}}, "version_major": 2, "version_minor": 0}
+{"state": {"482f66bbcf814e89a6f3aa1b080329d4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "15f815c549454deaa475cdd9da6fb29f": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "dc265d6d03534260957b55c2969caee2": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "Difficulty", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_482f66bbcf814e89a6f3aa1b080329d4", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_15f815c549454deaa475cdd9da6fb29f", "value": 5}}, "3d1db5d736ea4762b7f0feb152ce3824": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7410f69eb7924bf2886c4f09d3beff6c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "8b2ee437715f46cfa0b752a45edae07c": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_3d1db5d736ea4762b7f0feb152ce3824", "placeholder": "\u200b", "style": "IPY_MODEL_7410f69eb7924bf2886c4f09d3beff6c", "value": "the"}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 
