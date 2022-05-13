@@ -40,10 +40,10 @@ urlname = f'https://randomincategory.toolforge.org/?category=All%20Wikipedia%20l
 
 try:
   name = urllib.request.urlopen(urlname).read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
-  content = wikipedia.page(name).content
+  content = wikipedia.page(name,auto_suggest=False).content
 except:
   name = urllib.request.urlopen(urlname).read(500).decode().split('title>')[1].split(' - Wikipedia')[0]
-  content = wikipedia.page(name).content
+  content = wikipedia.page(name,auto_suggest=False).content
 
 def print_redacted(new_string,count_to_word_dict):
   string_to_print = ''
