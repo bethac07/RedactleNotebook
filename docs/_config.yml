@@ -37,7 +37,8 @@ html:
   use_repository_button: true
 
 launch_buttons:
-  thebe                  : true
+  thebe: true
+  colab_url: "https://colab.research.google.com"
 
 parse:
   myst_enable_extensions:
