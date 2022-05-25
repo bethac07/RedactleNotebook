@@ -257,7 +257,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a9459ab3340347629474933b42babea1"}
+{"version_major": 2, "version_minor": 0, "model_id": "2bd618b9a0ea47d8930d1508f9b45e89"}
 </script></div>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
@@ -265,70 +265,88 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urlname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://randomincategory.toolforge.org/?category=All%20Wikipedia%20level-</span><span class="si">{</span><span class="n">level</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1">%20vital%20articles&amp;server=en.wikipedia.org&amp;cmnamespace=&amp;cmtype=&amp;returntype=subject&#39;</span>
 
 <span class="k">try</span><span class="p">:</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urlname</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">auto_suggest</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urlname</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">auto_suggest</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
 <span class="k">except</span><span class="p">:</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urlname</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">auto_suggest</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urlname</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;title&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; - Wikipedia&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">auto_suggest</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
 
-<span class="k">def</span> <span class="nf">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">):</span>
-  <span class="n">string_to_print</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-  <span class="n">delims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;===&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;==&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;–&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;%&#39;</span><span class="p">]</span>
-  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ |\n|=|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|%])&#39;</span><span class="p">,</span><span class="n">new_string</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">delims</span><span class="p">:</span>
-        <span class="n">string_to_print</span> <span class="o">+=</span> <span class="n">word</span>
-      <span class="k">elif</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">count_to_word_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-          <span class="n">string_to_print</span> <span class="o">+=</span> <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39; &#39;</span>
-      <span class="k">else</span><span class="p">:</span>
-        <span class="k">pass</span>
-  <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">pypandoc</span><span class="o">.</span><span class="n">convert_text</span><span class="p">(</span><span class="n">string_to_print</span><span class="p">,</span><span class="s1">&#39;markdown_strict&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;mediawiki&#39;</span><span class="p">,</span><span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;--shift-heading-level-by=1&quot;</span><span class="p">,</span><span class="s2">&quot;--markdown-headings=atx&quot;</span><span class="p">])</span>
-  <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(?&lt;=[A-z])(</span><span class="se">\n</span><span class="s1">)(?=[A-z])&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">string_to_print</span><span class="p">)</span> <span class="c1"># remove random extra newlines</span>
-  <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(#{3,6} )(?P&lt;Header&gt;.*)(?=</span><span class="se">\n\n</span><span class="s1">)&#39;</span><span class="p">,</span><span class="s1">&#39;**\g&lt;Header&gt;** &#39;</span><span class="p">,</span><span class="n">string_to_print</span><span class="p">)</span> <span class="c1">#make all headers just bold</span>
-  <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">string_to_print</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">string_to_print</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">delims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;===&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;==&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;–&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;%&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ |\n|=|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|%])&#39;</span><span class="p">,</span><span class="n">new_string</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">delims</span><span class="p">:</span>
+                <span class="n">string_to_print</span> <span class="o">+=</span> <span class="n">word</span>
+            <span class="k">elif</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">count_to_word_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">string_to_print</span> <span class="o">+=</span> <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>
+    <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">pypandoc</span><span class="o">.</span><span class="n">convert_text</span><span class="p">(</span><span class="n">string_to_print</span><span class="p">,</span><span class="s1">&#39;markdown_strict&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;mediawiki&#39;</span><span class="p">,</span><span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;--shift-heading-level-by=1&quot;</span><span class="p">,</span><span class="s2">&quot;--markdown-headings=atx&quot;</span><span class="p">])</span>
+    <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(?&lt;=[A-z])(</span><span class="se">\n</span><span class="s1">)(?=[A-z])&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">string_to_print</span><span class="p">)</span> <span class="c1"># remove random extra newlines</span>
+    <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(#{3,6} )(?P&lt;Header&gt;.*)(?=</span><span class="se">\n\n</span><span class="s1">)&#39;</span><span class="p">,</span><span class="s1">&#39;**\g&lt;Header&gt;** &#39;</span><span class="p">,</span><span class="n">string_to_print</span><span class="p">)</span> <span class="c1">#make all headers just bold</span>
+    <span class="k">if</span> <span class="n">bold</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">string_to_print</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">string_to_print</span><span class="p">))</span>
+    
+<span class="k">def</span> <span class="nf">create_replaced</span><span class="p">(</span><span class="n">input_string</span><span class="p">,</span><span class="n">word_to_count_dict</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">count_the_word_dict</span><span class="p">,</span><span class="n">count</span><span class="p">):</span>
+    <span class="n">delims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;–&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;%&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="p">]</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ |\n|=|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|%])&#39;</span><span class="p">,</span><span class="n">input_string</span><span class="p">)]</span>
+    <span class="n">new_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span><span class="p">:</span>
+            <span class="n">word_lower</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">delims</span><span class="p">:</span>
+            <span class="n">new_string</span> <span class="o">+=</span> <span class="n">word</span>
+        <span class="k">elif</span> <span class="n">word_lower</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">word_lower</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="n">word</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)}</span>
+            <span class="n">count_to_word_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">),</span><span class="n">word</span><span class="p">]</span>
+            <span class="n">new_string</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">word_lower</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">word_lower</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">word_lower</span><span class="p">][</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+                <span class="n">count_to_word_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">),</span><span class="n">word</span><span class="p">]</span>
+                <span class="n">new_string</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">word_lower</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_string</span> <span class="o">+=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">word_lower</span><span class="p">][</span><span class="n">word</span><span class="p">]</span>
+                <span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">word_lower</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">no_delim_lowercase_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">delims</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">new_string</span><span class="p">,</span><span class="n">no_delim_lowercase_words</span><span class="p">,</span><span class="n">word_to_count_dict</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">count_the_word_dict</span><span class="p">,</span><span class="n">count</span>
+    
 
 <span class="n">word_to_count_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">count_to_word_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">count_the_word_dict</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">new_string</span> <span class="o">=</span><span class="s1">&#39;&#39;</span>
 <span class="n">count</span> <span class="o">=</span> <span class="mi">9897098660698</span>
-<span class="n">delims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;–&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;%&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="p">]</span>
-<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([ |\n|=|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|%])&#39;</span><span class="p">,</span><span class="s1">&#39;### &#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39; </span><span class="se">\n\n</span><span class="s1"> &#39;</span><span class="o">+</span><span class="n">content</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-  <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span><span class="p">:</span>
-    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">delims</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">]:</span>
-        <span class="n">new_string</span> <span class="o">+=</span> <span class="n">word</span>
-    <span class="k">elif</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-      <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-      <span class="n">count_to_word_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">),</span><span class="n">word</span><span class="p">]</span>
-      <span class="n">new_string</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span>
-      <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-      <span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="n">new_string</span> <span class="o">+=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39; &#39;</span>
-      <span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
 
-<span class="c1">#new_string = textwrap.fill(new_string,break_long_words=False,width=200,replace_whitespace=False,drop_whitespace=False, break_on_hyphens=False)</span>
+<span class="n">content_string</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">word_to_count_dict</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">count_the_word_dict</span><span class="p">,</span><span class="n">count</span> <span class="o">=</span> <span class="n">create_replaced</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="n">word_to_count_dict</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">count_the_word_dict</span><span class="p">,</span><span class="n">count</span><span class="p">)</span>
+<span class="n">name_string</span><span class="p">,</span><span class="n">name_list</span><span class="p">,</span><span class="n">word_to_count_dict</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">count_the_word_dict</span><span class="p">,</span><span class="n">count</span> <span class="o">=</span> <span class="n">create_replaced</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">word_to_count_dict</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">count_the_word_dict</span><span class="p">,</span><span class="n">count</span><span class="p">)</span>
+
 <span class="n">tried</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">name_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[ |\n|===|==|.|,|(|)|[|]|&lt;|&gt;|&quot;|:|;|-|/|–|=|%]{1,3}&#39;</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
-<span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">]</span>
 
 <span class="n">starting_guesses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;an&#39;</span><span class="p">,</span><span class="s1">&#39;is&#39;</span><span class="p">,</span><span class="s1">&#39;the&#39;</span><span class="p">,</span><span class="s1">&#39;of&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;was&#39;</span><span class="p">,</span> <span class="s1">&#39;for&#39;</span><span class="p">,</span> <span class="s1">&#39;as&#39;</span><span class="p">,</span>
 <span class="s1">&#39;around&#39;</span><span class="p">,</span> <span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;since&#39;</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;along&#39;</span><span class="p">,</span> <span class="s1">&#39;through&#39;</span><span class="p">,</span> <span class="s1">&#39;amid&#39;</span><span class="p">,</span> 
 <span class="s1">&#39;into&#39;</span><span class="p">,</span> <span class="s1">&#39;like&#39;</span><span class="p">,</span> <span class="s1">&#39;by&#39;</span><span class="p">,</span> <span class="s1">&#39;between&#39;</span><span class="p">,</span> <span class="s1">&#39;than&#39;</span><span class="p">,</span> <span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;until&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;but&#39;</span><span class="p">,</span> <span class="s1">&#39;among&#39;</span><span class="p">,</span> 
 <span class="s1">&#39;following&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span><span class="p">,</span> <span class="s1">&#39;during&#39;</span><span class="p">,</span> <span class="s1">&#39;behind&#39;</span><span class="p">,</span> <span class="s1">&#39;up&#39;</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="p">,</span> <span class="s1">&#39;before&#39;</span><span class="p">,</span> <span class="s1">&#39;onto&#39;</span><span class="p">,</span> 
 <span class="s1">&#39;without&#39;</span><span class="p">,</span> <span class="s1">&#39;unlike&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="s1">&#39;against&#39;</span><span class="p">,</span> <span class="s1">&#39;inside&#39;</span><span class="p">,</span> <span class="s1">&#39;outside&#39;</span><span class="p">,</span><span class="s1">&#39;except&#39;</span><span class="p">,</span><span class="s1">&#39;per&#39;</span><span class="p">]</span>
+
 <span class="k">for</span> <span class="n">eachguess</span> <span class="ow">in</span> <span class="n">starting_guesses</span><span class="p">:</span>
-  <span class="k">try</span><span class="p">:</span>
-    <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eachguess</span><span class="p">)</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">eachguess</span><span class="p">]</span>
-    <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">=</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="n">name_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">eachguess</span><span class="p">)</span>
-  <span class="k">except</span><span class="p">:</span>
-    <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eachguess</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">eachguess</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">eachcap</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">eachguess</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">eachguess</span><span class="p">][</span><span class="n">eachcap</span><span class="p">]</span>
+            <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">=</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">name_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">eachguess</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
@@ -343,403 +361,147 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "aed26d630ed44da3ad9e69d21fce6931"}
+{"version_major": 2, "version_minor": 0, "model_id": "4b3afcc2ba1e46d6ac41b2cdf5c527d0"}
 </script></div>
 </div>
-<div class="cell tag_hide-input tag_thebe-init docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thisguess</span> <span class="o">=</span> <span class="n">guess</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">tried</span><span class="p">:</span>
-  <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">((</span><span class="s1">&#39;already tried, here is what you tried already:&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tried</span><span class="p">)))))</span>
-  <span class="n">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">thisguess</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-  <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Nope&#39;</span><span class="p">))</span>
-  <span class="n">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
-  <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-  <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">:</span>
-    <span class="n">name_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
-  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_list</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">thisguess</span><span class="p">]</span>
-    <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">=</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">thisguess</span><span class="si">}</span><span class="s2"> appears </span><span class="si">{</span><span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">thisguess</span><span class="p">]</span><span class="si">}</span><span class="s2"> times&quot;</span><span class="p">))</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Hooray! </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">count_to_word_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-  <span class="n">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>already tried, here is what you tried already:a, an, is, the, of, in, to, was, for, as, around, from, since, with,
-and, or, on, along, through, amid, into, like, by, between, than,
-about, until, at, but, among, following, over, after, during, behind,
-up, down, before, onto, without, unlike, because, against, inside,
-outside, except, per</p>
 <hr class="docutils" />
-<p>------- -------- -------- (---- -- ,---- –----- -- ,---- )was an
--------- -------- -------- and ------------ .in ---- ,at the --- of
------ ----- ,-------- ------ a --------- ------- ------ after ------ ---
---- as an --- ------- --------- during the ----- ---------- .--- -----
------ ----- ,&quot;------------ ----- ----- &quot;,was --------- in ---- in -----
----- ,a ------- ---- -------- .--- ----- ----- ,the --- ----- ,was
---------- in ---- .in -------- to --- ----- ------- ,-------- ---------
------ ------ during --- -------- (an ------ ,in -------- at the ---- of
---- ----- ,was --------- by ------ - .------ ).--- but -------- ----
----- ---- into ------ -------- ,---- ---- than ---- .in the ---- before
---- ----- ,-- was ------- --------- of the ------- ------- of -------
-.-------- --- an ------- --------- --------- on -------- -------
----------- .-- is a ------- of the ---- ------- ------ of ---------
-------- ,along with -------- ------- ,----- - .---- and ----- ----- ----
-------- .the ----------- of --- ------ ,------ ------- ,like ---------
---- ----- ,is ---------- by ---- to -- ---------- with &quot;-------
---------- &quot;.---- ---- ------ in ----- by -------- ------ ,---- ----
--------- to -- the -------------- ------- . at ----- ----- of ----------
------- ---- ---- -------- as ------------ :-------- ,-- ------ (----
-),the ------ ------ (---- ),and the ---- ------- (---- ).the ----
-------- was ------- in an --------- of -------- ----- ------- as
-&quot;-------- the ----- ---- since --------- the ----- --- ,--------- ----
-than ------ ----- ------- ,to ------- as a ------- and -----------
----------- ----- ---- ---- -------- to ------- -------- of -------
-&quot;.---- of --- ------ ------ on the ------- ------ ----- -------
------------ ---- (---- )of the ---- --- ----- ------- ------ ----
---------- .</p>
-<p><strong>---------</strong></p>
-<p><strong>----- ----</strong></p>
-<p>-------- was ---- in ---- in ------- ,the --- of -------- ---- (--------
-)and ------- -------- -------- .-- ----- --- ----- ----- in -----------
-,-------- ,------ with --- ------ and ------ ---- --- ------- and ---
----- (--- -------- ------ )and ----- .---------- ------ ,an ---------
------ -------- --- ------ for the ------- ,--------- the ------ .to
------- the ---- -------- --------- for --- ,--- ------ ,---------- from
-------- ,----- ---- to the ---- of ----- ------- in ---- is --- the
------- ------- of ------- ,------- in ---- .------- ----- ,a ----------
------- in --------- ,------- ,----------- --------- ---- ----- ----
------ with ---------- -------- ----------- .------- was a ----- ------
-to the ----- --- ------ ,a -------- ------ of the ----- -----------
-------- ;----- ------ ----- was a ------ of -------- -------- .--------
-was ----------- -------- at ------- ------- ,------ (a ------ ------
------ ------ ------- the ------- - .- .--------- and - .- .-------- ).--
------ ---- of --- --------- ------- in --------- with --- --------
------- .-- --- --- -- to ---------- ,------- -------- ---- in ----- and
------- --------- --- ------- -------- ------ .in ---- ,-- was
------------ as a ------- ------- in ----- to ---- the ----- -------
------------ ,----- -- ------ .-- ---- ---- an --------- --- ,-------
----- over a ---- .--- ----- ---- was --------- during ---- ---- .
--------- -------- the --------- of the ----- ------- and -------- ,to the ------------- of --- ------ ,------ a -------- for the ----- -------
-and ---- ----- for the ----------- ------- .-- was ------------ as a
----------- ,but -- --------- ------- and --------- ------- --------
------- .an --------- with the -------- ----- ------- ------ --------- is
----- to ---- ---------- --- into ---------- --- ------ as ------ .&quot;- ---
-...---- a ----- ,------- ,and --- ----- --- ------ ------- ---------
-....------- ---------- -- --------- ------- in ------- ,a ------- of
-------- ,- ------ --- .the -------- ---- a ----- ---------- on --
-,because --------- ------ -- as ------ --- ---- ------ than - was ----
------- to ------- ;and -- -- -------- ---- a -- of -- ,-- ------ ----
------- ---- - ----- .&quot;---------- for ---- ---- -- ---- ,&quot;of ------ in
------ ---- as --- ----- ---- ...------ ----- --- --- ---- a ------
------- as ---------- for the -------- -------- -------- &quot;,but &quot;- was
----------- --- a ------ ----- --- .--- was - at --- a ----- ----- ---
-.&quot;in ---- ,-- -------- ----- from --- --------- ----- ,--- -------- --
-to -- ------ with -------- ,and -------- to ------- ,-------- --- ----
-and ----- before -------- in --- --------- for a ---- ,----- -- ---- a
--------------- ------ in ----------- ,--------- ----- of -------- .---
------- ------ --- ----- in ---- ---- .---------- by ---------- --------
-/------ ------ ------ ----- ,---- ----- to --- ------- in ---- ,----- --
------- ------ ------- ,------ ----- and ------- a ---- of --------- and
------- .-- ----- ------ ---------- with the --- ------- -------- .in
----- ,-- -------- to --------- ,----- in ------ -- -------- in the
--------- ------------- ----- .-- --- ------ in the -------- in ------
-with the ---- --------- ,- .- .- .the -------- -------- -------- ,was
------ ------------ with ------- --- during the -------- and was
----------- ------ -------- in the --------- ----- --- ----- (--- )----
-the --- ----- .after the --------- ,-- -------- to --- ------- by --- of
------- ,and ---- ----- a ---- ------ with ----- ------- (&quot;----- &quot;)------
-,a ------- ----- -- ----- --- ------ and the ---------- of ------ ------
-,with ---- -------- --- -------- .----- -------- -------- --- -------
-,------ ,in ---- ,but ---------- ------ ----------- of the ------------
-and ------- to -------- the -------- .for the ---- ---- ----- --------
---------- ---- --- ------ and ----- .after the ----- of --------
--------- on --------- -- ,---- ,-- was ---- to ----- ----- .---- ----
-------- on -------- - ,---- .------ ----- in ---- as a ---------- and
-------- ,-------- was by ---- a ------ ---- ---- --------- of the ------
---- --------- ,but --- ---------- ,----------- ,----------- with ------
---------- ,and ---------- -------- ----------- to --- --------- a ----
------ .</p>
-<p><strong>as a ------</strong></p>
-<p>in ---------- --------- ------------- during the ----- ----------
-,-------- ------ to --- ------ ------- ------ to ---- a ------ ,--------
-------- to ----- ---- ------- by --------- and --------- a --------- by
----- ------- ------- .---------- ----- ------------ ---- ,&quot;------------
------ ----- &quot;,was --------- in ----- ---- -------- in ---- .--------- to
------ --------- ------- ---- ,&quot;-------- ,--- ------ ------ and
-------------- ,-------- ----- and ----- ,--- ----- ---- ------ to -----
-the ----- .---- ------- ------- ----- ---- --- a ---- ----- in ----- or
----- -------- ------ --- an --------- --- -------- .&quot;--- ----- -----
-,the --- ----- ,was --------- in ---- ,--------- the --------- ------
-------- ,-------- in the ----- ------ .in ---- ,-------- --------- in a
------- to --- ------- --------- ,------ -------- ,--- -- ----- -------
----- --------- and ----- ----- for ---- :</p>
-<p>--------- up and down the ------- ----- in an ---------- - ----- to ----
----- --------- ,because ---- ---- ----- ------ to ----- ---- and because - ----- --- at --- ---- --- ----- for the ---- of ----- ----- is
------ as ------- --------- .---- was in the ----- ---- of the ----- ----
-(-- - --- ---- ---- ----- ---- )and -- ------ -- ---- ---- of the
-------- was ------ -------- and ------ ,---- ------ -- --- --- -----
------- .- ------- ---- ---- ----- -- a ---- --- to --- to ----- to -----
-------- and --- ---- a ----- ------ of ----- at the ---- ---- .- -----
----- ------ over an -- ,--- ---- --------- and ---- -- for ---- .after
----- - ----- ------ ---- ,-------- - --- a ---- ---- ------ -------
-------- ------- . --- ------ ------- ----- ,-------- ,-- ------ (----
-),------ the ----- for ----- ----- -------- ------- by -----
-------------- ,--------- the ---- ---- ------ -- ----- ,----- ------ the
------- ----- of the ------- --------- ,------ by ---- ------ (-----
---------- of ------- -------- --------- ).-------- ------- and ----
------------ --- to a ------ for -------- ------- as a ------------ .--
-and ----- ------ -- ------ ------ --------- (---- ),----- on ----- -
-.------ ----- of the ---- ----- .the ---- ---------- was --------- for an ------- ----- .---- ------ ,&quot;- ----- ---- ----- the --------- and -
------ ---- -- a --- of the -------- ,and -- (-------- )----- ----
----------- and ----- ------------ --- .&quot;------ ------------ ---- the
--------- ----- ----- the ---- -- --------- was ------- ---------- .
----------- ---- -------- -------- ---------- was the ---- ------ (----
-).-- --- --- ------- a ---------- for the ------ and ,--------- to
--------- ---- -------- ,-------- --------- -- ----- ------ the ------
----- -- ----- ,with the ---------- of ----- -the ------ ----------- and
-------- ,----- -------- ------ to .the ------ ------ ---------- ------
-------- ----- ---------- for ---------- . -------- ------------ on the
----------- of ------ ----------- --------- on a ----- (---- ),an ------
------- ----- ----- on -------- ----------- ----- ,----- -- -------
------------ .-------- ------- with --------- and ---- ------- -------
-after --------- ----- -------- --- -------- to --- as &quot;---- --- -------
-&quot;.--------- ---- a ---- of -------- ---------- --- ----- -----------
-into the ------ ----- --- ----- ------- --- ---- ,but -------- --------
-the ---- ------------- ------ along with ------ ------- . in ---- ,the
---------- ----- to -- ----- ,an -------- ------- ------------ of ---
------ ,---------- ,----- -------- ----- --- ---- ------ ------- ------
-,the ---- ------- and --- ---- --------- ---- ,-------- .the ------ was
-------- from an ---------- --------- ----- ---------- -- --- ------- for
---------- ------- . ---- -------- of a ----- ,---------- at --- -----
-,---- ----------- into a ----- ------ ------- ----- ,------ ------- ,by the ------- ------ and -------- ------- ------ - .------ ,in ----
-.------ ------ the ---------- with -------- .------ ------------ ----- a
------- to the --- ----- -------- --------- to ----- ,----- was ------
-with ------ from the -------- ----- .---------- ----- ------- -----
------ ,----- ---- ,was -------- &quot;the ------ &quot;.-- ----- -------- the
------ of an ------- of the --- ---------- (---- –-- ),------ -------
-,------- --- ,-------- ------ ------ as ------- . in ---- ,&quot;the --------
-and the ------ &quot;(---- ),a ---------- ------- ----- -------- ,with
--------- by -------- and ----- by ------ ------ ,was ---------- among the ------------ -------- of the ------- of -------- .the ---- was -----
---------- or -------- .-- --- ---- --------- by the ------- --------
------- as &quot;-- ---- ----- a --------- .&quot;a ----- ---- ----- the ---------
-of the ----- and -------- ---- ---- is ------- ---------- to ------- the
--------- in --- ------- .</p>
-<p><strong>----- ---- and -----</strong></p>
-<p>----- -------- ---- in ---- ,after a ---- ------- .----------- and -----
-,-------- --------- to ----- --- -------- ------- ,and ---- --- for --
------ in a ------- ------ in the -------- of ------- ---- --------- .
-after ------- ----- ,---------- ---------- -------- --- ---------- for
--------- ---------- ;-- -------- to -------- ------- ,----- -------- --
-for ---- ,and the ------- and -------- of --- ------- -------- .in ----
-,-- --------- ------- .in the ---- ------- :------- -------- and the
------ -- ----- ,------ ------- ---- -- was &quot;a --- for ---- ,&quot;----- ----
--- ------ the ------ ---------- ,------ -- ------- to ---- -------
-.---------- -------- and ------------ ---- ---- ---- ------ and
------------ by the ----- to ---- -- was ----------------- ----- ------
-,--- -------- ----- ;---- -------- ,--- --------- ;----- ------ (------
--------- ----- );and ------- ------- (------- --------- ---- ).--------
--------- --- - .- .----------- in ---- ,----- --------- --- -------
------- --- . after a ------- in ------- ,-- -------- to -- ----- .--
----- at ------- -------- -------- of ---------- ---------- --------
------ and -------- ------ (--------- to the ----- ----------- )in ----
-.----- ------ --------- ---------- --- ,--- ------ ,after ---------- in a ---- ------- ----- by -------- ---------- ---------- -----------
-------- to --- ---- . -------- is ------ at ----- ---- -------- ,in ---
------ ,---------- .as ----- -------- ----- in --- --------- ,the ---- of
-------- -------- ,-------- ------ to -- -------- and ------ ---- to
------ in ------- ---- --------- .------- ,-- was ------ in ----- ----
-,because -- --- ---- -- ------- or ------ ------------ .in ----
-,-------- --------- ----- ------ ,with the ---------- of -------- -----
------ (-------- of ---- ----- ),------- a -------- to -------- -------
-------- and ------- ---- with -------- in ----- ---- .after a ------- in
---------- ---- in --- ----- -------- ----- ,----- ------- - .-------
-------- an ----- -------- -------- ------- .on -------- -- ,----
-,------- ----- ---- -------- from ------- ---- to ----- ---- and
--------- ----- a --- ----- ------ ----- ---------- ,as ---- --- ------
-.about --- ------ -------- the -------- ,----- -------- -------- by the
---- .------ ------- ,------ ------ ,------ ------- and ----- ----- .the
------- ---------- ----- ,&quot;---- --- --- ------- than ------ ------ &quot;,a
---------- from the --- ----- .---------- -------- ---------- ,------ by
----- -------- and --- -------- ,is ----- at the ---- of --- ----- ;the
---- --- is at the ---- .</p>
-<p><strong>----- on ---- -------</strong></p>
-<p>in --- ------------ to ------- is -- -------- (---- ),a ---------- of
----- of --- ----- ------- ,-------- -------- ------- on the ------- for the --------- ----- and --- the ---- --------- -------- from --------
---------- ------- :</p>
-<p>the --------- ----- of the -------- --------- ----- was and --- ------
----- ---- ------ ---- --- and ------- ---- -- ---- .--- --------- -----
-was the -------- -------------- of ---------- except the -----
----------- .---- --- up to ---- was ---- or ---- ------- ---- .the
----------- ----- ------- ---------- .the --------- ----- of the -----
----- ---- of ----- on the ----- ---- was ---- the ----- --------- the
----- ,in the ----- ---- a ---- ---- was --- ----- ---- ---- ------ .the
------ ------- was --- --- ----- ---- -- the --- was ------- .-- ---
------ to ----- -- --- the ---- ----- of ---- as the ---- ------ .---- -
------ ---- to --------- a ---- ----------- -------- ---- -- ---- ---
--------- ---- a ---------- ------ ------- from a ------- ----- ,because the ----- ----- was a ---------- ---- ---- a --- ------- of ------ ----
------ the -------- was -------- for --- --- .-- was ----- ,but ----
-because -- was -------- of the ----- ---- of ------- . -------- ----
---------- the -------- ---- ------- of ---- ------- --- in following the
-------- -------- by the ------- of the ---- --------- :</p>
-<p>as - ---- ---- on -- ------- -- ----- -- ------ -- - --- --- ---- ----
---- ---- ------ .but -- ---- --- ---- ---- ------ ---- ----- --- ----
----- --------- .-- the ------- --- ---- a ------ ---- ----- ,---- of the
-------- of ---- ---- ----- ---- -------- .---- of -- ----- ------ ----
-to ----- --- of the ------- ,but -- ------- --- ------ and ---- ---- .to
------- the ------ of a ------- without ---------- -- is the ----- of
------ -------- ------ --- is --- a -------- ---- .</p>
-<p><strong>-------- ---------</strong></p>
-<p>------- and ------- ,--------- - .- .----- ,------ ----- and --- -------
-,------- ------- ---------- ----- .in a ----- ---------- with --------
-,------- ---- ---- -------- ------- &quot;---- of the ------ -------- -------
-in --- ----- ----- &quot;.------------ ------- ------ ---- ------ ---
---------- ---------- ----- as the &quot;-------- ---------- of a ----- -----
-to the --- &quot;.---------- ----- ------- ,---------- ----- was --------
------- by -------- ------- ,but --- ----- and ------- ------- ---
--------- :&quot;the ------ of the ----- ------ like the ----- of the ------
------- ------ &quot;;&quot;-- --- a ----- as --- as --- of --- ------ ---- &quot;;&quot;----
---- --- ------- than ------ ------ &quot;;&quot;- ---- ---- to the -------- and
------ down ---- as ---------- as a --- on a --- ----- .&quot;----------
-------- --------- the ------- --- ------- ----- ,--- to the ------- of the --------- &quot;------------- &quot;,and ---------- ------ the ------- of
------- and -------- .--- the --------- ------ ------- is --- a
-------------- ----- --- ,but a ------- ,--------- ----------- --- with
---- ------- ,--- -------- ---------- ,--- ------ ---- ------- and
---------- ------- -------- and ------ ,and --- is a ------- of ----- and
---------- ----- .-- is a --- --- ------- a ----------- -------- --- for a --- -- --------- --------- . the ---- ------ in ----- -------- is
---------- ---- ----- is in -------- to the -------- ------- ---- -----
-the ------ during --- -------- .in a ----- ---- ------ to ------- -----
-,--------- in -------- ------- of ------- -------- ,-- ----- ,&quot;the -----
----- ------ ---- -- down is ---- ---- - ----- --------- ---- is -----
-and ---- and ---- of ------ and ------ ,- --- ------ for ----- ----- and
----- and ---- of ------ and ------ ,and ---- ---- - --- to ---- down a
---- and ------- the ------ and --------- ---- of a --------- ,- ---
------- for ------- --- ---- - was ------ for ------- in the ----- ----
-.&quot; -------- --- ---- ------ ------- ------- ----- ,-------- --- ----
----------- for ------- ------- of --- ------- .the ---------- ----
--------- ------- -------- --------- --- ----- as &quot;-------- at ---- and
----------- at ----- &quot;(----------- ,---- -------- --- --- ---- ---
--------- the --------- in the --- ----- )and -------- ----------
----------- --------- of ----- ,------ ,and ---------- ----------
-,------- --- a &quot;------ ----- --- at ----- &quot;.-------- ------------
-------- -------- as &quot;-------- the ---- ------- of the ----- -----
-------- &quot;.---------- ----- ------- and ------ --- ----------- -------
-,--------- the ---- ,----- and -------- of --- ------- and -------- in the ----- and ----- .the ------ --- ---- ,-- ------------ :--- ---- is
------ ------ ,---- ---- is ------ ---- ,and ---- ------ a --------- of
-------- --- -------- ------ ----------- . -------- is the ---- --- of
---- ------ --- to ---- ---- ------------- ------- .-------- the ----
-------- ---------- is the --- ----- (---- ),by ------ ----- ,with
--------- ------ as ------ ------- .------- -------- was a -- ------- of the ---------- .---------- --- ------------- ------- and the ---------
----------- of --- ------ ------ ------------- and ------------
------------ on the -------- ---- ---- ----- .------- for --- -------
----- on the ------- --------- ,------------- the ----- to the ----- ,is
------- -------- ---- --- ----- ---------- of the ---- ------- . --------
-was ---- a ---------- ------ of --------- ------- ;--- ----- &quot;the ------
---- of ------ &quot;is the --------- ----- in the ----- .</p>
-<p><strong>in ------- -------</strong></p>
-<p>------- ---------- ----- --------- ---- ------ to -------- in the ----
-&quot;------- -------- ------- &quot;on the ---- ----- ------- of ----- .in the
----- ----- of the ----------- --------- ------- ----- ----- ,-------
------------- --------- a ---------- --------- with -------- .the
---------- ------ ---- ---------- ----- ------- the --------- for
--------------- in ---- and ----- ------- ----- ---- -- ------- to
-------- ------- ,------------ the --------- -------- .-- ---- -------
----------- --- ------- ---- ---------- of ---- ------- ------- . in the
----- ----------- ,the ----- :-- .---- ------ -the ----- of - .a .-----
-,----------- ,--- -------- --------- --- ---------- ------ to - .a
-.----- ,-------- ---- ----- in the ---- of ----- .- ---- ------ ---- --
----- .-- ------- -------- ,-- --------- ---- ,-- ------ ,---- ,----
------ ---- of --- ------- .a ----- ----- --- ----- ------ --- . in the
------- - (---- )of the -- ------ -------- -------- ,------- -- ------
-with ----- ------- to -- a ---- with ------- ----- ------- &quot;--------
--------- -------- &quot;----- ------- in the ----- --- in the --------- ----
-of ------ ,------ .----- ----- a ------- from a ---- about the --- ---
---------- ------ ---- ----- ------ ------ to --- ------------
------------- .the ------- ------ --- a ------- ------- ,------ ,the &quot;---
----- &quot;----- through ------ .after ------- the ------- ,-- ,---------
-,------ &quot;---- &quot;.----- ----- and ---- :&quot;------- --------- &quot; in ------ -
-,------- -- of the ------ ------- ,during a ------ over ------- or ---
-to ---- --- of -------- -------- &quot;-------- &quot;or &quot;---- ,&quot;---- ----------
--------- to &quot;---- --- ------ ------ ----- -------- .&quot;-------- -------
-with &quot;------- -------- ,&quot;to ----- ---- -------- ,&quot;------- --- ------
----- --- &quot; the ------- -------- ----- ---- ---- ,----- ----- ,----------
-------- ---------- the ---- ------- in the ---- ------ ,----- ----- -
-.----- ----- - is a ----- of --- ---------- ,------- ------ and -------
-,--- ------ --- ---- ---- --------- into - ,and ------ --------- --- ---
-------- by ---- like ---- ------ ---- -------- .------- is ----- after
------- ------- ,--- ---- was ------ by ------ -------- ,------- --------
------- and --- of ---------- the ---- ------- .---- -------- of the ----
---------- the ---- ------- ----- -------- in ---------- ----- .the
--------- ------- of the ---- --- -- ---- ----------- in &quot;----- ----- -
------ ----- - - ------ ----- ------ ---- &quot;,as ---- as ---------- the --
------- on --------- ----- ,---- to --- ---- ----- -- ------ --- -------
-of ----- in a ------- ---- ------- ,---- ------- ----- .</p>
-<p><strong>-----</strong></p>
-<p><strong>----------</strong></p>
-<p><strong>----- -----</strong></p>
-<p>-------- ,------- (---- ).------- is -- -------- :and ----- -------
-.------------- ,--------- ;--- ---- :------- ----- .---- --- -- ---
-------- -- . -------- ,----- (---- ).the ---- of ------- -------- .---
----- :- .- .------ .---- --- -- ---- ------ -- .-------- ,---- ;------
-,---- ,--- .(---- ).---- ------- :an --------- of -------- ----- -------
-.--- ---- :------ ---------- ----- .---- --- -- --- ------- -- .</p>
-<p><strong>------- ----------</strong></p>
-<p>-------- ,------- (---- ).-------- ,------- ;------ ,-------- ------
-(--- .).------- -------- -------- .-------- ------- .---- --- -- ----
------- -- . -------- ,------- (---- ).the ------- -------- -------
-.-------- .,-------- by ------ ,-------- ----- -------- ,------- (----
-).the ----- of ------- -------- :in --- --- ----- .--- ---- :------ a
-.----- .---- --- -- ---- ------ -- . ----- ,--- (---- ---- ).-------
--------- :a --------- .----- ----- .---- --- -- ----- ----- -- .</p>
-<p><strong>------- -------</strong></p>
-<p>-------- ,------- - .,-- .(---- ).-------- before ------- :-------
----------- ----- ----- and ------ ,---- –---- .-------- ,- .-
-.:---------- of ----- -------- ----- . -------- ,------- (---- ).the
----- ------ (---------- ).---------- and ------------ ,--- .:--------
--------- ---------- ----- . -------- ,------- (---- ).------- ----------
-------- -------- (-------- ---------- for -------- ).--- ---- :the
----------- ----- . ------- ,------ (---- ).the ---- ------- :-------
--------- and the ----- -- ----- .- .- .:-------- .---- --- -- ----
------- -- . ----- ,------ (---- ).the ----- of ------- -------- .---
----- :a - - ---------- . ----- ,--- and -------- ,----- ,--- .(----
-).the ------- -------- ------ :-------- ------- and ---------- ,----
-–---- .--- ---- :-------- ------- ----- . ---- ,--------- - .&quot;the
---------- and the ------- :----- ,--------- ,and -------------- in the
----- ------- ------- of ------- -------- .&quot;----- :a ------- of ---------
--- .- (------ ---- ):-- –-- . ---- ,--------- - .(---- ).&quot;-- ------ ----
--------- :a -------------- ------- of -------- --------- ------- &quot;.-----
--------- :--------- .---- - ----- ----- -- . ----- ,- .- .(----
-).&quot;------- -------- :---- ------- &quot;in --------- of ----- -------
-(-------- ----- )---- --- -- ----- ----- -- . -------- ,----- (----
-).the --------- of ------- -------- - ------- ------ :a ------ -------
-.--- ---- :the ---- ----- . -------- ,----- ,-- .(---- ).--------
-------- of ------- -------- .--- ---- :-------- ---------- ----- . ----
-,------ (---- .)&quot;------- -------- :a -------- --------- &quot;--- ----
-:------ - ---- . ------- ,----- (---- ).&quot;------- ---------- ----------
-of ----- &quot;in from ------- to ------ .-------- ,------ :------ --------
----------- .---- --- -- ----- ----- -- . ---- ,--------- and -----
------- (---- ).------- ---------- --- ------- .--------- ,- .-
-.:-------- ----- .---- - ------ ---- -- . -------- ,--- (---- ).a
----------- --------- in the ----- :the ---- of ------- -------- .---
----- :------- ------ ----- .---- --- ----------- .</p>
-<p><strong>-------- -----</strong></p>
-<p>----- by ------- -------- at ----- ---- (------ ) ------- -------- at
----- an ----- on -------- and --- ------- ------- by ------- -------
------- ---- the --- ------- of ------ ------- ----- ------- --------
------ ,------ and ----- about . &quot;down the ---- ------- with ------
-------- &quot;--- --------- ----- --------- on -------- ----------- of
-------- ---------- --- ------- by --------- ------ at the --- ------
-&quot;---------- ------ -------- :------ ------- on a -------- ------ -----
-&quot;;the -------- ,---- - ,---- &quot;----- ----- -- ----- - &quot;;-----
-,--------- - ,----</p>
+</div>
+</div>
+<div class="cell tag_hide-input tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thisguess</span> <span class="o">=</span> <span class="n">guess</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">thisguess_lower</span> <span class="o">=</span> <span class="n">thisguess</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">thisguess_lower</span> <span class="ow">in</span> <span class="n">tried</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Already tried&#39;</span><span class="p">))</span>
+    <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">thisguess</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Nope&#39;</span><span class="p">))</span>
+    <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
+    <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">:</span>
+        <span class="n">name_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_list</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">eachcap</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">][</span><span class="n">eachcap</span><span class="p">]</span>
+            <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">=</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">thisguess</span><span class="si">}</span><span class="s2"> appears </span><span class="si">{</span><span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">]</span><span class="si">}</span><span class="s2"> times&quot;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Hooray! </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">count_to_word_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Already tried</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------------------------------------
+</pre></div>
+</div>
+<p>---------------- is the ------ of -------- ------- on the ---------
+------ and --- ---------. -------- --------- the ---------------- -----,
+----- ------- the ------ from ----- into ----, along the ----------
+-----, --- the ----- of ---- ----------. ---------- ---------- in ----
+----- --- ------ -------------------. ---- ---- ------- --------- about
+----- ----- of ----------- and ------- ---------, a --------- ----------
+(-- ---- is --- a ---- of the ---------), ----- ----- of an --------
+-------- ---------, and ----- ----- in the ---------------- ----------.
+------------------- ------- a ------ of ---------- and -----------
+---------- --------- -----------, -------------------------- (---),
+---------- ---------- ------------------------ (----), ----------
+---------- (---), and ----- ------. ---- ---------------- -------- ----
+-------- a &quot;-----------&quot; (-------- ---- is ----- ----- ------- ---- of
+-------- ------- ---------) in ---------- ----------, --------
+-------------- ---------, ------------ ----- -------, --------, or -----
+------. -------- ---------, --------- ------ -------------- or --------
+---------, is a ------------- of ---------------- ---- ------- on
+-------- ---------- ---------- for the --------- of ----------,
+-------------, and ---------------- -------. --------------
+------------------- --------- ------- an ---------- ---- of --------
+-------- in -------- ---------- ---------- --------- ----------
+---------- ------------------------, ---------- -----------------
+---------- and -------------- ----------, and -------- ---------
+---------- --------- ---------- ------- --------- and ----------
+---------- ----------. ------------, the ----------- of ----------
+--------- ---------- is ---- --------- by ---- -------- ------------.
+----------, or ------------- --------, ----------- the ----- of the
+-----, --------, and ------- ----, and is ------------- ---------- a
+------------- of ----------------, ----- ---------- -----------
+--------- of the ----, ------, and ----- and is ---------- a
+------------- of ------- -------.</p>
+<p><strong>-------</strong></p>
+<p>------ from -------- ------, ---- -. ---- ---------- -----------
+--------- of ---------------- -------- among ---------- ----------
+during the ------- of the --------. ---------, of the ----- -------, -.
+---- -.-., was a ----- --------- ------------ in ----------------,
+--------, and ----------.Among ------- ------, ----------- ----------
+--------- to ----------. ------- ------- of the ------- ------ ----
+--------- was ------ -------- up to --------- in the -----------
+-------.------------------:</p>
+<p>------- ------- ----------- (----–--) was among ----- ---------- to
+--------- ------- --------, and in ---- -- ---- ------------ ----- on the ------ of ------- ----- on ----------. In ----, ------ ------ ---
+---------- ----- an --------- ---- on ---------. In ----, ----------
+----- of ------ --------- ------ of the -----------.------------------:</p>
+<p>In ----, ------- ------- ---- the ----- ------- to ------- inside the
+------ ----- ---- ----- a ---- -- ----- ----------- (-------------
+----------) to ------- the ------- -----, the ------, and the -------.
+---- is the -------- ----------- of ---------. ------- ----- --------
+--------- ----------- of ----- ----- in --------- ------. In ----,
+------- ----- ---------- ---- ------- ------ ------- ------------ ----.
+In ----, ------- -------- --------- ----------- and ------------ on the
+------- ----- and the ---------- of --------- following ----- of
+------------- on ---- ------- ------ --. ------. In ----, -----
+--------, a ---------- ------ ---------, --------- the -----------. --
+--------- the --------- on a ----- ---------. In ----, at the ------- of
+---------- in ------, ---- ------ ------------ an ------------- ---- of
+--- ---------- ----- -----, --------- ------- by ---------- in ----. In
+----, ---- ------- --- ------- --------- the ---------- of ---- -----
+----- --- ------ ------- -----. In ----, ---- --------- and ------ -----
+------- ------- ----------- --------- in ------. -----------------:</p>
+<p>In ----, ----- --------- ------ ------- of ----- ------- in ----. In
+-------, ------ ------- --- the ----- ------------------- --------.
+------ --------- --------- ---- --------- -------- --------- the -----
+--------- ------ during ----- --- - in --- ----------- -------- and is
+--------- by ---- as the &quot;------ of -----------&quot;. -- and ----- ----
+--------- a ------------ ----------- in ----. In ----, ------- -------
+----- --------- ------- -------. In ----, ----- ----------- ----------
+the ----- --------- of a ---------- -----------.------------ -------:</p>
+<p>In ----, ----- -------- and ----- ------ of --------- ---- ------- the
+----- ----- in ---------- or -------- for ----- --------- of
+------------ ------ (----/----) and --- ---- in ------ ----- -------.
+----- ------- -------- in ----- --------, but the ----- ----- is ---
+------- ------------ -- -- was --- -------- in the -----.</p>
+<p><strong>------- --------------</strong></p>
+<p>-. ------------- -------------- of ------- (--- ----)/---
+--------------:</p>
+<p>------- --, -------- of the --------- ------,(-------)[---. ----
+------- -------:</p>
+<p>---------------- (---.---.---.---.---)[-- -------------------
+--------(---.---)[---. -------- ------- of -------- --------- (---
+-------------- ----):</p>
+<p>--------- ------(--)[-- -------- ---------- at the ------- -------</p>
+<p><strong>---------------- ---------</strong></p>
+<p><strong>------------------- ---------</strong></p>
+<p>----- ---------------- ------------ ------- ------- of ----------------</p>
+<hr class="docutils" />
+<p><strong>--------</strong></p>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/runner/work/redactle-notebook/redactle-notebook/docs/RedactleNotebook.ipynb</span>, line 104)</p>
+<p>Non-consecutive header level increase; 0 to 2 [myst.header]</p>
+</div>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="answers-give-up">
@@ -752,7 +514,7 @@ of ----- &quot;in from ------- to ------ .-------- ,------ :------ --------
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Raymond Chandler
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gastroenterology
 </pre></div>
 </div>
 </div>
@@ -761,7 +523,7 @@ of ----- &quot;in from ------- to ------ .-------- ,------ :------ --------
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"e0e805282059445dbb93c53dc13f1418": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4740c20c78ce4c45bde25dd07749839e": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "a9459ab3340347629474933b42babea1": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "Difficulty", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_e0e805282059445dbb93c53dc13f1418", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_4740c20c78ce4c45bde25dd07749839e", "value": 4}}, "daa369efdbbd491a8050e7188d69920a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d63351bbe01c4d28a45b878a158ea64b": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "aed26d630ed44da3ad9e69d21fce6931": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_daa369efdbbd491a8050e7188d69920a", "placeholder": "\u200b", "style": "IPY_MODEL_d63351bbe01c4d28a45b878a158ea64b", "value": "the"}}}, "version_major": 2, "version_minor": 0}
+{"state": {"79f4284c99c444369e60f6c2d7ab471f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d0dc2fb314aa46338f0c8b4c41d312bc": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "2bd618b9a0ea47d8930d1508f9b45e89": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "Difficulty", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_79f4284c99c444369e60f6c2d7ab471f", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_d0dc2fb314aa46338f0c8b4c41d312bc", "value": 4}}, "54cb81d83cb64fe2bd0857b97a0599fe": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d808a324000343978019e883aceea38c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4b3afcc2ba1e46d6ac41b2cdf5c527d0": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_54cb81d83cb64fe2bd0857b97a0599fe", "placeholder": "\u200b", "style": "IPY_MODEL_d808a324000343978019e883aceea38c", "value": "the"}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 
