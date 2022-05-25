@@ -257,7 +257,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2bd618b9a0ea47d8930d1508f9b45e89"}
+{"version_major": 2, "version_minor": 0, "model_id": "8e244f154f934445a67c9926fff3ea19"}
 </script></div>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
@@ -347,161 +347,879 @@ const thebe_selector_output = ".output, .cell_output"
         <span class="n">name_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">eachguess</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-input tag_thebe-init tag_margin docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guess</span> <span class="o">=</span> <span class="n">ipywidgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;the&#39;</span><span class="p">)</span>
+    
+<span class="c1">#guess = ipywidgets.Text(value=&#39;the&#39;)</span>
+<span class="c1">#guess</span>
+<span class="c1">#thisguess = guess.value.lower()</span>
 
-<span class="n">guess</span>
+<span class="k">def</span> <span class="nf">execute_guess</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">count_the_word_dict</span><span class="p">,</span><span class="n">word_to_count_dict</span><span class="p">,</span><span class="n">thisguess</span><span class="p">):</span>
+    <span class="n">thisguess_lower</span> <span class="o">=</span> <span class="n">thisguess</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">thisguess_lower</span> <span class="ow">in</span> <span class="n">tried</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Already tried&#39;</span><span class="p">))</span>
+        <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">thisguess</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Nope&#39;</span><span class="p">))</span>
+        <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
+        <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">:</span>
+            <span class="n">name_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_list</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">eachcap</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">][</span><span class="n">eachcap</span><span class="p">]</span>
+                <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">=</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">thisguess</span><span class="si">}</span><span class="s2"> appears </span><span class="si">{</span><span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">]</span><span class="si">}</span><span class="s2"> times&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Hooray! </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">count_to_word_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4b3afcc2ba1e46d6ac41b2cdf5c527d0"}
-</script></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<hr class="docutils" />
 </div>
 </div>
 <div class="cell tag_hide-input tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thisguess</span> <span class="o">=</span> <span class="n">guess</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="n">thisguess_lower</span> <span class="o">=</span> <span class="n">thisguess</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">thisguess_lower</span> <span class="ow">in</span> <span class="n">tried</span><span class="p">:</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Already tried&#39;</span><span class="p">))</span>
-    <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">thisguess</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Nope&#39;</span><span class="p">))</span>
-    <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
-    <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">tried</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">:</span>
-        <span class="n">name_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">thisguess</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_list</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">eachcap</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="n">count</span> <span class="o">=</span> <span class="n">word_to_count_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">][</span><span class="n">eachcap</span><span class="p">]</span>
-            <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">]</span><span class="o">=</span><span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
-        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">thisguess</span><span class="si">}</span><span class="s2"> appears </span><span class="si">{</span><span class="n">count_the_word_dict</span><span class="p">[</span><span class="n">thisguess_lower</span><span class="p">]</span><span class="si">}</span><span class="s2"> times&quot;</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Hooray! </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">count_to_word_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">count_to_word_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="n">print_redacted</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">print_redacted</span><span class="p">(</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thisguess</span> <span class="o">=</span> <span class="s2">&quot;bryozoa&quot;</span>
+<span class="n">execute_guess</span><span class="p">(</span><span class="n">name_string</span><span class="p">,</span><span class="n">content_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">,</span><span class="n">count_the_word_dict</span><span class="p">,</span><span class="n">word_to_count_dict</span><span class="p">,</span><span class="n">thisguess</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Already tried</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------------------------------------
+<p>Nope</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------- ----
 </pre></div>
 </div>
-<p>---------------- is the ------ of -------- ------- on the ---------
------- and --- ---------. -------- --------- the ---------------- -----,
------ ------- the ------ from ----- into ----, along the ----------
------, --- the ----- of ---- ----------. ---------- ---------- in ----
------ --- ------ -------------------. ---- ---- ------- --------- about
------ ----- of ----------- and ------- ---------, a --------- ----------
-(-- ---- is --- a ---- of the ---------), ----- ----- of an --------
--------- ---------, and ----- ----- in the ---------------- ----------.
-------------------- ------- a ------ of ---------- and -----------
----------- --------- -----------, -------------------------- (---),
----------- ---------- ------------------------ (----), ----------
----------- (---), and ----- ------. ---- ---------------- -------- ----
--------- a &quot;-----------&quot; (-------- ---- is ----- ----- ------- ---- of
--------- ------- ---------) in ---------- ----------, --------
--------------- ---------, ------------ ----- -------, --------, or -----
-------. -------- ---------, --------- ------ -------------- or --------
----------, is a ------------- of ---------------- ---- ------- on
--------- ---------- ---------- for the --------- of ----------,
--------------, and ---------------- -------. --------------
-------------------- --------- ------- an ---------- ---- of --------
--------- in -------- ---------- ---------- --------- ----------
----------- ------------------------, ---------- -----------------
----------- and -------------- ----------, and -------- ---------
----------- --------- ---------- ------- --------- and ----------
----------- ----------. ------------, the ----------- of ----------
---------- ---------- is ---- --------- by ---- -------- ------------.
-----------, or ------------- --------, ----------- the ----- of the
------, --------, and ------- ----, and is ------------- ---------- a
-------------- of ----------------, ----- ---------- -----------
---------- of the ----, ------, and ----- and is ---------- a
-------------- of ------- -------.</p>
+<p>------- ---- is a --------- of ----, ----- --------- from the -------
+--- in the ---- to ----- and -------- in the ----, and from -----------
+and ---- in the ----- to ------ in the -----. The ------ -------- of the
+------ ------ --------- of ----------, ----------, ----------,
+------------, and ----------. -- is ---- ------------ -------- to as
+&quot;The ------&quot; as the --------- --- ---- ----- ------ with the -------
+------ &quot;-----&quot;, ------- &quot;---- of&quot;.In the ----------- and ----- -------
+---- (----- ---- and -------) ------- ---- was --------- -------------
+by ------- -------, --------- by ------- ---------------- ---------,
+--------, ----------- and the ------------ --------- and -----. After
+--------- by ------ -------, ------- ---- ---- ------ the -------- for the -------, ------, ------, -------, ------, and -------; ------
+--------- ------- -------- the ------- --------- ------ in the ----,
+with the --------- of ---------- and ----- ----- ----- is ------.
+------- ---- was ------------ ------- ---- to the ---- ---- -----
+------, ------ as a ---------- for the -------- of ------, -----, and
+----- between ------ and the --- ----.From the -------- ------- until
+------ the --- of the ---- -------, ------- ---- was --------- by the
+--------, and ------------ into the ------- ------, and ----- the ------
+-----, ----- --- to -------- and ----- ----- ---------- into the ----.
+---------- ------- ---- is ---- to a ----- ---------- of --------
+--------, --- ------ ---- in ----------; - ------- --------, ---,---
+----------, and about ---,--- -------. ------------- ------ -----------
+-------- ---- ---- ---- over ---,--- ------- ---- -----.------- ----
+(----) --- a ---------- of about -- ------- ------, in ---- ---------:
+---------- (---. -- -------), ---------- (- -------), ---------- (-
+-------), ------------ (- -------), and ---------- (-- -------).</p>
+<p><strong>-----------</strong></p>
+<p>--- of the ----- ----------- --- --------- ------- ---- as a --------
+------ of the ----- was --------- --- --------. The ------- of -------
+---- --- ------- to -------- -----------. ------------, ---------
+--------- and ------- ---- ---- --- ----------- ---------- ------ ----
+in --------- ----------- of ------- ----. ---------- ---------- --------
+of ----- ------- between -- ----- and -- ----- of the -------- --.---.
+-------- -------- ---- ---------- -------- of ---- ------, ----- -------
+the ------- --- in the ----, the ----- --------- in the ----- and the
+----- ---- and ----- --------- in the -----. -- --- --- ---- an -------
+------ for the ------. --- ------ is ----- ----: -------- ---------- of
+------, ----- after ---, ------ a ------ in ------- ----- -------. The
+------- ---------- ------- -------- ---------- the -----------
+---------- of ------- ---- and --------- a -------- --- of --- ---------
+------- in the ------ ---------- from -----, --------- -----------,
+--------, ----------, ----------, ------------, ----------- (--------),
+and ----------.</p>
+<p>------- ------- --- --- -------- -----: ------- ---- (--------- ----- or
+&quot;------ ----&quot;, the -------- ----------, ----- -------- ---- -----
+------------- ----------, ------- ----- ----- ---- ---- ------------
+------ ----- ------- of ---------- ------) and ----------- ----
+(------------ ----- or &quot;------- ----&quot;, the ----- ----------, -----
+-------- ------- ----- ----- ---- ---- ----- ---- ---- of ----------
+------). The ------ ---------- -------- ----------- and -----
+----------.The ---- ------- ---------- was the -------- --- of the
+------ -----, ----- ------- ------ ---- as ---------- ------ of
+----------, ----------, ------------, and ----------, --------
+----------. ---- after the ----------- of the ------ ----- in ----, the
+------- of the ---- ------ ------ ------- ----- --------- --- in
+-------- and -------- ---- the ---------- of ------- ---- ------ -------
+---------- as ---- as the -------- ---- -------- by the -------. Since
+----, ---- --- ------ the ---- ------ ---------- of ------- ----. The
+------ ------- of the ------------- of ------- ----, --------- in ----,
+------- the ------ as &quot;-----------, ------------ ----, -------- and
+------- --------, -------- -----, ------- -----, -------- and the ------
+------ ------- ----- ---------&quot;.An ----------- ------ is to ------ the
+------ ----- on ---------, and in ----------, ----- --------- by -------
+------, ------- -------, or --------- -------. ----- ----- -------
+-------- ------ ---------- ------, the ------ ------- of --------
+-------, the ---- ---------, and ------ ---------. ----------- as a
+-----, the -------- and ------- ----- of -------- and the ------- ------
+of ----- --- ---- -- --------. The -------- and -------- --- ----
+--------. ---- of the --------- ------- --- ---------- the &quot;----------&quot;
+------- of the ---- ------. ------- ---- is --------- -------- to as
+---------.</p>
+<p><strong>---------</strong></p>
+<p>------- ---- is a ------ of ------ ---------, --------- ---- ------ and
+--------- (---- ----), ---- ------- (----- ---, ----------), and
+---------- --------, ------ -------. The ---- ------ ----- of -------
+---- --- ---------- -------- with the ------- of ------- ------ as a
+----------- ------------ ---- ----- as the -------- ------. ---- of the
+---- of ------- ---- is --- --- or --- ------ for -------. The ----
+------ ------- from the ---- of the ------, --- -, to the ----- -------
+(-- -------) ---------, ----–---- -. ------- ---- --- the following
+---------- --------:</p>
+<p>The ------- ------------ ------ (---- -----), at ------ ------ ---,
+--------, ------ -. The -------- ------------ ------------ ----------,
+at ----------- ---, --------, ------ -. The ------- -------- --------
+between ---------- ------ and ----------: --- -- (--- --). The --------
+---- of ---------------.A -------- of the ------ ---- a ------ by
+------- ---------. ---------- -------- ------- in the -------- ------.
+----- ------ of the ------ ------- the --- -----, the --- -----, ------,
+the ---- ----- and the ------- -----. ----- ------ of ----- ------- the
+---- --- and ---- --------, ---- of ----- --- ---- of the ----
+------------ ----- --------- ----- ---- ---- -------- the ------- ---.
+---- of ----- ------ of ----- ---- ------ ------------- in ------
+------- --- to --------- of ----- from ------ ---- ---- ---- for
+---------- and ---------- --------. ----- is an --------- --------
+-------- in ---- ------- ---- and --- ---- to ------ -----------
+------------- --------.</p>
+<p><strong>---------- -------</strong></p>
+<p>------- ---- is ------- on the ----- by the ------- of -------. The
+-------- ---- of ------- ---- (----------) is the ------ ---- of the
+-------- ------. -------- the ------ ------ ------ into the
+----------------- ------ and -------- into the ------- and ------- of
+--------- and --------. --------- the ---- ------- ------------ --- and the ------- ---------- ------------ ----. The ----- -------- ----- of
+----- ---------- and ------ -------- ---------- is --------. The ----
+--------- ----- --- along the ------- ---------, along the ---- and
+-------- ------ and along the ----- ----- of the ----- ---- ---- the
+------- ------. ---- of the ----- ---- is the --------- ----- of ----
+and ---- a --- ------ in ----------- like ----- and -----. ---
+----------- of the ---- ---- ------ ----- &quot;----&quot; along the -------
+---------. The -------, in the -----, is ------- ----------,
+------------- ------ ------ or ---------- ----- -------- ---- --------.
+In the ------ is the ----- but ----------------- -------- ------. In the
+----- is -------, ----- ------ -----------, ----- is ------- on the
+----- by the ----- ---- --------- of -----------. The --- -----
+(--------) ----- in the -------- ------ and the --- ----- (----) -----
+in -------. ---- ---- --------- into the ---- ---. ----- the ---- -----
+the ---- --- -- ----- a ----- ----- ------ -------- and ----- the
+------- of -----. ----- of the ---- is the ----------- but -------
+--------- --------- ----- ----- ------ the ----- ------- ------ of
+------- and ---------. The ----- ----- ---------- ---- was --------
+--------- of the ----- of the -------- ------. The ---- -----------
+----- of the ---- was ------ ----------- and ---- ------, ----------
+---- --------- to the ------- --------- --- --------- the ---- ----
+-----. To the ----, --------- and the ----- ----- ---- ------ into the
+-------------- -------- of -------- (--------; ----------) about ----.
+-------- from ----- ------- ---- along the ----- or ----- ---- of the
+----- ----- and ------ at ------- before -------- the ---------
+--------- to -------- or --------- to -------. A ----- ------ of the
+---- ---- ---- ----- of the ---- ---- through --------- and -------
+before ------- --------- ---- --------. ------- ---------- ------- -----
+from -------- through --------- before ------- --------- to ------- the
+------- ----- or ---------- ---- ------ ------. The ----- --- ------ or
+----------- is between the ---- and --------, and the ------- ------ is between the ---- and ----- ---- in ------------. -------- -----
+------------- --------- ------ and -------- -----------. -------- was the ------ around ----. The ------- ------- is between the ---- and
+------- ----. To the ---------, ------ the ----- ----, ---- ------. From
+---- ------- and ------- ------------ ---------- ------- ---- and
+--------- --- ---- ------- until the ------- --------. In the ---------
+is the ----- to -----. In ----- ----- -------- ------ ----- and
+---------- ---- of ------- ------- ----- and ------ ----- ---- ---------
+to --------- ----- ---- in -------- -----. ---- ------- ----------
+------- from the ---------. After ---- ------- ------------ in ---
+------- and ------ ---- ---------- from the ---------.</p>
+<p><strong>----- of ---------- -------</strong></p>
 <p><strong>-------</strong></p>
-<p>------ from -------- ------, ---- -. ---- ---------- -----------
---------- of ---------------- -------- among ---------- ----------
-during the ------- of the --------. ---------, of the ----- -------, -.
----- -.-., was a ----- --------- ------------ in ----------------,
---------, and ----------.Among ------- ------, ----------- ----------
---------- to ----------. ------- ------- of the ------- ------ ----
---------- was ------ -------- up to --------- in the -----------
--------.------------------:</p>
-<p>------- ------- ----------- (----–--) was among ----- ---------- to
---------- ------- --------, and in ---- -- ---- ------------ ----- on the ------ of ------- ----- on ----------. In ----, ------ ------ ---
----------- ----- an --------- ---- on ---------. In ----, ----------
------ of ------ --------- ------ of the -----------.------------------:</p>
-<p>In ----, ------- ------- ---- the ----- ------- to ------- inside the
------- ----- ---- ----- a ---- -- ----- ----------- (-------------
-----------) to ------- the ------- -----, the ------, and the -------.
----- is the -------- ----------- of ---------. ------- ----- --------
---------- ----------- of ----- ----- in --------- ------. In ----,
-------- ----- ---------- ---- ------- ------ ------- ------------ ----.
-In ----, ------- -------- --------- ----------- and ------------ on the
-------- ----- and the ---------- of --------- following ----- of
-------------- on ---- ------- ------ --. ------. In ----, -----
---------, a ---------- ------ ---------, --------- the -----------. --
---------- the --------- on a ----- ---------. In ----, at the ------- of
----------- in ------, ---- ------ ------------ an ------------- ---- of
---- ---------- ----- -----, --------- ------- by ---------- in ----. In
-----, ---- ------- --- ------- --------- the ---------- of ---- -----
------ --- ------ ------- -----. In ----, ---- --------- and ------ -----
-------- ------- ----------- --------- in ------. -----------------:</p>
-<p>In ----, ----- --------- ------ ------- of ----- ------- in ----. In
--------, ------ ------- --- the ----- ------------------- --------.
------- --------- --------- ---- --------- -------- --------- the -----
---------- ------ during ----- --- - in --- ----------- -------- and is
---------- by ---- as the &quot;------ of -----------&quot;. -- and ----- ----
---------- a ------------ ----------- in ----. In ----, ------- -------
------ --------- ------- -------. In ----, ----- ----------- ----------
-the ----- --------- of a ---------- -----------.------------ -------:</p>
-<p>In ----, ----- -------- and ----- ------ of --------- ---- ------- the
------ ----- in ---------- or -------- for ----- --------- of
------------- ------ (----/----) and --- ---- in ------ ----- -------.
------ ------- -------- in ----- --------, but the ----- ----- is ---
-------- ------------ -- -- was --- -------- in the -----.</p>
-<p><strong>------- --------------</strong></p>
-<p>-. ------------- -------------- of ------- (--- ----)/---
---------------:</p>
-<p>------- --, -------- of the --------- ------,(-------)[---. ----
-------- -------:</p>
-<p>---------------- (---.---.---.---.---)[-- -------------------
---------(---.---)[---. -------- ------- of -------- --------- (---
--------------- ----):</p>
-<p>--------- ------(--)[-- -------- ---------- at the ------- -------</p>
-<p><strong>---------------- ---------</strong></p>
-<p><strong>------------------- ---------</strong></p>
-<p>----- ---------------- ------------ ------- ------- of ----------------</p>
+<p>Because ------- ---- is --- -------- by a ----- ---- of -----,
+----------- ------------ --- ----- ------, --------- the ---, -----
+------ ------. In ---- ----- the ------- is --- and -----------, with
+--- ------- and ---- to ---- -------, with ---------- --------. Outside
+-------------- -----, the ------- is ------ --------- to ----. In -----
+----------, ------- --- --- with ------- --------. ------- -------
+---------- ---- and/or ---- from ------------ ------- ---- ----- the
+---- from the ------------- ---. ------- ------- ------------- is
+--------- --- from ---- to ---------, ----- in ------ (------- and
+--------) and is ------- in ----- or -----, -------- by ----- ------ in
+--- and ----. ----- --- -- ------, --------- ---- ------ ---------,
+---------- ------ the --- of the --- ------ in --------- and -------.</p>
 <hr class="docutils" />
-<p><strong>--------</strong></p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/runner/work/redactle-notebook/redactle-notebook/docs/RedactleNotebook.ipynb</span>, line 104)</p>
-<p>Non-consecutive header level increase; 0 to 2 [myst.header]</p>
-</div>
+<p>-------- and ---------, ----------, --------, ------------, and
+--------, ----------, the ---- of ----- ------------ --- of the -------
+-------- in ------- ----, with an ------- ------ ------------- of over
+--- -- (-- ------). -----------------, ------- ---- is ---- of the
+---------- -----. The ------- ----- in ------- ---- is the ---------
+----------, --------, and ---------- -----. ------- ---- ---- --------
+the ------- ---------- and ----------, ------- and ----- ---------- and
+--------- ---------- ------- ------.</p>
+<p><strong>-------</strong></p>
+<p>--------, during the ------ --- of ----------- the ----- of ------- ----
+in the ----- ------- was ------------, ------------ -------------- ---
+------------ the &quot;----------&quot; of the ------- ----. The ------- of
+------- ---- is ------- by the ------ ------- and ---------. The
+-------- of the ------ ---- ----------- ---------, and --- -------- from the --- --- -- --- from ---- -----. ----, --- ----- ------ --------- in the ------; -------, the ---- was for --------- --------- by the -------
+----- ------- of the ------. --------- between the ------ ------ and the
+------- ------ in and around ------- ---- ---- ---- ------ by --------.
+The ------- --------- was ---- ------ to -------, and the ------ -----
+------ ------ ---- of the ---- ---------- ------ ------ in the -----,
+------- ---- by ----- ---- of -------- -----. --- -------- ----- ----
+was -------- was ---- -------- --- to the --------- of the ---- ----,
+----- -------- along ------- ----. ------------, ----- ------- or
+-------- ---------- ----- -------- ------- ------ into --- ----- and
+------ an ------ ----------- -----. ----- -------- the --- -------- of
+------, the -- -- ------- on ----- and ---- ------- the ------ --------
+of ---- of -------.</p>
+<p>During ----------- and ----- ------- -----, -------- ------- ---- was
+--------- ------------- by -------- of ------- ---------. Among the
+------- --------- ------- -------, the -------- and ----------- ------
+an --------- ----, ----- ------- ------- ---- as --------- and the -----
+on ----- ----- a ------- or ------------ ---------.</p>
+<p>The ---- --------- of ------ ------- -------- between the --- and ----
+---------, ---- ---- ------ ------ ---- of ------- ----. The ----
+------- -------- --------- and ---------- ----- ----- of ------- ----,
+-------- and ---------- through ----- ------ -------. ---- -----
+-------- --------- the ------------- of ------- ----, ----- ---------
+--- -------- ---------. The ---- ------- ---- -------- by the ----- at the ------ of ----- in ---, ------- the --- of the ---- ---------
+------- --------- and the --- ----- of ------- ---------. The -------
+------ ----- ---- the ------ to ---- ------- of ------- ---- along with
+----- ----. During the ---- and ---- ---------, the ------- ---------
+and ----- the ------- ---------- ------ in -------- -------. ---- of
+------- ---- ---- ----- the ------- of the -------- -------. The
+--------- of the ------ ----- in the ---- -------, as -------- -------
+------- ------- to ---- ------- of the ------. ------, -----, and -----
+------ -------- into the ------ and --- -------- the ---- of -------
+---- by the --- of the ---- -------. After the ------- ----------, the
+------- ------- ----- ------- ---- ------------ into the ------ -----.
+The ------- ---- of ------- ----, ----- as ---- --------- or --------,
+was ------------ into the -------- -------- of -----, ------ ----
+---------- ---------- by the ------ ------. -------- -------- -----
+------------ and ---- -------- ----------- but ------ a ------ ---------
+----- until the ----------- of the ------ -----. ----------- --------
+---------- ----------- of ----- --------- by the ------ ----- until the
+---- ---------- of ----. The ------ ----- of ------- ---- --- ----
+----------------- and ------------ of --------------, but ---- the
+----------- of ----- --------, -------- of --------- of ------ from
+------ ---------------- ----------, and a ------- ------ of ------
+-------- and ------------- --------. ------ ----------- --------
+-------- of ------, --------- ------ -------------, from ------- -----
+of the ------ ----- to ------- ---- and -------. --------- to ------
+------- and ------- ---------, &quot;From ---- to ----, about --- -------
+------ from ------- ----- of the ------ ----- -------- to ------- ----,
+of ----- about --- ------- ----- to ----------.&quot;</p>
+<p>With the -------- of the ------ -----, ---- --------- ------
+------------. In ------ --- the --- ------, ------ --------- -----
+--------- -------- ----- as ----- ---------. ---- of the --- ---------
+----- -- ---------- ---------- ----------- in the ----- ---- of
+------------, -------- in ------ ----- ----------, ---------- and
+-------- ---- ---- ------- -------- ------- ---- ---- ---------, unlike
+----------, ----------, and ------------, ----- ---- ---------- ----
+------------ ---------- -------.On -- ----- ----, a ------ was ------ by the ------------- ------ ------ ------, --------- ------------ -------
+---- as a ---- ---- from ------- -------.</p>
+<p><strong>-------</strong></p>
+<p><strong>----</strong></p>
+<p>At the ---------- of ----, ----------- --------- ---- ---------
+--------. ----, ----, ---- of -----, was ------- in ----- as a ---------
+-------- and -----. --------- --------, in ----------, was ---------- by
+------- --------. The -------- ------- of ---- ----- in the ---- -------
+was ------- -------- and ----- --------- ------ from ------- to -----
+------ for -------- --------- -------.</p>
+<p>------- ---- ---- --- an ---------- ---- of --------------- ---- ------
+---- is over ---- ----- ---. -- is ----------- --------- in ----------
+and ---------- by -----, ------- -------------------. ---- ------ in
+------- -------, the ------ or the ---- -----. The --------- ----- ---
+of ----- ------ ---- ----------. ---- --- ------- ----------- by a
+-------- ------------- ----------, a -------------- -----, and in
+----------, a ------- ------------ ----------, the ------. -----------
+in ------- ---- ----- to ------- after ----, ---- a ------- ---------
+------------ ----- ------- ------ ----- to the ------- of ----- during the --------- --------- to ------- ---- --- by ----- ---, --. ---- ---
+------- to ------- of -----, ------ ------ --- ----------- ------ with a
+----- ------- ------------ -------, --- ----- ------ the ------- of
+----- -----------.</p>
+<p>---- ---- ----- to ---- the -----, ------------ ---- ---- (----- ---
+----- the ----- ----------- but -- --- --------- --- ------ ---------).
+During ------ ----, ---- ----------- was -------- by the ----------- and
+------------ -------- in ----------. With the ---- of the ------ -----,
+-- --- ------- a ----------, -------- ----- ----- -- --- ----- --- to
+-------- for --------- ----------. A ---- The ---------- ---- -------
+-------- a ---------- between the --------------- --- of ----- and
+------ --------- --- --------- in the ----.As a ----------- of -------
+------------, -------- ---- ---- – --------, --------- and -------- –
+---- --------- in ------- ----. The ----- ----- of the ------ ------ ---
+the ---------- of ---------, ----- ---- ----------- from the -------
+----------- --------. Until the -----, ------- ----- ---- --- ---------
+along with ------- ---------- of ------ ----. In the ---, ---- of the
+------ --------- ---- ----------- -------. --------------- --------,
+---- ------ of ---- ---- --------- by the ----- of the --- ------, ----
+------ as --------------- of -------- -----, ----- ---- ---- ---------
+by ------------- -------------. The ----- of ----–---- ---- ----- for the ------------- of ------------ ----. In the ------, ---- ---------
+------------- ----------- --- ------ -----, ------- ----- --- is
+----------- in -------- and -------- -------, and the ------- -----
+-------- at the ------ -------- --- ---- --------- since ----.</p>
+<p><strong>------</strong></p>
+<p>---------- ------ --- ----------- in ------- ----, with ----------- like
+--------- ------, --------, ------- and --- ---. The ----------- ---- of
+-------- is ------ ---------- the ------- ----- ------, the ---------
+--------- -------- -------- ----------- ------- ---- -----. The -----
+-------- ----------- among the ------- ----- ---------, ------, -------
+-------- and ------ was ---- in ----. The ----- ----- ----- -----------
+was ------ in ---- and --- by ----------.----------- -------- is -------
+------ ------- ----. ---- --------- --- ------- of the ------- -----
+-------- -----------, a ------ of the ----- -------- -------------.
+-------, ---------- is a ------ of the ----. --------- is ------- ------
+------- ----, with ---------- ------ ------- -- ------- ------,
+---------- -----, and ---------- -----. As ------ ------ ------, -------
+----- --------- ---- ---- ---------- in ----------. ----- ------- ----
+is --- of ---- ------ ------ in ------- ----, ------ ------- ---------
+---------- ------- the --- --------- -------- -----. ------- is the ----
+------- ----- in -----------. The ----------- -------- ------- ----,
+----- ------ in ----, --- ------- ---- over ----------, ---- ------ and
+--------. ------- ------ ----------- ------- -------- ---------
+---------- and ------ ----------, ----- -------- ----- and -------
+--------, ------ ---- ----------, ---------- ------- ------, -------
+----- ---------, ------ ------ --------- and ----- -----, ----- --------
+-------, ------------ ---- -----, and ------ ------- ----- --- and
+-------- -----------. ------- ----------- ----------- ------- -------
+----------- ------------, ----- ------ -------, ------ ------- --------,
+------- ------ -----------, ------ ------ ----- -------, ----- ------
+------ ------------, and ------ ------ ----- --.</p>
+<p><strong>-------</strong></p>
+<p>Since ------- ------------ in the ----- -----, the ------- -----
+--------- ---- --------- ---- ------ from a ---------------- ------- to a ------ -------. The -------- --- is to ------- the ----- ------ by
+-------- the ----- ----------, ------- ----- ---- --------. -------,
+------ --- ---- ------------ ------- and ---------, as -----------
+------ to ----- the ------ ---- and ---------- ------ ---------. ---
+---- --------- --- ------------ ---------- ------- to -------
+---------------. ---------- is the ---- --- ------- to -- -------- in the ---- and ---- --- ----- --------------- --------. In ----------,
+---- ---- ---- ----------- the ---------- ------ and --------- the
+----------- of ------- ---------- through ----------------- ------
+-------- and ----- --------, to ------ the ----- of ----------- in ---.
+Between ---- and ----, the ----- of ----------- ------- in --- but
+----------, ----- -- --------- ----- -------- ---------. The -------
+------ in -------- was -------- in ------------, ------- the --------
+------ ---------- ---- in the ----- ---- ---------.------ --------
+------- by ------- ----- ----------- ----- on --------- the ---------
+and -------- ------- from -------- ------. ---- -------- ----------- a
+----- -------, ---------- ------ ---- and ------------ --------
+--------. ---- ------ ------- -------- ---------- from -------- --------
+------, -------, ---- as the ------------ ---- -------- of ------
+---------- ---------- and ------------- ----- since ----.
+--------------- ----, ---- ---- ------- ---------- --------- from the
+------ --------- ------ of ----–----. ------ -------- ---- ------- in
+----------, ---------- and ------------ and --- at --- in ----------,
+----- the ------- ---- by ---- than -- per ---- on ------- between ----
+and ----. ------------ -------- --------- ---- --.-- ------ in ----.
+------------ ----------- --- ---- ---- ------- but ---- ---------- was
+------- ---- before ----.The --------- ----- ---- ----- ---- ----------
+from the ----------- ---- during the ----- ------ of the -----.
+---------- and ------------ ---- -------- --- and ------- --- --------
+and ------------ --- -------- ---- -- ---- or ---- ---------------.
+----------, ---------- and ---------- --- ---- ---- -------- and
+---------- --- the ------- ------- ------- --------. ----------- ------
+------ for ------, --------- and ----- ------ (except ----) in ------
+----- --- --- ---------- -------, since --------- and --- ------ --- ---
+----- ------- - the ----- --------- ------- is the --------- -------
+---------- -----. In ------- ----, the -------- of ----------- ---------
+the ------------ --------- to ------ the ------- of ---- ---------- by
+------ to ---- --- for ----- -----. ---------- and ------------ ---
+----- ------ --------- ----------, ------- ----- and ----- ------------
+--------- for ------ in ----.-------- ---- ------- and ------- ----
+----- ------------- over the ---- ------, ------- ----- ---------
+--------- ------ ---------- to -------- ------, ----- to ----- --------
+on ------- of --- ---------, a ---------- ------ of ------- -------- and a ---------- ------------- --------. ---------- --- the -----
+------------ of ----- ---------- -------- ----, -------- -- ---- ----
+----- -----. ---- of --- ----------- is --------- by ----------.The
+------ ------- was ------ by a ------ of ------ between ---- and ----.
+In ----- ----, --------- --------- ------- was ------- by a -------
+--------, with ------ -------- of ------- ------- ---- ----------
+-------- the ------- ---------- until the -------- of -------- ---------
+in -------- ----. ---- ------ ---- --- ----- in a --- and, in ----,
+---------- at the ----- ------ ---- ---- ---- by --- after the ---- was
+--------- by ---------- ---------. --------- to the ----- ----, --.-- of the ---------- was ------ in -------- ------- in ---- and --.-- a ----
+-----.------- ---- ----- of -------- ------ in ------ -----, --- per
+------ in ------- ---- was ------ than the ------- for ----------
+--------- ---- in ---------- in ---- (------,---) and ------------
+(------ ---). -- ------- to -----,--- for ----------, ---- to --- of the
+-------- ----------, and was ---- ----- for ---------- and
+----------.---------- ----- the ------- ----- ------ in ----- of -------
+------ -----------. The ------ ------- -------- for ---- than --- of ---
+the ---------- --------- in ------- ----.In ----- of the --------
+--------- of --- ------, ----- is ------ as --- of the --- --------
+------- in ------- ----, ---------- after ------- -------- --- -----
+----------- -------- ----- as the ---- and ---- ---------- (---) in
+----.The ------- ----- --------- --------- ----.- ------- of -------
+------ ---------- (---) between ---- and ----. ---------- --------- for
+--.-- of the ----- --- -------- to the ------. ---------- is ---- the
+------- ------- in ------- ---- ---------- for ---- than -- ------- of the -------- ----- -------- ------- (---).</p>
+<p><strong>---------, ------- and ----------</strong></p>
+<p><strong>------------- of -------- --------------</strong></p>
+<p>--------- by ------ -------- ------ in --- but ----------, --------
+----------- ---------- --- --------- --- --------- ----------, -------
+--------- and --------- the ------- ------- ------ -------. ----
+-------- -------- ------------ ----------- during the ------ --- ----
+since ------ -------- with the ----------- of --- ------------ and
+-------- -------- ----------. ---- --- --- --------- to ------ the
+------ of -------- -------- ------------ since ---- by -------- --------
+------------ to ------ -------- ----. ------- of the ------- ------- of
+--------- ---------- ---- ------ in ----: the --------- of ------ was
+------ with the --------- of --------- ------ to ------ the --------- of
+------- and --------- ------; the --- --------- was ------ with the
+--------- of ------- and ----------- to ------ the --------- of -----
+------; and the --------- of ---------- ------ with the ----- -------
+for ---------- to ------ the --------- of ---------- and -----------
+-------. In ----------, ---- than -- ------------ of the ------- of
+-------- ---- ---- -----------, following the -------- of a ------ by the ------- of --------- in -------- ----. The --- is to ------ --------
+-------- ------- --------------- and ------ ---------- between ----- and
+------- --------. For -------, the ----------- and -----------
+---------- -------- --------- --- ---- -------- ----- the --------
+---------- of ---------- and the --------- for ------------- -------- on
+-------- -------- of --------- --- ---- ----------- into a
+--------------- ---------- on ------------- ------ ------ ---------
+----- ----------. ----- -------- ------------ ---- -------- -------- to the ----- ------- of --------, ---- as the ------ of -------- and
+--------------.---------- and ------------ --- ---- -------- ----------
+----- as ---- of ----- ----- to --------- --------------. In ----,
+------------ ----- of a ---------- in the ------- of ------- ----
+--------, the ------- -------. -- ---- ------- --------, ---------,
+---------- ----------, -------- ---------- and ---------- -------. The
+---------- ---- ----- -------- on ----------- ------ ------- (---, ----)
+and the ------------ of ----------------. Between ---- and ----,
+------------- ----- ---- --- up in the ----, ----- and ----- ----------
+------- (-------------- -----) and in the -------, ----------. A ------
+for ---------- was ---- ----------- in the ---- ---------- ------, as
+---- as a ------ for --- and --- ------------ ----- ---- -- ---- of the
+------- ------- ------ ---. In --------, the ------ for ----------
+----------------- --- ---- --- up in ---------- as ---- of the -------
+-------- ---------- and ------------- -------, a ----- ----- -------
+----------- in ---- ---- is ---- -----------. The ------ --------
+-------- -------- in ---------- ---------, ------------ --------
+----------, ---------- --------- --------- and ---------. The ------
+----- to ------- a ---------- ----- in ---------- and to ------ the
+----- --------- ---------- the ----------------- of -------- ------- and
+----------.</p>
+<p>--------- --- ------- to ------- the ---------- of -----------
+---------- ------- but ---- to ---- ------- --- of ----------- and
+------------- ------------ and ----- ------ ------------, ---- as -----
+------, to ------- the -------- ------, --------- and --------. In -----
+----, --- -------- ---------- ---- ------- by ------------ ------ to
+------ the ----------- of ----------- ------ ------- in ----------, with
+------- from the ----- ----------- ---- and ----- ------------: the ---
+------------------ --------- (------- --- ---------) and the
+------------- ----- ------ ---------. ----- ------------ ---- ---- ---
+up since ---- to ------ ---------- in --------- -------- -----:
+---------- ---------- in ---------- (----- ------ in ----), an
+------------- -------- ----------, ---- ---------- in ---------- (-----
+------ in ----), ------------ in ----------- and -------------
+------------, and the ------------- --- and --- ---------- in
+------------ (------- in ----). ---------- and ---------- --- ----
+------------ the -------- of ------- --------- at ------, in ----- to
+---------- ------------- ----. ---------- and ---------- ---- ----
+------- the ---------- ----------, -------- and --- ------ ------, in
+---- and ---- ------------, ----- is --------- --------- the ------
+------ of ---------- and ------- of -------. In ----, ---------- ------
+the ---- ------- ----- ------ of the ------- -------, ----- ----- to
+--------- ------ --------- ------- in ----- to ------ a -------- ------
+--------- ----.</p>
+<p><strong>--------- ---------- in --------</strong></p>
+<p>The ------- ----- ---------- -------- of ---------- the -------- ------,
+--------- and -------- is ----- -------- by ------- --- ---------- in
+-------- and -----------. Over the ------ to ----, the --------
+---------- in -------- and ----------- ------- around -.-–-.-- of ---.
+---------- ----- with ---- ----- in ---- by ------- --- --- --------
+--------- to -.--- of ---.---------- is the ---- ------- ----- the
+-------- ---------- and ------- ---------- ------- ---- --- -----------
+------------ to -------- and ----------- – but -------- ---------
+------- is --- in ----------: ---- -.--- of --- in ----. --------, ---
+---------- ----------- ------- -------- in ----------. ---- --- in -----
+(--.--) of the --------- ------------- ----- ---- ------ in ----------
+in ----, --------- to a ------ by the ------ --------- for ----------.
+----------- ------ to -------- ------------- --------- ---- --- -------
+-------- in -------- --------- and ---------. ---- -- of ----- --------
+the ------- and ------- ---- ---- with ---- ----------. ------------,
+----- ------- to -- a ------- ------ for the -------- of --------, since
+----------- ----- -.- ----- ---- on ---------- and -------------
+-------- in ---- than in ----.</p>
+<p><strong>------ in -----------</strong></p>
+<p>---------- and ---------- ----- the ------- ---------- ------- in
+------- ----. The ------ of ----------- per ------- ---------- is -----
+to the ----- ------- (-,--- in ----) in ---------- (-,---) and ------
+than the ----- ------- in ---------- (-,---).---------- is the ----
+------- ----- ------- ----- the -------- ---------- and -------
+---------- ------- ---- --- ----------- ------------ to -------- and
+-----------. ---------- is in a ------------ ---------- --------, with
+--- ----- -------- on ------ ---------: -------------- of -----------
+---- -------- by the ---------- ------ in ---- and ---- -- in the
+-------- ---------- ------. With ---- ----- ---------- -----------
+------- ----------, ---- --------- -------- ------------ --------
+------. ------ --- ------- of a --------- of -------, ------ of -------
+or --- --- ---- than -- ----- --- and ---- --- ---- over --; ---- than
+--- in ----- ----------- (--.--) ----- a --- ------, or --- ----------,
+the --------- ------- a ---------- or -------- ------. ----------,
+---------- and ---------- ---- --- ---------- a ----- of -----
+----------- ----- --- since the ---- of the ------ -----. ---------- ---
+---- -------- ------ ------, with ------ ----- ---------- ------- and
+------ -------- and ------------ ---- --–--- of ----------- and
+---------- ----------- in ----. In ----------, -------, ---- --- in
+----- ---------- (---) was a ----- in ----, down from --- in ----.
+-------- -------- --- in ----- to ---- ----- ----- ----- ------ and
+-------------, ----- --- ----------- and ------ ----------. ------------
+--- ------- a ----- --------- of -------- for ----- since a --- -------
+in ---- but the ---- of --------- ---- ----- -- ---------- to ---- ---
+----------- as to the ----- ------ on --------. As for ------------, --
+---- --- ---- ---- --------- on ------ ---------, -------- -----------
+or -----------.-----: ---- -------- in ------- and ----------- in
+------- ----, ---- or ------- ----</p>
+<p>------: ------ ------- ------: ------- ---- (----), ----- --.- ----: ---
+--------- in ------- ----- ---- --------, -------- --------, -----------
+and ----------, and ---------; ---- in ----------- ---- -----
+------------- and ------------. For ------- ----, the ------- ---- of
+--- ---- ----------- --------- of ------- and ------ of ------- -------.
+---- --- ----------- for ------------. -----: ------- ----- -----------
+by ----- of ------- and ------, ---- or ------- ----</p>
+<p>------: ------ ------- ------: ------- ---- (----), ----- --.-</p>
+<p><strong>-------- ------</strong></p>
+<p>The ------ of ---------- ------ --------- in ------- ---- ---- by ------
+--- between ---- and ----, ------ by ----------, ----- --------
+---------- over ---- ------ to ------ the -------- ---- --------
+---------- ---------, --------- to ------- -------- --- of -------
+(------- -------- ----- --------). Between ---- and ----, ------------
+----- of ---------- ------ from the ------ ---- from --- to ---.
+-------- ---------- of ------ from the ------ ---- a ------- ---------,
+the ---- -------- ---- to ---- from ------ ------- ----, ------ the
+------- ----------, ---, ------, ------ ------- and -----.---- ------
+------- ---- ---------- at the -- ------ and --------- ------ between
+---- and ----, -------- to ----- for ----- --------- and ---- at --- for the ----- ----- ------- ----- ---------, ----------, ---------- and
+------------.</p>
+<p>---------- is ------- ------ ---- ------ in --------- --------. ------
+------- ------ ------- between ---- and ----, from ----.- ------- to
+----.- -------. ----- --- ---- a ----- in ------- of ---------,
+----------- and ------------------; ----- -------- ----------- an
+---------- of ------ ------- in ---- and ----.- ------- ---- -----
+-----. The ------ in ------- was ---- ------- – from ----.- ------- to
+----.- ------- – and --------- by -------- -------- (----- than
+---------------), ----- ----------- ---------- of ------- in ----
+(----.- -------) and --- (----.- -------) in ----.</p>
+<p><strong>------------- -----------</strong></p>
+<p>The ---- ------- ----- --------- ------ to ------- ------------- ------,
+--------- the ------------ for -------- and ------------ in ------, the
+-------- ----------- ------------ and the -------- -----------
+------------. ---- --- ---- ------- of the ------- ---- --------
+-------- ----------- (-----) ---------, ----- ---- -------- -----------,
+----------, -----, -------- and --------. In -------- ----, the --
+------ --------- ------- the ----- ---- --------, a --------- for
+---------- -------- ------------. Over the ------ to ----, ----- -------
+is ----- -------- in -------- -------- in ---------, ----- and ------ to
+------- -------- ---------------. The ---------- ------- ----- ---------
+--- --------- of the ---- to ---------- in ----- to -------- and -------
+----- --------- -------- and ------, ------------- and ----------
+-------. ---- ----------, ----------, and ------------ ------ the
+------- --- and ---- of the --------- --- ------ ------ to an -----,
+------------ the -------------- of ------------, in ----------, to -----
+-------.---------- is ---- --- of the ----- -------- ------- of the
+-------- -------- ----- in ----, along with ------- and the -------
+----------. ------- and ---------- ---- since ------ ---- ----. As
+------------ among the ------ ------ in ------- and ---------- is
+------- ------------ and ------------- in ----- -----, the --------
+-------- ----- is -------- to ---- a ------- ---------- ------ on
+------------ among ------ ------------ or -------- but -- ------
+--------- -------- ---- and ---------- --------, since -- --------
+--------- for the ---- ----------- of ------ and ------- ------
+-----------.---------- and ---------- ------------ in the ----------
+--------------- --------- (----–----) -------- by the -------- --------
+---------, the ----------- of the -------- -------- -----, The ---------
+---- -------- ------- and the ------- ----------. ------ ---- ---------,
+------ ---- ------- at an ------ ------------ ---------- and ----------.
+In ----, -- ------- ------------- ------------, ---- ----- from -------,
+--- from ---------- and ----- from ----------, as ---- as --- ----------
+-------- ------ from -------. At the ----, -------- -------, ----------
+-------- of the -------- ----- -------- --------- for -------- and the
+--------- of ---------- --------------- in the ------- ----------,
+-------- the --------- ---------- of ---------- ------------. &quot;In the
+----- -----, ----- is a ------ -------- to ------ from -------------- to
+--------- ---------- -------&quot;, -- ----. &quot;------------- is ---------- ---
+to ----- ----- ------ than ---------.&quot;---------- ---- ------------ in a
+------ ------- of the -------- -------- ---------, the ------------- of the ------ for ---------- ------------ on - ----- ----, with the -------
+of an --------- between the ------- ------- ------- (a ---------- ----
+of -----), the ------ --- -------- ------ and the ---------- ----------
+----------. ---- of the -------- -------- is -------- to ------- of
+----–-- ------- and is ----------- ------ a ------–------- -----------.
+The ----- --- -------- -------- ------- on --------------, -----
+------------, --------, --------- ---------, ---------------- and the
+---------- --- of ------- ---------. ---- ----- ------- -------- ----
+------- ------ ---------- --------, the ------- ------- ----- to
+-------- the ------- in --- --------. ---- ------- ------- is --- a
+------ -------- ---------; -- --- ---- ---- -------- to ------- a ------
+-------- ----- among the ----- ------------- ---------. ----------
+---------- the ---- ----- ------- ----------- ---- to ------- the
+------------ of the -------- ------.---- of the ---- ------- -----
+--------- ---- ---- ---- -------- in a ------- -------- by the --------
+----- in --------- ----, ------- --. The --- of ---- ------- is to
+--------- ------- ----- --------- to ----------- in -------- --------
+------ ------- ----, the -------- ------- ------ -------- and ----------
+------- ---------. The ----- of ---- -------- -------- is on -----
+-------- ---------- ---------- as ----- of ------ -------- to ---- the
+-------- ----- and ------- ----, ------: ------- ------, ------ and
+------. ------- -- ------ on the ---------- of ------- -------- -----
+-------- ----- -------, ---- as ------- ------, the ----- -------- and the ------- -------. ------- -- ------- on -------- -------- ----------
+in ------- ---- and ------. -- -------- a ---------- of -------
+------------ from -------, the ----- --------, -------, -------,
+-------, ----------, ----------, ------, --------, ----------, ------
+and ----------. In --- ----, the -------- ----- -------- a -------- ----
+for ------- ------------ from ------- ------------ – ------------,
+--------- and -------- ---------- – for ------- of up to ---, --- to
+------ ---- to ----- --- --------- ---------- to ------- ------- -----
+or ------- ----- ------ like ---------.The ------------- ------- and
+---------- ------ (----) was ----------- in ---- by the -------- -----,
+-----, the ------- ---------- and the -- to ------ ------- ---------- in
+-------- -------- -------- and to ------ ---------- --------. ----
+-------- ---- ---- --- up in the following --------- ----- to the
+---------: -------, -------, -------, ----------, ---------- and
+----------. The ------------ of ---- ---- ----- to ---------- ----------
+in ---------- in ---- ----, ----- ----- after the ------- ----------
+--------- --- ---------- from the ------.----------, ---------- and
+---------- ---- ---- ------- of the ----- ----- ------------ since ----,
+---- and ---- ------------.</p>
+<p><strong>----------- and -------- ----</strong></p>
+<p><strong>------------</strong></p>
+<p>By a ----- ---------- --------- -------- and -----------, ---- than --
+------- ------ ---- in ------- ----, about -- of ------ -----
+----------. Of the ------- of ----, ---- ----- ---- --- ----- ------. --
+--- a ---------- ------- of - ------ per ---, ------ ---- than the --.-
+------ per --- of the --------- as a -----.</p>
+<p><strong>---------</strong></p>
+<p>-------, as ---- as ----- ------ by around --- ------- ------ --------
+and ---------- of ------- ----, is the -- ----- ------ ------ ----------
+the ------ ------ ------- ----- ---------. -------- ------- --- an
+------- -------- -------- in ----- --------, ------- and --------. The
+--------- of the -------- of the ----------- of the ------ ------
+------- ----- --------- ------ to the ------ -------- -----. ------- is
+------ ------ in ------------, and as a -------- -------- in
+-----------, ------, ---- and ------. ------ and ------ --- -------
+--------- of the ------- ----- of ------ --------- and --- ------
+---------- ----------, ----------, and as a -------- -------- in
+----------, ----------- and --------. ----- and ------ --- ------ in
+----------, ----------, ----------, ----------- and --------. The ------
+--------- --- ------ to a ------, but -------------, ------ --------
+------, ----- -------- ---------. --------- is ------ ----------
+-------- and into --------, ------, ----- --------, and --------. ------
+------- --------- ---- ---- ------ ---------- ------- ----, ---- as the
+---- --------- -------, -----------, -------- and --------, ----- ---
+--- ------- and -------- to the ------- ------- ------. The -------
+------- ------ -------- is ----- ------ in ----------- and ------------
+--------. ----- ----- ------- ------- --------- ---- as -------, -----,
+----------, --------, -----, -------- and ------- --- ---- ------ at
+------- ------ in ------- ----. --------- of ------- --- ---- ------ as a ----- -------- in the ------, ------- ----- as ---- (in -----------),
+----- (in ---------- and ----------), and ------- (by the -------- ----
+of ------- ----). ---------, ------- ------------- -------- -----, -----
+was ---- ----------- in ----- on the -------- ---- of the ----- ----- of
+--------, is --- -------. ----- -------- ------ ------- the -------
+---------, ------ by around --- ------- ------ ------ the -------
+------- and into -------, ------- (--------), ------ and ---------, and the --------- --------- of ------------ -----------. ------ is ------ by the ----------- --------, ------ in ---------- and ----------.</p>
+<p><strong>---------</strong></p>
+<p>----- is the -------- ---- ------ in the ------- ----- ---------,
+-----------, --------, and the ---------- ------- -------, ---- as
+-------------. ---- ------- ----- ------- --- -----, -------- ----- ---
+------- ---- ---------- in ----------- and ----------. -------- and
+-------------- ---- the ----- ------ in ------- ---- ----- to the
+------- of -----. ----------- --------- is ----- ---- ----- in ----
+------------ as ------, ---- in --- ---- of the ------- ----- ------.
+The ------------ of -------- along the ---- ---- ---------- ------- the
+-------- to -----. ------- the ------ -------, -------- was the -------
+-------- before -----. ------- -------- is ---- ------ in -----,
+--------, ------, and the -------- ------- ------- of -------. The ----
+of ------------ ---- --------- in the ------ in -------- --------- was
+------------, but --- the ------- ------------ is the ------- --------
+------, with ---- ------- in ----------, ----- about --- of the
+---------- of -- ------- -------- as ---------, --- in ---------- and --
+in ----------. The -------- ---- ---- ---- a ------- --------- in
+---------- and ----------, but ------ --- ---- --------- since the
+----------- of the ------ -----. In -------, ----------- ---------
+-------, --------- ----- of ---------- ---- as -------. ------- and
+--------- with --- ------ from ----- --- ------- ------------, ------,
+-------- --------, and ----- ------- ---- ------- into the ------.</p>
+<p><strong>-----------</strong></p>
+<p>------- ---- --- ---- ---- a --------- -------- ------ because of ---
+--------- to ------- ----- ------ on the -------- --------. The ------
+------ ----- ---- a -------- ---------- ---------- --- was ---- to ----
+--- of ------- ---------. ----, -- --- ------ ---------- ------- ------
+the ---- of ----- for an ------ or ----------- -----. ------- ---- ---
+---- -------, ---------, --------- --- of ---------, and ---------- ----
+and ---- -----. ------- ---- --- ------ ---- as the ------------ for outside ------ than as a ----- in --- --- -----. ------- ---- --- ----
+the --------- and ------------ of a ------- -------- between ----
+---------- ----- of -----. From --- ------- --------, -- --- ------ to
+----- ------ to and from --- the -------- ------. On the ----- ----, --
+--- ---- ------------ ---------- to ------ from --- ----- ---------- ---
+-------, --------- in --------- ------------- or -------- ----- ------,
+as -- is ------------ ---------.</p>
+<p>To the -----, the ------ ------- for ----- --------, ----- for -------
+--------- -------- like the ---- and -------, and ----- for -------
+-------, ---------- --------- by ---------. As the ------- ------
+-------- to the ----, -- ----- ---- ---- down into ------- ---- -------
+the ---, in a ------ for ---- ----- -----. The ------ ---- -----
+--------- --------- from the ----- and ------- to ------- ----- as ---
+----- as -----------. To the ----, the ----------- and -------- ------
+of ------- ------- ----------- ------ ------- into ------- ---- since the ---- ---- ------ of --- -------. -------, with the ----------- -----
+and -------- of ------ -----, ----- ----- ------- --- ---- ----- into
+------- ----, ---- ------- in the ---- of -----------, to -------
+------- --------- of the ------. To the ---------, the ----------- and
+-------- --------- of ----- was ---- in ------- ----, ------- in -----,
+the ----- ----, and -------- ------. From --- ---- in -----, the -------
+------ -------- with the ------- ------ for --------- in the ------ in the ---- and ---- ---------. To the ---------, ------- ----- ------ ----
+-------- into the -------- ----- of ------- ---- (------- ----------,
+-----------, and ------------). ------- ------- ------- ----- -------
+and --------- ----- of ------- ----; --------- the ------- --------
+------ ----- ------ into ------- ----; --- ------- ------- ----- -----
+----------- --------- ---------- the ------; and the ------ ----- of
+---- --- --------- --------- ---------- the ------ as ----. ------,
+through a ------ ------ ------ --------, --- --------- --------- ---
+---- and --------- as ---- in the ------. -----------, since ----------
+--------- ----- --------- to ---- in ----- ----, ------ and --- of the
+------- ----- --------------- ------ except ------------ --- --------
+---- of the ------ -------.In the ----–---- --- ---, ------- ---- is an
+------ --------, ----- to ----------- and ---------, without a ----- of
+-------- --------, but ------ a ---- of ---------- -------- ----------,
+------ and ---- ---------, and --------- ------. ---------- ---------
+into the ---- is -- ------ ---- ------, but ---- ------, ----, -----,
+--------, ----- and the ------ ------:</p>
+<p>------ --------- to -------- --------- --------------- ---------- the
+------ ----; --------, as ----- --------- ---- into the ----, --------
+--------- --- ----- to ---- ------ ------ ----- --------- -------- -----
+in ---------- and ----------. The ------ ------, with --- --------
+----------- in the ------ and --- ---------, is ---- -------------
+-------- in the -------- --------. The ------ ------ and ----- ----
+------- --- the ---- ------------ to the ------------- --------
+---------- ----- in ----------- and ---- ----- ------------ --------- in
+----- ------- ----- -------. ----- --- -------- ---- with ------- -----
+------ through the -------- ----------- ------------, and --------
+------ ----- -----------. ----- --- ---------- --------- to the -------
+----- ------ and, in --------, ------ ------------ --------- on
+-----------. ----- --------- a -------- ---- at -------, ----------, and
+---- --- --------- -------- --------- with ---------- and ----------.
+------ ---- ------ ------------ --------- in the ------ on ------- of
+--- ------ and ---------- ---- with the ------ ------- of ------- ----
+and --- ----------- in the ------------------- --- --------. ---------
+and -------- --------- --- ------- ------- (-.-., ------ --------
+---------- ---- ------------ for -------- of the ------- ----- ------
+---------). ----, the ---- of ---------- ------- ---- ---------- -----
+of ------- ----, --- ---------- and -------- ----- to the ------ and is
+----- to --------- an --- -------- from the ------- --- to the -------
+----. --------, a ------------- ------- -----, --- a ------- of
+--------- --------- with ------------ ----------- and is ------ -------
+of ---------- ---------. For ---- ------- ----- -------, the --------
+----- to the ----- ---- through --------. -------- ----- ------- ---
+from ------- ---- and -------- the ----------- of --------- from ---
+---------. --------- to an ----------- -----, ------------ is --------
+to -- the ----- ------- ------- --- ----- in the -----. The --------
+------ and ----- in -------- -------- --- on the ------- of -------
+------- ----; the ------–--------- ------ of -------- ---- -------- to
+----------, --------- ---- by the ------ ------ ------ --------. -----
+------- on the --------- of ----- ----, the ---- ------- ----------
+-------- ---------- --------- ---------- and -------- ----- with the
+------- ----- ------. ----- --- an --------- and ------- --------- in
+------- ----, with the ------ ---- of the ------- ---- of ---------- in
+---------- ----- -------- by -------- --------- ----- --------, and the
+------- ---- ---- ----- ---------- -------- to ---------- ---- between
+---- and ------- ----------- and --------- of the ------.-------
+--------- --- ------- ----- ---- -------, ------- (------ ------,
+------- -------) and ------ ------- (----- ------ ---------, ------
+---------) ------ a ---- to ---- ------- ---------- to the -----. The
+------ --------- --- ------- ------ against ------- ------------ ------.
+------- ----------- ----------- -------- on the ----------------------
+of the ------- ---- was ---- through the ---------------- of ------
+---------.The ------, along with ------, is ---- ---- of &quot;the -----
+-----&quot; as per the --------- ------ of ------- ---------, ----- ---- ----
+the ----- ----- -------- ------- ----------- ------- with -------
+--------------- ---------- -- the &quot;------ of the -----&quot;.</p>
+<p><strong>--- on ------</strong></p>
+<p>In the ------- of the ------ ------- --- on ------, ------- ---- ---
+---- ----- ------ the ------ of ------------ ------------. ----------
+------ --- ---- -------- by the -.-. ---------- to ----- -------- ----
+because of --- ------- ---- in ------- as a ------- ----- for the
+-------- of -----------, --------- ------------ on -------- ----------
+in the ------, and ------- the ---- on ----- --- -----. -----------,
+----- --- ------ as a ----- and ------ of ------- for -------- ----- the
+---------- of ------ ---- and the -------, was the ------ of a -.-.
+-------- in ---- and ------- -------------- and ----------------
+-------. -.-. -------- ----- ---- ---- ---- ----------- in ----------
+and ----------, ------- ---- ------ and the -------- -------- of -----
+to ----- ----- ------- over a --------- -.-. -------- -------- in the
+------. ------- ----------- ---- ------- ------, ----- and the ------
+------ --------- of ---------- the ----------- of ---------- ---------,
+and the ---------- ------- and -------- with the --- on ------.</p>
+<p><strong>----- --------, ---------- and -------- -------</strong></p>
+<p><strong>------ in ------- ----</strong></p>
+<p><strong>--- ----</strong></p>
+<p>------- ------- ----: ------- ------- ------- ----- -------- ----------</p>
+<hr class="docutils" />
+<p>------- ----- ------- ------- ----- ----- --------- of ------- ----
+------- ------ in ------- ------ ---------- ----------- ---- of</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<p><strong>----------</strong></p>
+<p><strong>---------</strong></p>
+<p><strong>-------</strong></p>
+<p><strong>------- -------</strong></p>
+<p>-----, ------- -. (----). ------- ---- After ----. ----
+-----------------. ----, ------. &quot;------- ------ ---------: ----- of
+------ and -------&quot;, in -------- -------- in ----: The ------------ of
+------, ------ -------, and ------ ------. -------- ------ of -----
+--------, ----. -----, ----- ------, ------ --------, ----- ---------
+and -------- ----------- in ------- ----, ----- ---------- --------- on
+------------- in ------- and the ------- ---, -------- ------- -----
+(------, --) - ----- ---------- ----------, -------- ----. --------- at
+----: ----://----.---/--------=------- ----, A.-. and -.-. ------, ---.
+------- of ------------- of ------- ----. -----: ------, ----.-
+----------. ---- -. ----------- ------- ------- ------..., ( ------
+----- of ------- -----: ---------- and the ---- of ------ ----- in
+------- ----) in ------------------ ---------, ----, -- -, --. --–--.
+---- ---------. (in -------). -----, -.; -------, -.; ------- (----).
+&quot;-------- ---- ----- ------- and ------ --------- in ------- ---- -----
+----- -----------&quot;. ------- ---------. -- (-–-): ---–---.
+---:--.----/-.------.----.--.---. -----, ------- ----- (----). The
+-------------- of ------- ----: ------ and --------- from ------ ---- to
+------------. ------- ---------- -----. ---- -----------------.
+----------, -------, --. ------- ---- and the -----: ----------,
+----------, ----------, ----------, and ------------. --- ----: -------
+on ------- --------- -----, ----. ------------, -. ------. -------
+-------------- and ---------: ------- ------ on ----- ----- -------- in
+----, the --------, ------- ----, -------- and ----- ------- ------.
+---------: ------- --------, ----. ------, ------ -----. ------- ------
+--- ------: ------------, ------- ------, and -------- --------.
+----------, -.-.: ------ ------ --------- of ----- -----, ----.
+--------, ------; -----, ---- (----). &quot;-------- -------- between
+--------- and --------- -------------: The -------------- of -------
+----&quot;. -------- ----------. - (-): --–--. ---:--.----/-----------------.
+----- ---------. ----- ------ ------. --------: ------- ----- --------
+----- ------- ----. --------: -----, ----.
+----://----.---.--/------/-----/------------/--------/ ------,
+---------. A ------- of ----- ----. ---------: --------- ----------
+-----, ----. ----, ---. ---- ---- to ----: Is ------- ---- the ---
+------ ----- --- ----: --- ----------, ----. -----, -.A. The
+------------- -------- of ------- ------- (--- --). ------- --------
+------- On ----: ---------- --- the --- ---- of the -------------
+-------- --------- for -------- and --------- --------:
+-----://---.-------.---/---/--------------/----://---.-----.---/-------.---
+-------, ------; -----, ----- (----), in -----, ------------- (--.),
+&quot;------ and ------------: ------------ -------- ------- -------&quot;,
+---------- and the ------ ------, ---------: -------- ---------, --.
+--–--, ---- -----------------, --------- - -------- ----. ---------,
+----- (----) ------------ -------- -------: Between ----- and ------,
+----- ----: ---------/----. --------- at:
+---.------------.---/-----------/--------- ------, -----. -------- about
+----- ----, -----------, -------: ---- ------------- for ------ -------,
+----. --------, ----, The ------ of ------- ---- and ---- ---------- on
+------- ---- and the ----- --------, --------------- ---------, --
+-------- ----.</p>
+<p><strong>-------- -----</strong></p>
+<p>------- ---- at ------------ ------- ------- ---- ---------, ---------,
+and --------- ----------- ---- at -------- ---------- ------- --- of
+------- ---- - – ----- ------- ------- a -------- --- from ----</p>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="answers-give-up">
@@ -514,7 +1232,7 @@ the ----- --------- of a ---------- -----------.------------ -------:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gastroenterology
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Central Asia
 </pre></div>
 </div>
 </div>
@@ -523,7 +1241,7 @@ the ----- --------- of a ---------- -----------.------------ -------:</p>
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"79f4284c99c444369e60f6c2d7ab471f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d0dc2fb314aa46338f0c8b4c41d312bc": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "2bd618b9a0ea47d8930d1508f9b45e89": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "Difficulty", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_79f4284c99c444369e60f6c2d7ab471f", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_d0dc2fb314aa46338f0c8b4c41d312bc", "value": 4}}, "54cb81d83cb64fe2bd0857b97a0599fe": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d808a324000343978019e883aceea38c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4b3afcc2ba1e46d6ac41b2cdf5c527d0": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_54cb81d83cb64fe2bd0857b97a0599fe", "placeholder": "\u200b", "style": "IPY_MODEL_d808a324000343978019e883aceea38c", "value": "the"}}}, "version_major": 2, "version_minor": 0}
+{"state": {"d61d999091cb4c049b6c67b88df43bb0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9487fb6547734e20a31d0517187f6321": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "8e244f154f934445a67c9926fff3ea19": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "Difficulty", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_d61d999091cb4c049b6c67b88df43bb0", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_9487fb6547734e20a31d0517187f6321", "value": 4}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 
