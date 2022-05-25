@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -242,7 +244,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "75019e6b7a49443d850c0498831bbab0"}
+{"version_major": 2, "version_minor": 0, "model_id": "ed792f05484a428e9ed764aaa4c80204"}
 </script></div>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
@@ -328,7 +330,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a8084466a40e43a0807665a34b5d2fe0"}
+{"version_major": 2, "version_minor": 0, "model_id": "bef1a970077d44c79215b76b473654c7"}
 </script></div>
 </div>
 <div class="cell tag_hide-input tag_thebe-init docutils container">
@@ -364,48 +366,332 @@ and, or, on, along, through, amid, into, like, by, between, than,
 about, until, at, but, among, following, over, after, during, behind,
 up, down, before, onto, without, unlike, because, against, inside,
 outside, except, per</p>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">tried</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>   <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">((</span><span class="s1">&#39;already tried, here is what you tried already:&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tried</span><span class="p">)))))</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>   <span class="n">print_redacted</span><span class="p">(</span><span class="n">new_string</span><span class="p">,</span><span class="n">count_to_word_dict</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">elif</span> <span class="n">thisguess</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_count_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>   <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Nope&#39;</span><span class="p">))</span>
-
-<span class="nn">Input In [3],</span> in <span class="ni">print_redacted</span><span class="nt">(new_string, count_to_word_dict)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>       <span class="k">pass</span>
-<span class="ne">---&gt; </span><span class="mi">22</span> <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">pypandoc</span><span class="o">.</span><span class="n">convert_text</span><span class="p">(</span><span class="n">string_to_print</span><span class="p">,</span><span class="s1">&#39;markdown_strict&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;mediawiki&#39;</span><span class="p">,</span><span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;--shift-heading-level-by=1&quot;</span><span class="p">,</span><span class="s2">&quot;--atx-headers&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(?&lt;=[A-z])(</span><span class="se">\n</span><span class="s1">)(?=[A-z])&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">string_to_print</span><span class="p">)</span> <span class="c1"># remove random extra newlines</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(#{3,5} )(?P&lt;Header&gt;.*)(?=</span><span class="se">\n\n</span><span class="s1">)&#39;</span><span class="p">,</span><span class="s1">&#39;**\g&lt;Header&gt;** &#39;</span><span class="p">,</span><span class="n">string_to_print</span><span class="p">)</span> <span class="c1">#make all headers just bold</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/pypandoc/__init__.py:90,</span> in <span class="ni">convert_text</span><span class="nt">(source, to, format, extra_args, encoding, outputfile, filters, verify_format, sandbox, cworkdir)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="sd">&quot;&quot;&quot;Converts given `source` from `format` to `to`.</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="sd"> :param str source: Unicode string or bytes (see encoding)</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="sd">         path.</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="n">source</span> <span class="o">=</span> <span class="n">_as_unicode</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">90</span> <span class="k">return</span> <span class="n">_convert_input</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">extra_args</span><span class="o">=</span><span class="n">extra_args</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>                       <span class="n">outputfile</span><span class="o">=</span><span class="n">outputfile</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>                       <span class="n">verify_format</span><span class="o">=</span><span class="n">verify_format</span><span class="p">,</span> <span class="n">sandbox</span><span class="o">=</span><span class="n">sandbox</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span>                       <span class="n">cworkdir</span><span class="o">=</span><span class="n">cworkdir</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/pypandoc/__init__.py:404,</span> in <span class="ni">_convert_input</span><span class="nt">(source, format, input_type, to, extra_args, outputfile, filters, verify_format, sandbox, cworkdir)</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span> <span class="c1"># check that pandoc returned successfully</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">404</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>         <span class="s1">&#39;Pandoc died with exitcode &quot;</span><span class="si">%s</span><span class="s1">&quot; during conversion: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span> <span class="c1"># if there is output on stderr, process it and send to logger</span>
-<span class="g g-Whitespace">    </span><span class="mi">409</span> <span class="k">if</span> <span class="n">stderr</span><span class="p">:</span>
-
-<span class="ne">RuntimeError</span>: Pandoc died with exitcode &quot;2&quot; during conversion: Unknown option --shift-heading-level-by.
-<span class="n">Try</span> <span class="n">pandoc</span> <span class="o">--</span><span class="n">help</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[WARNING] Deprecated: --atx-headers. Use --markdown-headings=atx instead.
 </pre></div>
 </div>
+<hr class="docutils" />
+<p>-------- ----- (---- :---- --- ------ ,&quot;the ----- ---- -------- &quot;;-----
+:------ ---------- ,&quot;------- ----- &quot;)is a --------- on the ------- -----
+in -------- ------ ,----- -------- ------- for ------- ------ ------- of
+------ and ------- .-- is ------- on the ------ between ------ and
+-------- and is --- of the ------- ------- ---------- ,with a ----- of
+---- - (---- -- ). ------------- ----- and ---- ------- -------- a ----
+------ of ------- --------- of the ---- .------ ----- to ---- --------
+----------- before the ---- ------- ,-------- ---------- -----
+----------- ---------- the ----- in ---- ,--------- the ------- --------
+---- of -------- ----- after ----- -------- .since the --- ---- -------
+,the ---- --- ---- an ------------ --------- ------ of ------- .------
+and -------- ---- ---- -------- ----- and ------- -------------- at the
+---- .-------- in the ---- ----- ----- ---- ------- ------ ------
+------------- ----------- is ------ to ------ the --------- of the ----
+.</p>
+<p><strong>---- -------</strong></p>
+<p>----- ----------- ,the -------- ---------- and -------- ,is the -----
+-------- -------- to ---- ------ the ----- on -- -------- ---- ,from
+---- is --- ----- as ----------- ------ ,--- of --- ---- ------ in the
+------ of the ----- ,----------- -------- from the ----- ---- the
+------- ----- .----------- ----- --- -------- in ------ of -----
+-------- ,but the ----- -------- ---- ,---- --- ------- &quot;the ----- ----
+-------- &quot;---------- in ------ ----- .the ----- -------- ---- ----------
+---------- ---- ----- .----------- ---- ----- an ----- ---- ,------ or
+------- ,----- ----- &quot;the ----- of the ------- &quot;,as a ------ of the
+-------- ----- .the ------ -------- ---- in ------ is ----- ---- ---
+------ ,------- the -------- ---- and ---- on the ---------- ----- ---
+---- ----- -------- ----- .</p>
+<p><strong>----</strong></p>
+<p>----- -- is ------- the ------- --- the ------ --------- in the -----
+,the -------- ----- --- ---------- the ------- ,----- on --- --------
+----- of - ,--- ------ (- ,--- -- )and ------ of --- ------ (--- --
+),--------- in the ------- ------- ----- of ------- ----- .the --------
+----- --- ------- ----- the ------ of ----- --------- ------- ----- and
+---- over ----- --- ----- . for a ------------ -------- -------- from the ----- ,the ------- ----- over a ----- ----- of ------ ,in a -------
+------ ,------- by --- and ------- --------- ----- .the ------- ------
+is ------ with -------- ---- -------- ------- ,----- -------- in ------
+----- the ----- ---------- the ----- .----- --- -- ---------
+,----------- ,or ---- ------- ;---- a ---- ------- --------- -------- of
+---------- in --- ---------- . the ----- --- ------ ----- the ---- -----
+of the ----- -------- in a ------ -------- ---- into a ----------
+----- - ,--- ------ (- ,--- -- )---- ,------ by --- ------ along a
+-------- ---- in the ------ ------- .the ----- of the ----- ,------ the
+----- ----- ,------ from -- ------ (--- -- )at --- ------- --- to ---
+------ (--- -- )in the ------ .the ---- ------ to the ----- ----- is a
+--- ------ ----- (--- -- )--- about --- ------- of the --- ------ the
+----- of the ----- from the ------- --- .the ----- ------ of the -----
+----- into the -------- ----- ------ from ---- ------ ----- .----- ---
+--- ------- on the ----- of the ----- ---- --- ----- ------ to ------
+the ------- of ----- ---- at ---- ----- :------- ------ (or --------
+------ )---- the ------- ---- ,and ----------- ------ ---- the ------ -
+the ----- from ----- ----------- ----- ------ the ----- .at ---- than
+---- ----- ,---------- ------ ------ the ------- of ----- into --------
+-------- ------- .the ---- ------- --- ----- ,in ----- from --------
+(---- )to ------ (---- ):the ------- -------- (------ ------- ----- by
+---- ),the ---- ----- ,the ------- ----- (the ------- )and the -------
+-------- . the ----- ------- ,-------- from the ----- ,----------- a
+----- ------ from ---- -------- to ----- ----- ,and a --- ------ the
+---- of the ---- .the ------- ------ ----- ------ is -------- to ---
+with a ---- in ----- ,the ----- from the ----- --------- ----- to a
+------ of over --- ------ (- ,--- -- ),and --------- ---- ----- as ----
+,and is ------- from up to -- -- (-- -- )---- .at ---- ---- ,a &quot;-------
+&quot;--- -- ---- in the ----- ------- of the ----- -------- ------- .during the ----- ------ ,------- ,-- is ---------- to --- the ---- of the -----
+and ---- of --- ---- ,and the ----- along the ----- -------- -- --- in a
+-------- ------ and -------- in ---- .----- to the ---- of the -----
+,----- ------ ------ like -------- ---- ,---------- at -------- -----
+----- ------ .</p>
+<p>---- the --- ------ ----- ------ ,the ------ on the ----- ------ -----
+and ---- -------- ,and in --------- to ------- up to ---- of the -----
+---- of the ----- --- ------ --- and the ------ of the ----- ----- ---
+-- ---- along ---- of --- ------ .at ---- ---- -- ------- --------
+(------ --- ----------- ---- )to ---- ------ ---- --------- of the -----
+at the ----- .-- is ---- -------- to ---- to the ------ of the -----
+----- at the ---------- ---- .the ------- ---- ,----- ------ in --------
+,is around a ----- of the ----- ------ ;---- --------- in ---- is
+------- than ---- of ----- ----- ----- ,and ------ the -------- ------
+------ ------- ---- ---- to -- ----- than ----- -- -------- ----- on the
+------- ---- .in ---- --------- --- ---- ------- the ----- to a -----
+and ---- ---- ---- .------ ------- ------ and ------- ------- --------
+--- --------- to ---- ------ ---- .-------- ----- is ------ the -----
+------- in a ------- .</p>
+<p><strong>------</strong></p>
+<p>the ------ ------ of the ------- ----- ----- through the ----- -------
+--- ------ ----- (--- -- )---- for a -------- of about --- ------ (---
+-- ),---- ------ a ---------- ------ of ------ ---------- by the -----
+in ----- the ----- ------- ---- .----- -------- the ------ ----- ----- a
+----- ----- ---- and --- ------ --- a ---- ---- ----- ------ the -------
+--- .------- --- a ----- -------- from the ------- ---- ,-- is about
+--- - (--- -- )------ .--- ------- is ------ at --- ----- ,but at ----
+----- is ------ by -------- ,---- ------ and ----- ------- ----------
+.------- and ------- ---- --- ----- over the ----- ,--------- the
+---------- ------------ ,--------- ,or ----- ,--- ---------- -----
+-------- about ---- or ------ up at the ----- ----- --- of the ------
+----- .---- is ----- the ------ of --- ---- and -- ------- ,--------- by
+---------- ,---- ----- in ---- after --- ------ ---- -------- by a -----
+at ---- ------ ----- the ----- .</p>
+<p>the --------- ------ ---</p>
+<p>----- ----- :the --- the ----- ----- into at -------- ----- ------ -----
+:--- ------ (--- -- )----- of ----- ,- .-- ---------- (- .-- -- )----
+,------- by the -------- ----- ------ ----- ----- :--- ------ (- ,--- --
+)----- ,- .-- ---------- (- .-- -- )---- ,---------- the -------- -----
+----- ------- ------ ----- :- .-- ---------- (- .-- -- )----- ,- .--
+---------- (- .-- -- )---- ----- ----- :- .-- ---------- (- .-- --
+)----- ,- .- ---------- (- .- -- )---- ------ ----- :- .- ---------- (-
+.- -- )----- ,- .- ---------- (- .- -- )---- ----- after the -----
+------ ----- ------ from the ----- ----- ,and the ------- at --- ------
+(--- -- ),the ----- of the ----- in ---- ------ by up to -- ------ (--
+-- )between --- and --- ------- .</p>
+<p><strong>---------</strong></p>
+<p>the ----- ------- ----- ---------- ------- ----- through ------- ---
+-------- to ---- the ------- ----- .a ------- ------ of the ---- between
+-------- and the -------- ------ about - ------- ----- --- ------- ----
+-------- ----- ,and a ----- ----- ---- ----- as ---- ------------ ------
+between the -------- and the ------ -------- ------- of -------- and
+------ .---- ---- was ---------- --------- and --- -- ------- ------
+.----- ------ ------- ---------- about -- ,--- ----- -- ,-- ----------
+---------- and ----- to ----- to the ---- ,------- the ------ -----
+through the ------ as -- ---- .the ------ ---------- ------- of --------
+----- --- -- ---- in the ------- ---- of the ------ ----- ,with --- ---
+---------- ------ and ----- ---- --------- of the ----- .the ---- –----
+-------- ------ ----- ---------- ------- with --------- along ------ of
+------- ----- ,or ------ with -- ------ (--- -- )of --------
+------------ as is the ---- of the ------ and ----- ------ .--------
+------- along ----- ---------- ----- of -------- ----- --------- a ---
+---- ---- and ----------- of the ------- ---- .----- ------ --------
+------ ------- the ----- ------- -------- of the ----- .--- of ----- is the &quot;------- --- &quot;,----- ----- the ----- ----- with the ------ -----
+.:---- ,-------- ----- --- ---- ------- ------- ------- ---- the ----
+----- ----- ,at the --- in --- ---- of the &quot;------- -------- &quot;,between the ------- ----- ---- and -------- ------ .the --- in the ------- -----
+is ------ ---- and ------- the -------- ------------- of ----- at -----
+----- .:-----</p>
+<p>the ----------- -------- --------- the ------ at the ------- -----
+------- is ------ the -------- ----- --------- ,----- -------- of ------
+,the ---- --------- ,-------- ---- ,------- ---- and -------- .a --
+–-- - ----- ------ the ----- about - –- -- from the ---- ------- ,and a
+------ of ----- -------- --- ------- between the ----- and the -------
+.:---- –----------- ---------- ------- of the ------ of the -------
+----- is in the ------- of ---- ---- .</p>
+<p><strong>-------</strong></p>
+<p><strong>---------- -------</strong></p>
+<p>the ------ ------- of -------- ----- ,over ----- the ------- ----- -----
+,was ------ during the -------- --- ,around --- ------- ----- --- .</p>
+<p><strong>--- --------- -------</strong></p>
+<p>----- ----- --- --------- ----- --------- and ------- ----- ----
+--------- at -------------- ----- around the ----- ,as ---- as -------
+----- and -------- --------- ------ to the ------ ----- --- .----- ----
+--- ------- was --------- at a ---- ---- ---- ------ --- in the -----
+----- .-------- for ---- -------- was ---- ----- in a ---------- -----
+to the ---- --- ---------- -- .the -------- ----- ------ ----- as the
+------ /------- ------ the ----- ------ -- -------- .the -------- ,-----
+-------- ,----- ---- ------ --------- ,and the -------- and --------
+(----- -------- is ---- by the ---- ------ )---- ---- ---- -- ------
+.--- ----- ----- ---- ----------- &quot;the ----- ---- -------- &quot;.a --- -----
+by ------- -- --- in ---- ----- the ---- ------- ------ in the -------
+-------- .-- ---- ----- ------ ----- -------- ----- ------ ---- -----
+----------- -------- --- ----- ----- .a --- from - .---- ----- by
+------- ------- ------ for ---- ------- -------- ------- -------- -----
+the ----- as &quot;---------- &quot;and ----- a ---------- to the ----- of the
+------- as ----- -------- with the ---------- at the ---- .</p>
+<p><strong>---- -------</strong></p>
+<p>in -------- ---- ,----- ----------- was the ----- -------- --- --- the
+----- ,---- -- --------- from the ----- ------- to the ----- of the
+----- between ---- and ---- .the ----- ---- ---- ----- to ----- ------
+,and ----------- ------- --- ---- ----- of ---- ,as --- the ----- -----
+a ---- ---------- to &quot;the --- of the ----- &quot;.--------- ---- --------- of
+----- ------- ,------- -------- ---- the ---- of --------- and -------
+on the ------- ---- a ----- ----- -------- .----------- --- ---- ----
+about the ----- before -- ------- ---- from ------- and was -------
+------ to a ----- ------ ---- --- ----- the ---- ----------- ------ in
+------ .----------- --- ---------- ---- --------- by the ------ -----
+------- -------- ,but ----- the --- ----- ---- ---- ---------- ,and ----
+---- ----- ------- ---- in ------ of ----- -------- .-- ----- of the
+----- ,&quot;-- --- --- ------- the ------ of the ---- from --------
+--------- in ------- .-- --- ----- ---- ---- before by -------- ----
+;but ------ -- ------ ---- ---- ---- ----- ---- by ------ in -----
+------ .&quot;in ---- ,----------- -------- to the ---- and ---- a --------
+----- of the ----- with ---- ---- .----- ----- -------- --------
+-------- ---------- -------- ----- ----- ,----- -------- ---- ----- ,---
+---- the ----- -------- ---- of the ----- and --- ------------ in ----
+(--------- in ---- ),and ------- ------ ------ ------ ,--- -------- ----
+of the -------- --------- of the ----- .until the ---- was ------ up by the -------- of the ------- in ---- ,------ ,the ----- ---- ------
+------- by ----- --------- .---- ------- ------- ---- the ----------
+------ ------- -- -------- was the ----- -------- to ----- ----- of the
+----- ---- in the --------- ------- .</p>
+<p><strong>------- since ----</strong></p>
+<p><strong>-------- ----- ------ --------- -------</strong></p>
+<p>-------- ---------- of the -------- ----- ---- ------- around ---- in
+-------- to the ------ of ----- ------- ------- ----- ------ ------- for
+------- ------ and -------- ---- ----- of the ------- ,and the
+------------ of ----- ------- --------- ---- as ------ ------- -----
+----- of the ----- ,and ----- and ------ ----- .before ---- ,the -----
+was ------- ----- the ----- at the --- ----- ,by ------ ----- or a -----
+----- ------ with a ----- ----- .------- ------ of a ---- ------ -------
+----- ----- for the ----- ------ ------ the ------- .-- -------- -- --
+----- ----- the ----- from the ----- ----- ---- on ------- ------ ,--
+the ---- at the ------ ----- was ------ .--- the ---- ------- --------
+----- ------ for ------- .from ---- the ------- ------- ----------
+------ from as --- as the ---- in the ----- and from ---- ,as --- as the
+------- ----- in the ----- .in ---- the -------- ----- ----- was ------
+to ----------- -------- -------- on the --- ------- .the ----- ------ an
+------------ ------- ---------- during ------- -------- ---- of --------
+-------- (------ )and -------- -------- (-------- ),with the ---- of
+-------- ----- -------- the ---- ------- ------ .</p>
+<p><strong>during ------------ ---------</strong></p>
+<p>in ---- ,-------- -------- ------ the ----------- ----- of ------ .the following ---- ,-------- ------------ -------- ------------ .---- was
+--- ---------- by ------ ,the ------ ------- --- the ---- -------- of
+------ and --- to ------ ------- --------- --------- .in -------- to the
+-------- ------ ,in ---- ------ ---------- or ------- ------ ---------
+;-- --- --- -- ----- the ------ ---------- until ---- .--------- -------
+----- on the -------- ---- of the ------- from ---- :the --------- ----
+--- .------- ------- ----- to ---- ,------------ on the --------- ----
+.the --- -------- ------ through -------- ---------- ,------- the ------
+to ------ -------- -------- --------- the ---------- of -------- to
+-------- ------ to the ------ and ---- ----- of the ----- . ----------
+--------------- ---------- ------------ in ---- ------- -----------
+----- ,and the ----- --------- ------- ------ of ------- and the
+----------- of the ------ as a ------ for --------- ------ .----------
+---- ------ ---------- in the ---- ------- ---------- ------- in the
+------ ,------ ------- from the ------ ,---- ------- ,----- ------
+,-------- ,and ------- over the ----- .</p>
+<p><strong>------- in ------ -----</strong></p>
+<p>by the --- of the ----- ------ --- ,--- ------ ---- -------- the -----
+-------- ,and ---- was -------- to ---- to over a ------- in the ----
+------ .unlike the ---- ----- ,-------- ----- --- ---- ---------- and
+------- -------- than ------------- -------- ;the ---------- is
+---------- by --- and ----- ,and is --------- ------------- -----------
+to ----- . ---- --------- ------ -------- to ---- --- ----- ------ the
+------ to ---- the ----- from ---- ---------- .-------- with ------
+------ ----- --- -------- to -------- a ---- ---- ---- ---- ----- the
+------ ;----- --- -- -------- at ---- ------ ----- .----- ---- from
+----- –--- (as of ------- ---- ).---- ----------- ------ ----------
+;-------- --- ------- to ----- the ----- --------- in ------ in ----
+--------- before -------- the ------ in ------ --------- .------------
+,------- -------- --- -------- a ---- ---- for ----- ---- ---- ------
+-------- to ------ between ------ and -------- for up to -- ---- as ----
+as ---- ------ ------ the ------- --------- . a ------ ------- is the
+--------- ------ &quot;-------- &quot;(--- --------- ------ &quot;------- ---- &quot;),----
+the ---- of the ----- on the ------- ---- ,along the ------- --- of
+----------- ------ .---- the ----- ---- is at a ------- ----- ,-------
+between --------- and -------- ,a ---- ------- ----- an ---- with
+------- ------- ,-------- ----------- -------- to ------ around in
+-------- ------ in ----- of the ----- ----- the ----- -------- over the
+----- .--- ----- of a ------- ----- --- ---- -------- .the ------- of
+-------- to the ---------- ---- of the ----- --- ------------ ---- ----
+------ than the ------ -------- the ------ ---- ,--- to the -------
+----------- of the ------- ---------- ----- .------- ,the ------ of
+-------- -------- -------- ----- to ------- in the ----- ----- as
+--------- -------- between ---------- and --------- of --------- ------
+------ --------- .in ---- ,----- --------- on the ---------- ----
+------- at around --- ,----- the ------- ---- was at ---- ---------
+,with ----- in --- ------ -------- ------ per ----- .the -----
+----------- --- -------- the ------ ------- to -------- -------- the
+------ ------ as a ----- -------- ---- .in -------- ,-------- of -----
+-------- and a ---- of --------- ---------- of the ------ -----------
+--- a ------- .</p>
+<p><strong>------- -----------</strong></p>
+<p><strong>-------- -----</strong></p>
+<p>the --- -------- ----- at the ----- --- ---------- ----- –---- ---
+------ -------- ---- is -- --- (-- -- -- )and -------- ----- --------
+---- is -- --- (- .- -- -- ).------- ,---- to the ------ on the --------
+---- is the ------- -------- ---- ,--------- -- ---------- (-- -- )----
+along the ----- .------- --- ---- between the --- ---------- ----- and
+--- ---- ----- ------- ------ ---- ,------ --- -------- ---- and ------
+-------- ---- to the ----- .on the ------- ---- ,------ and the
+--------- of ----------- ---- to ------- ---- ------- to the ---- ---
+------ -------- ---- .in -------- ------ --- up by ------ in -------- to
+----- -------- ------ -------- .in ---- a -------- ----- of ------
+------ the ------- ------ was ------- .---- --- -------- ---- around the
+---- ------- ----- ,and --- -- ---------- by ----- -------- with ------
+---------- ---- .</p>
+<p><strong>----------</strong></p>
+<p>------ -------- -------- ------------ in the ---- ,with ------- ----- of
+------ and --------- ---- -------- and --------- -------- .--------
+------ with ---- ----- ----- the ----- and ------- ----- the ----- .the
+---- ------- ------ of the ------ ---------- ------ is the ----------
+-------- by the ----- from the ----- ,---------- ------ ---- for the
+---- ---- as --- -------- ,----- ,----- ---- ,---- ---- ---- ,------
+---- and a ------ of -------- and ------ .---------- --- -------- in
+------ -------- ,and -- ---- the ------- ---- ------ on -- ,------------
+-------- .</p>
+<p><strong>--------</strong></p>
+<p>the -------- ----- ------- -------- -------- --------- --------
+----------- of -------- ,---- ------- ,------- ,------- ----- ,and a
+------- of -------- .----- ,------- -------- and ----- ------- --------
+--- ---- ------------ ---- .------ ------- and ------- --- ------ .the
+----- ----- the ----- -------- ----- ----------- of ------------ and
+--------- .------- ---- --------- ----- the ----- in the --- ------ at
+---------- -------- ------ .------------- ,----- ------- ,------- and
+-------- ------ --- -- -------- in the ------ ,but ---- --- ------ -----
+for -- ------- of ------- .the ----- ------ ,----- ----- ,---------
+------ and ----- ------- ----- ----- .----- the ----- ,------ ,----
+------ and -------- ----- of --------- --- ------ .</p>
+<p><strong>----</strong></p>
+<p>the ----- is ---- to -- ------- of ---- ----- the ----- and -- -------
+----- -- .---- ----------- the ------------- of the ----- as a --------
+------- between the ----- and ----- ------- .</p>
+<p><strong>------- of ------- ------</strong></p>
+<p>in -------- ---- ,-------- ---------- ----------- --- ------- -------
+---------- ---- ----------- the ------- --------- of ----- .---- is because of the ------ ------------ ---- ---- the ------ ---- ------ and
+----- .--------- ------- by ---- and ----- (---- and ---- )----- ----
+----- is ------ ----- ---- ----------- from ---- to ---- with a
+----------- ---- in the ------- ----- of ----- ---- in ---------
+,------- ,-------- and -------- .---- is ------------ ---- ---------- in
+------- ----- ----- --- -------- ---- -------- and ------- .----
+----------- ---- -------- the ---------- of the ---------- and ----- ---</p>
+<hr class="docutils" />
+<p>----------- as ---- ------ ------------ .----------- of the ----- to the
+----- --- ------- ----- ------ among ----- in the ------- -------- in
+---- ------ and -------- .----- -- --- ------- --- a -------- ------ on
+------- ,---- ------- in the ------ ------- the ----- as --- -----------
+and ------------- ---------- .---- -- --- ---- ------- ------ and the
+------ -- is ------ on the ------ of ----- ---- -------- over the -----
+,but ---- ----- the --------- is ---------- .</p>
+<p><strong>----------</strong></p>
+<p><strong>--- ----</strong></p>
+<p>---- of ---------- by ---- ---- ------ ----- ------------- ----- -------
+---- –-- -------- ------ -------</p>
+<p><strong>----------</strong></p>
+<p><strong>-------- -----</strong></p>
+<p>a ------ ---- of ------- ------- is -------- on the ---- ----- ---------
+---- for ---- --- ------ . ---- ----- ----------- ---- ----- on ------
+----- -------- ---- ---- -------- ------- about ------- in the ----
+----- of --------- of ------</p>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="answers-give-up">
@@ -417,8 +703,19 @@ outside, except, per</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Victoria Falls
+</pre></div>
 </div>
 </div>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"fafbc71f28be4bdb9335cd0124947990": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "320b409342b049d888a68be4f0bcb976": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "ed792f05484a428e9ed764aaa4c80204": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "Difficulty", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_fafbc71f28be4bdb9335cd0124947990", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_320b409342b049d888a68be4f0bcb976", "value": 4}}, "28d3cedcd1854bebab2ca8fbc1197606": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "05e4335f816e489bad4c001da5be7ddc": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "bef1a970077d44c79215b76b473654c7": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_28d3cedcd1854bebab2ca8fbc1197606", "placeholder": "\u200b", "style": "IPY_MODEL_05e4335f816e489bad4c001da5be7ddc", "value": "the"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
 
     <script type="text/x-thebe-config">
     {
