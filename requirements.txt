@@ -4,4 +4,4 @@ numpy
 ghp-import
 ipywidgets
 wikipedia
-pypandoc_binary
+pypandoc
