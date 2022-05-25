@@ -42,7 +42,7 @@ else:
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mOSError[0m                                   Traceback (most recent call last)
+[0;31mRuntimeError[0m                              Traceback (most recent call last)
 Input [0;32mIn [5][0m, in [0;36m<cell line: 2>[0;34m()[0m
 [1;32m      2[0m [38;5;28;01mif[39;00m thisguess [38;5;129;01min[39;00m tried:
 [1;32m      3[0m   display(Markdown(([38;5;124m'[39m[38;5;124malready tried, here is what you tried already:[39m[38;5;124m'[39m[38;5;241m+[39mtextwrap[38;5;241m.[39mfill([38;5;124m'[39m[38;5;124m, [39m[38;5;124m'[39m[38;5;241m.[39mjoin(tried)))))
@@ -70,32 +70,19 @@ File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/p
 [1;32m     92[0m [43m                      [49m[43mverify_format[49m[38;5;241;43m=[39;49m[43mverify_format[49m[43m,[49m[43m [49m[43msandbox[49m[38;5;241;43m=[39;49m[43msandbox[49m[43m,[49m
 [1;32m     93[0m [43m                      [49m[43mcworkdir[49m[38;5;241;43m=[39;49m[43mcworkdir[49m[43m)[49m
 
-File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/pypandoc/__init__.py:310[0m, in [0;36m_convert_input[0;34m(source, format, input_type, to, extra_args, outputfile, filters, verify_format, sandbox, cworkdir)[0m
-[1;32m    305[0m [38;5;28;01mdef[39;00m [38;5;21m_convert_input[39m(source, [38;5;28mformat[39m, input_type, to, extra_args[38;5;241m=[39m(),
-[1;32m    306[0m                    outputfile[38;5;241m=[39m[38;5;28;01mNone[39;00m, filters[38;5;241m=[39m[38;5;28;01mNone[39;00m, verify_format[38;5;241m=[39m[38;5;28;01mTrue[39;00m,
-[1;32m    307[0m                    sandbox[38;5;241m=[39m[38;5;28;01mTrue[39;00m, cworkdir[38;5;241m=[39m[38;5;28;01mNone[39;00m):
-[1;32m    309[0m     _check_log_handler()
-[0;32m--> 310[0m     [43m_ensure_pandoc_path[49m[43m([49m[43m)[49m
-[1;32m    312[0m     [38;5;28;01mif[39;00m verify_format:
-[1;32m    313[0m         [38;5;28mformat[39m, to [38;5;241m=[39m _validate_formats([38;5;28mformat[39m, to, outputfile)
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/pypandoc/__init__.py:404[0m, in [0;36m_convert_input[0;34m(source, format, input_type, to, extra_args, outputfile, filters, verify_format, sandbox, cworkdir)[0m
+[1;32m    402[0m [38;5;66;03m# check that pandoc returned successfully[39;00m
+[1;32m    403[0m [38;5;28;01mif[39;00m p[38;5;241m.[39mreturncode [38;5;241m!=[39m [38;5;241m0[39m:
+[0;32m--> 404[0m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[1;32m    405[0m         [38;5;124m'[39m[38;5;124mPandoc died with exitcode [39m[38;5;124m"[39m[38;5;132;01m%s[39;00m[38;5;124m"[39m[38;5;124m during conversion: [39m[38;5;132;01m%s[39;00m[38;5;124m'[39m [38;5;241m%[39m (p[38;5;241m.[39mreturncode, stderr)
+[1;32m    406[0m     )
+[1;32m    408[0m [38;5;66;03m# if there is output on stderr, process it and send to logger[39;00m
+[1;32m    409[0m [38;5;28;01mif[39;00m stderr:
 
-File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/pypandoc/__init__.py:728[0m, in [0;36m_ensure_pandoc_path[0;34m()[0m
-[1;32m    720[0m logger[38;5;241m.[39minfo(textwrap[38;5;241m.[39mdedent([38;5;124m"""[39m[38;5;130;01m\[39;00m
-[1;32m    721[0m [38;5;124m    See http://johnmacfarlane.net/pandoc/installing.html[39m
-[1;32m    722[0m [38;5;124m    for installation options[39m
-[1;32m    723[0m [38;5;124m[39m[38;5;124m"""[39m))
-[1;32m    724[0m logger[38;5;241m.[39minfo(textwrap[38;5;241m.[39mdedent([38;5;124m"""[39m[38;5;130;01m\[39;00m
-[1;32m    725[0m [38;5;124m    ---------------------------------------------------------------[39m
-[1;32m    726[0m 
-[1;32m    727[0m [38;5;124m[39m[38;5;124m"""[39m))
-[0;32m--> 728[0m [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m([38;5;124m"[39m[38;5;124mNo pandoc was found: either install pandoc and add it[39m[38;5;130;01m\n[39;00m[38;5;124m"[39m
-[1;32m    729[0m               [38;5;124m"[39m[38;5;124mto your PATH or or call pypandoc.download_pandoc(...) or[39m[38;5;130;01m\n[39;00m[38;5;124m"[39m
-[1;32m    730[0m               [38;5;124m"[39m[38;5;124minstall pypandoc wheels with included pandoc.[39m[38;5;124m"[39m)
+[0;31mRuntimeError[0m: Pandoc died with exitcode "2" during conversion: Unknown option --shift-heading-level-by.
+Try pandoc --help for more information.
 
-[0;31mOSError[0m: No pandoc was found: either install pandoc and add it
-to your PATH or or call pypandoc.download_pandoc(...) or
-install pypandoc wheels with included pandoc.
-OSError: No pandoc was found: either install pandoc and add it
-to your PATH or or call pypandoc.download_pandoc(...) or
-install pypandoc wheels with included pandoc.
+RuntimeError: Pandoc died with exitcode "2" during conversion: Unknown option --shift-heading-level-by.
+Try pandoc --help for more information.
+
 

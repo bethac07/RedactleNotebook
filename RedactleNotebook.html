@@ -242,7 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "24d3d275aed54d139b44f866533e7774"}
+{"version_major": 2, "version_minor": 0, "model_id": "75019e6b7a49443d850c0498831bbab0"}
 </script></div>
 </div>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
@@ -328,7 +328,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9b04c97acea049d19bde8a2f6c75a93d"}
+{"version_major": 2, "version_minor": 0, "model_id": "a8084466a40e43a0807665a34b5d2fe0"}
 </script></div>
 </div>
 <div class="cell tag_hide-input tag_thebe-init docutils container">
@@ -364,20 +364,8 @@ and, or, on, along, through, amid, into, like, by, between, than,
 about, until, at, but, among, following, over, after, during, behind,
 up, down, before, onto, without, unlike, because, against, inside,
 outside, except, per</p>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO] Maybe try:
-
-    sudo apt-get install pandoc
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO] See http://johnmacfarlane.net/pandoc/installing.html
-for installation options
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO] ---------------------------------------------------------------
-</pre></div>
-</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
 <span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">if</span> <span class="n">thisguess</span> <span class="ow">in</span> <span class="n">tried</span><span class="p">:</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>   <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">((</span><span class="s1">&#39;already tried, here is what you tried already:&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tried</span><span class="p">)))))</span>
@@ -405,31 +393,17 @@ for installation options
 <span class="g g-Whitespace">     </span><span class="mi">92</span>                       <span class="n">verify_format</span><span class="o">=</span><span class="n">verify_format</span><span class="p">,</span> <span class="n">sandbox</span><span class="o">=</span><span class="n">sandbox</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">93</span>                       <span class="n">cworkdir</span><span class="o">=</span><span class="n">cworkdir</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/pypandoc/__init__.py:310,</span> in <span class="ni">_convert_input</span><span class="nt">(source, format, input_type, to, extra_args, outputfile, filters, verify_format, sandbox, cworkdir)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">def</span> <span class="nf">_convert_input</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">input_type</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">extra_args</span><span class="o">=</span><span class="p">(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>                    <span class="n">outputfile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verify_format</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>                    <span class="n">sandbox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cworkdir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="n">_check_log_handler</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">310</span>     <span class="n">_ensure_pandoc_path</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="k">if</span> <span class="n">verify_format</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="nb">format</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="n">_validate_formats</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">outputfile</span><span class="p">)</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/pypandoc/__init__.py:404,</span> in <span class="ni">_convert_input</span><span class="nt">(source, format, input_type, to, extra_args, outputfile, filters, verify_format, sandbox, cworkdir)</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span> <span class="c1"># check that pandoc returned successfully</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">404</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>         <span class="s1">&#39;Pandoc died with exitcode &quot;</span><span class="si">%s</span><span class="s1">&quot; during conversion: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span> <span class="c1"># if there is output on stderr, process it and send to logger</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span> <span class="k">if</span> <span class="n">stderr</span><span class="p">:</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/pypandoc/__init__.py:728,</span> in <span class="ni">_ensure_pandoc_path</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">720</span> <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
-<span class="g g-Whitespace">    </span><span class="mi">721</span><span class="s2">     See http://johnmacfarlane.net/pandoc/installing.html</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span><span class="s2">     for installation options</span>
-<span class="g g-Whitespace">    </span><span class="mi">723</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2">     ---------------------------------------------------------------</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">728</span> <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">&quot;No pandoc was found: either install pandoc and add it</span><span class="se">\n</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">729</span>               <span class="s2">&quot;to your PATH or or call pypandoc.download_pandoc(...) or</span><span class="se">\n</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">730</span>               <span class="s2">&quot;install pypandoc wheels with included pandoc.&quot;</span><span class="p">)</span>
-
-<span class="ne">OSError</span>: No pandoc was found: either install pandoc and add it
-<span class="n">to</span> <span class="n">your</span> <span class="n">PATH</span> <span class="ow">or</span> <span class="ow">or</span> <span class="n">call</span> <span class="n">pypandoc</span><span class="o">.</span><span class="n">download_pandoc</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="ow">or</span>
-<span class="n">install</span> <span class="n">pypandoc</span> <span class="n">wheels</span> <span class="k">with</span> <span class="n">included</span> <span class="n">pandoc</span><span class="o">.</span>
+<span class="ne">RuntimeError</span>: Pandoc died with exitcode &quot;2&quot; during conversion: Unknown option --shift-heading-level-by.
+<span class="n">Try</span> <span class="n">pandoc</span> <span class="o">--</span><span class="n">help</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
