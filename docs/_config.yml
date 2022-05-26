@@ -39,6 +39,7 @@ html:
 launch_buttons:
   thebe: true
   colab_url: "https://colab.research.google.com"
+  jupyterhub_url: ${{secrets.HUB_URL}}
 
 parse:
   myst_enable_extensions:
