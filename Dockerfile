@@ -1,6 +1,6 @@
 FROM pandoc/core:2.18.0-ubuntu
 
-RUN apt-get update
+RUN apt-get -y update
 RUN apt-get -y install python3-pip
 RUN apt-get -y install git
 RUN apt-get -y autoremove
