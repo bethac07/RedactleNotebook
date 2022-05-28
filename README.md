@@ -1,5 +1,7 @@
 # redactle-notebook
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/bethac07/redactle-notebook/main?labpath=docs%2FRedactleNotebook.ipynb)
+
 Unlimited Redactle, as a jupyter book
 
 You really should pay play the real https://www.redactle.com/# by [John Turner](https://www.twitter.com/jhntrnr), it's much slicker and nicer! 
