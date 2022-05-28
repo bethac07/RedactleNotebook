@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get -y update
+RUN apt-get update
 RUN apt-get -y install python3-pip
 RUN apt-get -y install git
 RUN apt-get -y install wget
